@@ -47,7 +47,6 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
         loginPresenter = new LoginPresenterCompl(this);
         loginPresenter.setProgressBarVisiblity(View.INVISIBLE);
 
-
     }
 
     @Override
@@ -111,6 +110,5 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
     public void goToMainScreen() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-
     }
 }

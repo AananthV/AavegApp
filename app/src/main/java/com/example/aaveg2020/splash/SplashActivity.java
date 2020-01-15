@@ -15,32 +15,32 @@ public class SplashActivity extends AppCompatActivity {
 
     ConstraintLayout splashConstraint;
     ImageView buildingsView;
-    ConstraintSet constraintSet;
+    ConstraintSet constraintSetBuildings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-/*        ConstraintLayout layout = (ConstraintLayout)findViewById(R.id.mainConstraint);
-        ConstraintSet set = new ConstraintSet();
-
-        ImageView view = new ImageView(this);
-        view.setId(View.generateViewId());
-        layout.addView(view,0);
-        set.clone(layout);
-        set.connect(view.getId(), ConstraintSet.TOP, layout.getId(), ConstraintSet.TOP, 60);
-        set.applyTo(layout);*/
-
         splashConstraint = (ConstraintLayout) findViewById(R.id.cl_splash_layout);
+        constraintSetBuildings = new ConstraintSet();
+
         buildingsView = new ImageView(this);
         buildingsView.setImageResource(R.drawable.buildings_compressed);
         buildingsView.setScaleType(ImageView.ScaleType.FIT_XY);
 
         buildingsView.setId(View.generateViewId());
-        splashConstraint.addView(buildingsView);
-        constraintSet.clone(splashConstraint);
-        constraintSet.connect(buildingsView.getId(),ConstraintSet.TOP, splashConstraint.getId(), ConstraintSet.TOP);
-        constraintSet.applyTo(splashConstraint);
+
+        ConstraintLayout.LayoutParams lp = new ConstraintLayout
+                .LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        splashConstraint.addView(buildingsView,lp);
+
+        constraintSetBuildings.clone(splashConstraint);
+        constraintSetBuildings.connect(buildingsView.getId(),ConstraintSet.BOTTOM,splashConstraint.getId(),ConstraintSet.BOTTOM);
+        constraintSetBuildings.connect(buildingsView.getId(),ConstraintSet.START,splashConstraint.getId(),ConstraintSet.START);
+        constraintSetBuildings.connect(buildingsView.getId(),ConstraintSet.END,splashConstraint.getId(),ConstraintSet.END);
+
+        constraintSetBuildings.applyTo(splashConstraint);
     }
 }

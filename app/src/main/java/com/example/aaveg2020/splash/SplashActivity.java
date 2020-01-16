@@ -13,6 +13,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 
 import com.example.aaveg2020.R;
+import com.example.aaveg2020.editableexplosionlibrarycode.ExplosionField;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -20,6 +21,7 @@ public class SplashActivity extends AppCompatActivity {
     ImageView buildingsView;
     ImageView trophy;
     int screenHeight, screenWidth;
+    ExplosionField explosionField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +52,7 @@ public class SplashActivity extends AppCompatActivity {
         buildingsView.setId(View.generateViewId());
 
         ConstraintLayout.LayoutParams lp = new ConstraintLayout
-                .LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                .LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 700);
 
         splashConstraint.addView(buildingsView,lp);
 
@@ -90,7 +92,7 @@ public class SplashActivity extends AppCompatActivity {
         trophy.setId(View.generateViewId());
 
         ConstraintLayout.LayoutParams lp = new ConstraintLayout
-                .LayoutParams(300, 300);
+                .LayoutParams(350, 400);
 
         splashConstraint.addView(trophy, lp);
         constraintSet.clone(splashConstraint);
@@ -127,7 +129,7 @@ public class SplashActivity extends AppCompatActivity {
                 screenHeight,
                 screenHeight * 0.4f);
 
-        trophyAnimation.setDuration(1700);
+        trophyAnimation.setDuration(2000);
         trophyAnimation.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -138,6 +140,7 @@ public class SplashActivity extends AppCompatActivity {
             public void onAnimationEnd(Animation animation) {
                 System.out.println("printing");
                 trophyBoom();
+                trophy.setVisibility(View.GONE);
                 flashScreen();
                 changeBackground();
             }
@@ -161,6 +164,8 @@ public class SplashActivity extends AppCompatActivity {
 
     private void trophyBoom() {
         // call blasting thing
+        explosionField = ExplosionField.attach2Window(this);
+        explosionField.explode(trophy);
     }
 
 }

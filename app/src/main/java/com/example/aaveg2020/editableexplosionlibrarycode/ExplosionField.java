@@ -98,7 +98,8 @@ public class ExplosionField extends View {
             }
         });
         animator.start();
-        view.animate().setDuration(750).setStartDelay(startDelay).scaleX(0f).scaleY(0f).alpha(0f).start();
+        // TODO: Pickup appropriate speed.
+        view.animate().setDuration(300).setStartDelay(startDelay).scaleX(0f).scaleY(0f).alpha(0f).start();
         explode(Utils.createBitmapFromView(view), r, startDelay, ExplosionAnimator.DEFAULT_DURATION);
     }
 

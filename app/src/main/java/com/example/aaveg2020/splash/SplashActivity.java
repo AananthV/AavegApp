@@ -1,6 +1,7 @@
 package com.example.aaveg2020.splash;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,17 +21,23 @@ public class SplashActivity extends AppCompatActivity {
     ConstraintLayout splashConstraint;
     ImageView buildingsView;
     ImageView trophy;
+    ImageView explosionView;
     int screenHeight, screenWidth;
     ExplosionField explosionField;
+    FlashingView flashingView;
+    RemoveFlashView removeFlashView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        removeFlashView = () -> splashConstraint.removeView(flashingView);
         splashConstraint = findViewById(R.id.cl_splash_layout);
         buildingsView = new ImageView(this);
         trophy = new ImageView(this);
+        flashingView = new FlashingView(this,removeFlashView);
+        explosionView = new ImageView(this);
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -39,7 +46,48 @@ public class SplashActivity extends AppCompatActivity {
 
         setupTrophy();
         setupBuildings();   // adds building to the view in correct location.
+        setupExplosionView();
         animateTrophy();
+    }
+
+    private void setupExplosionView() {
+
+        ConstraintSet constraintSetExplosion = new ConstraintSet();
+
+        explosionView.setImageResource(R.drawable.explosion_compressed);
+        explosionView.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        explosionView.setId(View.generateViewId());
+
+        ConstraintLayout.LayoutParams lp = new ConstraintLayout
+                .LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int)(screenHeight*0.7));
+
+        splashConstraint.addView(explosionView,lp);
+
+        constraintSetExplosion.clone(splashConstraint);
+
+        constraintSetExplosion.connect(
+                explosionView.getId(),
+                ConstraintSet.TOP,
+                splashConstraint.getId(),
+                ConstraintSet.BOTTOM
+        );
+
+        constraintSetExplosion.connect(
+                explosionView.getId(),
+                ConstraintSet.START,
+                splashConstraint.getId(),
+                ConstraintSet.START
+        );
+
+        constraintSetExplosion.connect(
+                buildingsView.getId(),
+                ConstraintSet.END,
+                splashConstraint.getId(),
+                ConstraintSet.END
+        );
+
+        constraintSetExplosion.applyTo(splashConstraint);
     }
 
     private void setupBuildings() {
@@ -52,7 +100,7 @@ public class SplashActivity extends AppCompatActivity {
         buildingsView.setId(View.generateViewId());
 
         ConstraintLayout.LayoutParams lp = new ConstraintLayout
-                .LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 700);
+                .LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int)(screenHeight*0.4));
 
         splashConstraint.addView(buildingsView,lp);
 
@@ -100,7 +148,7 @@ public class SplashActivity extends AppCompatActivity {
         constraintSet.connect(
                 trophy.getId(),
                 ConstraintSet.BOTTOM,
-                trophy.getId(),
+                splashConstraint.getId(),
                 ConstraintSet.BOTTOM
         );
 
@@ -118,6 +166,13 @@ public class SplashActivity extends AppCompatActivity {
                 ConstraintSet.END
         );
 
+        constraintSet.connect(
+                trophy.getId(),
+                ConstraintSet.TOP,
+                splashConstraint.getId(),
+                ConstraintSet.TOP
+        );
+
         constraintSet.applyTo(splashConstraint);
     }
 
@@ -126,14 +181,13 @@ public class SplashActivity extends AppCompatActivity {
         TranslateAnimation trophyAnimation = new TranslateAnimation(
                 0,
                 0,
-                screenHeight,
-                screenHeight * 0.4f);
+                screenHeight * 0.5f,
+                0);
 
         trophyAnimation.setDuration(2000);
         trophyAnimation.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-
             }
 
             @Override
@@ -142,7 +196,6 @@ public class SplashActivity extends AppCompatActivity {
                 trophyBoom();
                 trophy.setVisibility(View.GONE);
                 flashScreen();
-                changeBackground();
             }
 
             @Override
@@ -152,14 +205,31 @@ public class SplashActivity extends AppCompatActivity {
         });
         trophyAnimation.setFillAfter(true);
         trophy.startAnimation(trophyAnimation);
+
+        final Handler handler = new Handler();
+        handler.postDelayed(this::changeBackground, 2000);
+
     }
 
     private void changeBackground() {
         // remove background view and replace with other views.
+        splashConstraint.removeView(buildingsView);
+
+        TranslateAnimation explosionAnimation = new TranslateAnimation(
+                0,
+                0,
+                0,
+                -1*screenHeight*0.7f);
+
+        explosionAnimation.setDuration(5000);
+        explosionAnimation.setFillAfter(true);
+        explosionView.startAnimation(explosionAnimation);
+
+        splashConstraint.addView(buildingsView);
     }
 
     private void flashScreen() {
-        // flash the screen
+        splashConstraint.addView(flashingView);
     }
 
     private void trophyBoom() {
@@ -167,5 +237,4 @@ public class SplashActivity extends AppCompatActivity {
         explosionField = ExplosionField.attach2Window(this);
         explosionField.explode(trophy);
     }
-
 }

@@ -128,7 +128,7 @@ public class ChooseHostel extends Fragment {
 
         Call<LoginBody> call = api.setHostel(chosenHostel, UserUtils.APIToken);
 
-/*        call.enqueue(new Callback<LoginBody>() {
+        call.enqueue(new Callback<LoginBody>() {
 
             @Override
             public void onResponse(Call<LoginBody> call, Response<LoginBody> response) {
@@ -147,15 +147,8 @@ public class ChooseHostel extends Fragment {
                 Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
 
             }
-        });*/
+        });
 
-        pref= getActivity().getSharedPreferences("Aaveg2020", MODE_PRIVATE);
-        editor = pref.edit();
-        editor.putString("hostel",chosenHostel);
-        editor.apply();
-//        Toast.makeText(getActivity(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(getActivity(), MainActivity.class);
-        startActivity(intent);
     }
 
 

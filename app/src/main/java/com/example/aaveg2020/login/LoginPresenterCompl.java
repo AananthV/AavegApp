@@ -50,13 +50,13 @@ public class LoginPresenterCompl implements ILoginPresenter {
                 .build();
 
         api = retrofit.create(AavegApi.class);
-/*
+
         Call<LoginBody> call = api.loginUser(userId,password);
 
         call.enqueue(new Callback<LoginBody>() {
             @Override
             public void onResponse(Call<LoginBody> call, Response<LoginBody> response) {
-               user=new UserModel(userId,password);
+                user=new UserModel(userId,password);
                 final int code = user.checkUserValidity(userId, password);
                 if (code != 0) {
                     iLoginView.onLoginResult(401, "Please enter both rollnumber and password");
@@ -74,6 +74,7 @@ public class LoginPresenterCompl implements ILoginPresenter {
                     iLoginView.onLoginResult(response.code(), "user not found");
                 }
 
+
             }
 
             @Override
@@ -81,16 +82,7 @@ public class LoginPresenterCompl implements ILoginPresenter {
                 iLoginView.onLoginResult(500,"There is some error");
 
             }
-        });*/
-
-
-        editor.putString("user_id", "106118017");
-        editor.putString("APIToken","AAA");
-        editor.apply();
-        UserUtils.userId=pref.getString("user_id",null);
-        UserUtils.APIToken=pref.getString("APIToken",null);
-        iLoginView.onLoginResult(200,"Login Success");
-
+        });
     }
 
     @Override
@@ -105,7 +97,7 @@ public class LoginPresenterCompl implements ILoginPresenter {
 
         Call<LoginBody> call = api.checkHostel(pref.getString("APIToken",null));
 
-/*        call.enqueue(new Callback<LoginBody>() {
+        call.enqueue(new Callback<LoginBody>() {
             @Override
             public void onResponse(Call<LoginBody> call, Response<LoginBody> response) {
                 if (response.body() != null) {
@@ -119,7 +111,7 @@ public class LoginPresenterCompl implements ILoginPresenter {
 
                 }
                 else{
-                        Toast.makeText(context,response.toString(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,response.toString(),Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -128,8 +120,7 @@ public class LoginPresenterCompl implements ILoginPresenter {
                 Toast.makeText(context,"Error in checking user hostel",Toast.LENGTH_SHORT).show();
 
             }
-        });*/
-        iLoginView.setHostel();
+        });
     }
 
     @Override

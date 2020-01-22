@@ -21,7 +21,7 @@ import static com.example.aaveg2020.UserUtils.APIToken;
 
 public class LoginActivity extends AppCompatActivity implements ILoginView, View.OnClickListener {
     View child;
-    ConstraintLayout item;
+    FrameLayout item;
     private EditText editUser;
     private EditText editPass;
     private Button btnLogin;

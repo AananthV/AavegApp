@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +40,9 @@ public class ChooseHostel extends Fragment {
     LinearLayout background;
     SharedPreferences pref;
     SharedPreferences.Editor editor;
+    CardView hostelBanner;
+    ImageView agateBack,azuriteBack,bloodstoneBack,opalBack,cobaltBack;
+
 
     public ChooseHostel() {
         // Required empty public constructor
@@ -62,42 +66,59 @@ public class ChooseHostel extends Fragment {
         o = v.findViewById(R.id.opal);
         c = v.findViewById(R.id.cobalt);
         az = v.findViewById(R.id.azurite);
+        agateBack = v.findViewById(R.id.agatecard);
+        bloodstoneBack = v.findViewById(R.id.bloodstonecard);
+        opalBack = v.findViewById(R.id.opalcard);
+        cobaltBack = v.findViewById(R.id.cobaltcard);
+        azuriteBack = v.findViewById(R.id.azuritecard);
+        hostelBanner=v.findViewById(R.id.hostelbanner);
+        hostelBanner.setBackgroundResource(R.drawable.cardbanner);
         hostelSelect = v.findViewById(R.id.chooseButton);
         chosenHostel = "";
 
         a.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clearBackgroundImage();
                 chosenHostel = agate.getText().toString();
-                background.setBackgroundResource(R.color.agate);
+                agateBack.setImageResource(R.drawable.agatecard);
             }
         });
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clearBackgroundImage();
+
                 chosenHostel = bloodstone.getText().toString();
-                background.setBackgroundResource(R.color.bloodstone);
+                bloodstoneBack.setBackgroundResource(R.drawable.bloodstonecard);
+
             }
         });
         o.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clearBackgroundImage();
+
                 chosenHostel = opal.getText().toString();
-                background.setBackgroundResource(R.color.opal);
+                opalBack.setBackgroundResource(R.drawable.opalcard);
             }
         });
         c.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clearBackgroundImage();
+
                 chosenHostel = cobalt.getText().toString();
-                background.setBackgroundResource(R.color.cobalt);
+                cobaltBack.setBackgroundResource(R.drawable.cobaltcard);
             }
         });
         az.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clearBackgroundImage();
+
                 chosenHostel = azurite.getText().toString();
-                background.setBackgroundResource(R.color.azurite);
+               azuriteBack.setBackgroundResource(R.drawable.azuritecard);
             }
         });
         hostelSelect.setOnClickListener(new View.OnClickListener() {
@@ -115,7 +136,7 @@ public class ChooseHostel extends Fragment {
         return v;
     }
 
-    private void setHostel(String chosenHostel) {
+    private void setHostel(final String chosenHostel) {
         Toast.makeText(getActivity(), chosenHostel, Toast.LENGTH_LONG).show();
 
 
@@ -151,5 +172,17 @@ public class ChooseHostel extends Fragment {
 
     }
 
+    private void clearBackgroundImage(){
+        int x=0;
+        switch(chosenHostel){
+            case "Agate": agateBack.setImageResource(x);        Toast.makeText(getActivity(),"lol",Toast.LENGTH_SHORT).show();
+                break;
+            case "Azurite": azuriteBack.setImageResource(x);  Toast.makeText(getActivity(),"lol",Toast.LENGTH_SHORT).show();break;
+            case "Bloodstone":bloodstoneBack.setImageResource(x); Toast.makeText(getActivity(),"lol",Toast.LENGTH_SHORT).show();break;
+            case "Cobalt":cobaltBack.setImageResource(x); Toast.makeText(getActivity(),"lol",Toast.LENGTH_SHORT).show();break;
+            case "Opal":opalBack.setImageResource(x); Toast.makeText(getActivity(),"lol",Toast.LENGTH_SHORT).show();break;
+
+        }
+    }
 
 }

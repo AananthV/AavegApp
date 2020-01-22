@@ -1,5 +1,6 @@
 package com.example.aaveg2020.splash;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
@@ -13,8 +14,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 
+import com.example.aaveg2020.MainActivity;
 import com.example.aaveg2020.R;
+import com.example.aaveg2020.UserUtils;
 import com.example.aaveg2020.editableexplosionlibrarycode.ExplosionField;
+import com.example.aaveg2020.login.ChooseHostel;
+import com.example.aaveg2020.login.LoginActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -192,7 +197,6 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                System.out.println("printing");
                 trophyBoom();
                 trophy.setVisibility(View.GONE);
                 flashScreen();
@@ -223,6 +227,33 @@ public class SplashActivity extends AppCompatActivity {
 
         explosionAnimation.setDuration(5000);
         explosionAnimation.setFillAfter(true);
+        explosionAnimation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+                Intent intent;
+
+                System.out.println("value of api token is "+UserUtils.APIToken);
+                System.out.println("value of hostel is "+UserUtils.hostel);
+
+                if(UserUtils.APIToken!=null && UserUtils.hostel!=null)
+                    intent = new Intent(SplashActivity.this, MainActivity.class);
+                else
+                    intent = new Intent(SplashActivity.this, LoginActivity.class);
+
+                startActivity(intent);
+                overridePendingTransition(0,0);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
         explosionView.startAnimation(explosionAnimation);
 
         splashConstraint.addView(buildingsView);

@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.aaveg2020.MainActivity;
@@ -20,7 +21,7 @@ import static com.example.aaveg2020.UserUtils.APIToken;
 
 public class LoginActivity extends AppCompatActivity implements ILoginView, View.OnClickListener {
     View child;
-    FrameLayout item;
+    ConstraintLayout item;
     private EditText editUser;
     private EditText editPass;
     private Button btnLogin;
@@ -46,7 +47,6 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
         btnClear.setOnClickListener(this);
         loginPresenter = new LoginPresenterCompl(this);
         loginPresenter.setProgressBarVisiblity(View.INVISIBLE);
-
 
     }
 
@@ -111,6 +111,5 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
     public void goToMainScreen() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-
     }
 }

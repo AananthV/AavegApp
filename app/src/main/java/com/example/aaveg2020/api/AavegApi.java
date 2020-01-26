@@ -1,14 +1,18 @@
 package com.example.aaveg2020.api;
 
+import com.example.aaveg2020.Scoreboard.ScoreboardModel;
 import com.example.aaveg2020.login.LoginBody;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 
 public interface AavegApi {
+
+    String base_url="http://www.aaveg.in/api/";
 
     @FormUrlEncoded
     @POST("studentLogin")
@@ -27,9 +31,10 @@ public interface AavegApi {
     Call<LoginBody> setHostel(
             @Field("hostel") String hostel,
             @Field("APIToken") String APIToken
-
-
     );
+
+    @GET("scoreboard")
+    Call<ScoreboardModel> getScoreboard();
 
 
 }

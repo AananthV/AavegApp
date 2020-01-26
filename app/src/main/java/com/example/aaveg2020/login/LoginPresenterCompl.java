@@ -45,7 +45,7 @@ public class LoginPresenterCompl implements ILoginPresenter {
     public void doLogin(String userId, String password) {
         AavegApi api;
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://aaveg.in/api/")
+                .baseUrl(AavegApi.base_url)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -89,7 +89,7 @@ public class LoginPresenterCompl implements ILoginPresenter {
     public void hasHostel(String APIToken) {
         AavegApi api;
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://aaveg.in/api/")
+                .baseUrl(AavegApi.base_url)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

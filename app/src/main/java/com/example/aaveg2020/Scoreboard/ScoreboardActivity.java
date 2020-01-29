@@ -24,7 +24,7 @@ public class ScoreboardActivity extends AppCompatActivity {
                 R.id.navigation_overall, R.id.navigation_cultural, R.id.navigation_sports,R.id.navigation_spectrum)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+     //   NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
     }
 

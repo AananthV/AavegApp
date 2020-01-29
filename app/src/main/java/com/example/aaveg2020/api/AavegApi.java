@@ -12,7 +12,9 @@ import retrofit2.http.PUT;
 
 public interface AavegApi {
 
-    String base_url="http://www.aaveg.in/api/";
+//    String base_url="https://www.aaveg.in/api/";
+    String base_url="https://aaveg.in/api/";
+
 
     @FormUrlEncoded
     @POST("studentLogin")

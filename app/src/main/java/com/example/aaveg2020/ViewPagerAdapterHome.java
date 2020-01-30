@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import com.example.aaveg2020.Scoreboard.ScoreboardFragment;
 import com.example.aaveg2020.fragments.AboutUsFragment;
 import com.example.aaveg2020.fragments.EventsFragment;
 import com.example.aaveg2020.fragments.HomeFragment;
@@ -32,7 +33,7 @@ public class ViewPagerAdapterHome extends FragmentStatePagerAdapter {
                 f = new HomeFragment();
                 break;
             case 3 :
-                f = new LeaderboardFragment();
+                f = new ScoreboardFragment();
                 break;
             case 4 :
                 f = new SponsorsFragment();

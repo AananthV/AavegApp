@@ -20,6 +20,10 @@ import android.widget.Toast;
 import android.view.View;
 
 import com.example.aaveg2020.Scoreboard.ScoreboardFragment;
+import com.example.aaveg2020.fragments.AboutUsFragment;
+import com.example.aaveg2020.fragments.EventsFragment;
+import com.example.aaveg2020.fragments.HomeFragment;
+import com.example.aaveg2020.fragments.SponsorsFragment;
 import com.example.aaveg2020.login.LoginActivity;
 import com.google.android.material.tabs.TabLayout;
 
@@ -30,8 +34,8 @@ import com.example.aaveg2020.events.ClustersFragment;
 public class MainActivity extends AppCompatActivity implements FragmentChangeListener {
 
     TabLayout mainScreenTabLayout;
-    ViewPager mainScreenViewPager;
-    ViewPagerAdapterHome adapter;
+ //   ViewPager mainScreenViewPager;
+ //   ViewPagerAdapterHome adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +46,63 @@ public class MainActivity extends AppCompatActivity implements FragmentChangeLis
         fragmentTransaction.replace(R.id.main_framelayout,new HomeFragment());
         fragmentTransaction.commit();
         mainScreenTabLayout = (TabLayout) findViewById(R.id.tab_layout_main_screen);
-        mainScreenViewPager = (ViewPager) findViewById(R.id.view_pager_main_screen);
-        adapter = new ViewPagerAdapterHome(getSupportFragmentManager(),BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        mainScreenViewPager.setAdapter(adapter);
-        mainScreenTabLayout.setupWithViewPager(mainScreenViewPager);
+    //    mainScreenViewPager = (ViewPager) findViewById(R.id.view_pager_main_screen);
+    //    adapter = new ViewPagerAdapterHome(getSupportFragmentManager(),BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+    //    mainScreenViewPager.setAdapter(adapter);
+    //    mainScreenTabLayout.setupWithViewPager(mainScreenViewPager);
 
-        mainScreenTabLayout.getTabAt(2).select();
+        /*mainScreenTabLayout.addTab(new TabLayout.Tab().setIcon(R.drawable.agate));
+        mainScreenTabLayout.addTab(new TabLayout.Tab().setIcon(R.drawable.agate));
+        mainScreenTabLayout.addTab(new TabLayout.Tab().setIcon(R.drawable.agate));
+        mainScreenTabLayout.addTab(new TabLayout.Tab().setIcon(R.drawable.agate));
+        mainScreenTabLayout.addTab(new TabLayout.Tab().setIcon(R.drawable.agate));*/
+
+        mainScreenTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                Fragment f;
+                switch (tab.getPosition()) {
+                    case 0:
+                        f = new AboutUsFragment();
+                        break;
+
+                    case 1:
+                        f = new EventsFragment();
+                        break;
+
+                    case 2:
+                        f = new HomeFragment();
+                        break;
+
+                    case 3:
+                        f = new ScoreboardFragment();
+                        break;
+
+                    case 4:
+                        f = new SponsorsFragment();
+                        break;
+
+                    default:
+                        f=new AboutUsFragment();
+                }
+                FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.main_framelayout,f);
+                fragmentTransaction.commit();
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
+
+        /*FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.main_framelayout,new ScoreboardFragment());
+        fragmentTransaction.commit();*/
 
     }
 

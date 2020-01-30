@@ -25,8 +25,6 @@ public class ScoreboardFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View mView=inflater.inflate(R.layout.fragment_scoreboard,container,false);
-        Toolbar toolbar = mView.findViewById(R.id.toolbar);
-        toolbar.setTitle(getResources().getString(R.string.app_name));
         TabLayout tabLayout = mView.findViewById(R.id.tablayout);
         TabItem tabOverall = mView.findViewById(R.id.tab_overall);
         TabItem tabCulturals = mView.findViewById(R.id.tab_culturals);

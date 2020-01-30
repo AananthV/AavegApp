@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +40,10 @@ public class ChooseHostel extends Fragment {
     LinearLayout background;
     SharedPreferences pref;
     SharedPreferences.Editor editor;
+    CardView hostelBanner;
+    ImageView agateBack,azuriteBack,bloodstoneBack,opalBack,cobaltBack;
+    Boolean hostel[]={false,false,false,false,false};
+
 
     public ChooseHostel() {
         // Required empty public constructor
@@ -62,42 +67,51 @@ public class ChooseHostel extends Fragment {
         o = v.findViewById(R.id.opal);
         c = v.findViewById(R.id.cobalt);
         az = v.findViewById(R.id.azurite);
+        agateBack = v.findViewById(R.id.agatecard);
+        bloodstoneBack = v.findViewById(R.id.bloodstonecard);
+        opalBack = v.findViewById(R.id.opalcard);
+        cobaltBack = v.findViewById(R.id.cobaltcard);
+        azuriteBack = v.findViewById(R.id.azuritecard);
+        hostelBanner=v.findViewById(R.id.hostelbanner);
+        hostelBanner.setBackgroundResource(R.drawable.cardbanner);
         hostelSelect = v.findViewById(R.id.chooseButton);
         chosenHostel = "";
 
         a.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                chosenHostel = agate.getText().toString();
-                background.setBackgroundResource(R.color.agate);
+                selectCard(agate,R.drawable.agatecard,agateBack);
+
             }
         });
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                chosenHostel = bloodstone.getText().toString();
-                background.setBackgroundResource(R.color.bloodstone);
+                selectCard(bloodstone,R.drawable.bloodstonecard,bloodstoneBack);
+
+
             }
         });
         o.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                chosenHostel = opal.getText().toString();
-                background.setBackgroundResource(R.color.opal);
+
+                selectCard(opal,R.drawable.opalcard,opalBack);
             }
         });
         c.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                chosenHostel = cobalt.getText().toString();
-                background.setBackgroundResource(R.color.cobalt);
+                selectCard(cobalt,R.drawable.cobaltcard,cobaltBack);
+;
             }
         });
         az.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                chosenHostel = azurite.getText().toString();
-                background.setBackgroundResource(R.color.azurite);
+
+                selectCard(azurite,R.drawable.azuritecard,azuriteBack);
+
             }
         });
         hostelSelect.setOnClickListener(new View.OnClickListener() {
@@ -115,7 +129,7 @@ public class ChooseHostel extends Fragment {
         return v;
     }
 
-    private void setHostel(String chosenHostel) {
+    private void setHostel(final String chosenHostel) {
         Toast.makeText(getActivity(), chosenHostel, Toast.LENGTH_LONG).show();
 
 
@@ -151,5 +165,23 @@ public class ChooseHostel extends Fragment {
 
     }
 
+
+    private void selectCard(TextView hostel,int background,ImageView hostelBack){
+
+    int x=0;
+        switch(chosenHostel){
+            case "Agate": agateBack.setBackgroundResource(x);
+            break;
+            case "Azurite": azuriteBack.setBackgroundResource(x);break;
+            case "Bloodstone":bloodstoneBack.setBackgroundResource(x);break;
+            case "Cobalt":cobaltBack.setBackgroundResource(x); break;
+            case "Opal":opalBack.setBackgroundResource(x);break;
+
+        }
+
+        chosenHostel = hostel.getText().toString();
+        hostelBack.setBackgroundResource(background);
+        Toast.makeText(getActivity(),chosenHostel,Toast.LENGTH_SHORT).show();
+    }
 
 }

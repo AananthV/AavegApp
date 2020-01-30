@@ -4,10 +4,16 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="transparent">#00000000</color>
+    <color name="darktransparent">#D1000000</color>
+    <color name="whitetransparent">#90FFFFFF</color>
+
     <color name="agate">#2a34c4</color>
     <color name="bloodstone">#e31a1a</color>
     <color name="cobalt">#e9e9e9</color>
     <color name="azurite">#2e4800</color>
     <color name="opal">#ffe399</color>
+    <color name="darkBackground">#333335</color>
+    <color name="darkelement">#a9a9a9</color>
+
 
 </resources>

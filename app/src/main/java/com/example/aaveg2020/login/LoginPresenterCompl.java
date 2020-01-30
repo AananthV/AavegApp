@@ -1,15 +1,12 @@
 package com.example.aaveg2020.login;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
-
 import com.example.aaveg2020.UserUtils;
 import com.example.aaveg2020.api.AavegApi;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,13 +33,10 @@ public class LoginPresenterCompl implements ILoginPresenter {
 
     }
 
-    @Override
-    public void clear() {
-        iLoginView.onClearText();
-    }
+
 
     @Override
-    public void doLogin(String userId, String password) {
+    public void doLogin(final String userId, final String password) {
         AavegApi api;
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(AavegApi.base_url)
@@ -105,7 +99,9 @@ public class LoginPresenterCompl implements ILoginPresenter {
                         iLoginView.setHostel();
                     }
                     else{
+                        UserUtils.hostel=response.body().getHostel();
                         iLoginView.goToMainScreen();
+
                     }
 
 
@@ -127,10 +123,6 @@ public class LoginPresenterCompl implements ILoginPresenter {
     public void setProgressBarVisiblity(int visiblity) {
         iLoginView.onSetProgressBarVisibility(visiblity);
     }
-
-
-
-
 
 
 }

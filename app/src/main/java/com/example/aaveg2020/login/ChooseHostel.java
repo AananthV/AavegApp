@@ -42,6 +42,7 @@ public class ChooseHostel extends Fragment {
     SharedPreferences.Editor editor;
     CardView hostelBanner;
     ImageView agateBack,azuriteBack,bloodstoneBack,opalBack,cobaltBack;
+    Boolean hostel[]={false,false,false,false,false};
 
 
     public ChooseHostel() {
@@ -79,46 +80,38 @@ public class ChooseHostel extends Fragment {
         a.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clearBackgroundImage();
-                chosenHostel = agate.getText().toString();
-                agateBack.setImageResource(R.drawable.agatecard);
+                selectCard(agate,R.drawable.agatecard,agateBack);
+
             }
         });
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clearBackgroundImage();
+                selectCard(bloodstone,R.drawable.bloodstonecard,bloodstoneBack);
 
-                chosenHostel = bloodstone.getText().toString();
-                bloodstoneBack.setBackgroundResource(R.drawable.bloodstonecard);
 
             }
         });
         o.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clearBackgroundImage();
 
-                chosenHostel = opal.getText().toString();
-                opalBack.setBackgroundResource(R.drawable.opalcard);
+                selectCard(opal,R.drawable.opalcard,opalBack);
             }
         });
         c.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clearBackgroundImage();
-
-                chosenHostel = cobalt.getText().toString();
-                cobaltBack.setBackgroundResource(R.drawable.cobaltcard);
+                selectCard(cobalt,R.drawable.cobaltcard,cobaltBack);
+;
             }
         });
         az.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clearBackgroundImage();
 
-                chosenHostel = azurite.getText().toString();
-               azuriteBack.setBackgroundResource(R.drawable.azuritecard);
+                selectCard(azurite,R.drawable.azuritecard,azuriteBack);
+
             }
         });
         hostelSelect.setOnClickListener(new View.OnClickListener() {
@@ -172,17 +165,23 @@ public class ChooseHostel extends Fragment {
 
     }
 
-    private void clearBackgroundImage(){
-        int x=0;
+
+    private void selectCard(TextView hostel,int background,ImageView hostelBack){
+
+    int x=0;
         switch(chosenHostel){
-            case "Agate": agateBack.setImageResource(x);        Toast.makeText(getActivity(),"lol",Toast.LENGTH_SHORT).show();
-                break;
-            case "Azurite": azuriteBack.setImageResource(x);  Toast.makeText(getActivity(),"lol",Toast.LENGTH_SHORT).show();break;
-            case "Bloodstone":bloodstoneBack.setImageResource(x); Toast.makeText(getActivity(),"lol",Toast.LENGTH_SHORT).show();break;
-            case "Cobalt":cobaltBack.setImageResource(x); Toast.makeText(getActivity(),"lol",Toast.LENGTH_SHORT).show();break;
-            case "Opal":opalBack.setImageResource(x); Toast.makeText(getActivity(),"lol",Toast.LENGTH_SHORT).show();break;
+            case "Agate": agateBack.setBackgroundResource(x);
+            break;
+            case "Azurite": azuriteBack.setBackgroundResource(x);break;
+            case "Bloodstone":bloodstoneBack.setBackgroundResource(x);break;
+            case "Cobalt":cobaltBack.setBackgroundResource(x); break;
+            case "Opal":opalBack.setBackgroundResource(x);break;
 
         }
+
+        chosenHostel = hostel.getText().toString();
+        hostelBack.setBackgroundResource(background);
+        Toast.makeText(getActivity(),chosenHostel,Toast.LENGTH_SHORT).show();
     }
 
 }

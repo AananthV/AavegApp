@@ -37,6 +37,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="CHOOSE YOUR HOSTEL"
+                    android:textColor="#000"
                     android:textSize="24sp"
                     android:layout_gravity="center"/>
 
@@ -92,7 +93,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/transparent"
-                    android:src="@drawable/agate"
+                    android:src="@drawable/agatelogo"
                     android:layout_margin="10dp"/>
 
 
@@ -136,7 +137,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/azurite"
+                    android:src="@drawable/azuritelogo"
                     android:layout_margin="10dp"/>
 
             </androidx.cardview.widget.CardView>
@@ -189,7 +190,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/bloodstone"
+                    android:src="@drawable/bloodstonelogo"
                     android:layout_margin="10dp"/>
 
 
@@ -231,7 +232,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/cobalt"
+                    android:src="@drawable/cobaltlogo"
                     android:layout_margin="10dp"/>
 
 
@@ -261,8 +262,6 @@
                 android:layout_marginRight="125dp"
                 android:layout_marginBottom="25dp"
                 android:layout_weight="1"
-
-
                 app:cardCornerRadius="4dp"
                 app:cardElevation="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -290,7 +289,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/opal"
+                    android:src="@drawable/opallogo"
                     android:background="@color/transparent"
 
                     android:layout_margin="10dp"/>
@@ -318,8 +317,9 @@
                 android:background="@drawable/buttoncustom"
                 android:text="Choose hostel"
                 android:textSize="18sp"
+                android:textColor="#000"
+                android:padding="5dp"
                 android:textStyle="bold"
-                android:textColor="#FFF"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

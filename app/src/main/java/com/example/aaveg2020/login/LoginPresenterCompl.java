@@ -100,8 +100,7 @@ public class LoginPresenterCompl implements ILoginPresenter {
                     }
                     else{
                         UserUtils.hostel=response.body().getHostel();
-                       // iLoginView.goToMainScreen();
-                        iLoginView.setHostel();
+                        iLoginView.goToMainScreen();
 
                     }
 

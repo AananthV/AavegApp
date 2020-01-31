@@ -15,5 +15,13 @@
     <color name="darkBackground">#333335</color>
     <color name="darkelement">#a9a9a9</color>
 
-
+    <color name="event_row_bg">#b9bbbe</color>
+    <color name="events_text">#f7f7f7</color>
+    <color name="events_header_bg">#c46210</color>
+    <color name="events_bg">#292B2C</color>
+    <color name="black">#000000</color>
+    <color name="gray_border_color">#454D55</color>
+    <color name="gray_1">#343A40</color>
+    <color name="gray_2">#555D65</color>
+    <color name="gray_3">#B9BBBE</color>
 </resources>

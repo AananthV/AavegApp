@@ -42,7 +42,6 @@ public class ChooseHostel extends Fragment {
     SharedPreferences.Editor editor;
     CardView hostelBanner;
     ImageView agateBack,azuriteBack,bloodstoneBack,opalBack,cobaltBack;
-    Boolean hostel[]={false,false,false,false,false};
 
 
     public ChooseHostel() {
@@ -88,7 +87,6 @@ public class ChooseHostel extends Fragment {
             @Override
             public void onClick(View v) {
                 selectCard(bloodstone,R.drawable.bloodstonecard,bloodstoneBack);
-
 
             }
         });

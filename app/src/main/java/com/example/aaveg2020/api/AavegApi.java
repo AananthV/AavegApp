@@ -5,6 +5,9 @@ import com.example.aaveg2020.events.ClusterResponse;
 import com.example.aaveg2020.events.Event;
 import com.example.aaveg2020.events.ClusterResponse;
 import com.example.aaveg2020.login.LoginBody;
+import com.example.aaveg2020.model.SponsorModel;
+
+import java.util.List;
 
 import java.util.List;
 
@@ -45,5 +48,7 @@ public interface AavegApi {
     @GET("events")
     Call<ClusterResponse> getAllClusters();
 
+    @GET("sponsors")
+    Call<List<SponsorModel>> getSponsors();
 
 }

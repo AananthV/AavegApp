@@ -1,7 +1,12 @@
 package com.example.aaveg2020.api;
 
 import com.example.aaveg2020.Scoreboard.ScoreboardModel;
+import com.example.aaveg2020.events.ClusterResponse;
+import com.example.aaveg2020.events.Event;
+import com.example.aaveg2020.events.ClusterResponse;
 import com.example.aaveg2020.login.LoginBody;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -14,7 +19,6 @@ public interface AavegApi {
 
 //    String base_url="https://www.aaveg.in/api/";
     String base_url="https://aaveg.in/api/";
-
 
     @FormUrlEncoded
     @POST("studentLogin")
@@ -37,6 +41,9 @@ public interface AavegApi {
 
     @GET("scoreboard")
     Call<ScoreboardModel> getScoreboard();
+
+    @GET("events")
+    Call<ClusterResponse> getAllClusters();
 
 
 }

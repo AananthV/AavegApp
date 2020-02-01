@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -87,9 +88,9 @@ public class SponsorsFragment extends Fragment {
     }
 
     private void init(List<SponsorModel> sponsorModelList){
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2);
             sponsorsRecyclerAdapter = new SponsorsRecyclerAdapter(sponsorModelList, getActivity());
-            recyclerView.setLayoutManager(linearLayoutManager);
+            recyclerView.setLayoutManager(gridLayoutManager);
             recyclerView.setAdapter(sponsorsRecyclerAdapter);
     }
 }

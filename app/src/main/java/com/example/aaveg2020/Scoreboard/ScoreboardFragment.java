@@ -21,21 +21,27 @@ import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 public class ScoreboardFragment extends Fragment {
+
+    ViewPager viewPager;
+    TabLayout tabLayout;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View mView=inflater.inflate(R.layout.fragment_scoreboard,container,false);
-        TabLayout tabLayout = mView.findViewById(R.id.tablayout);
-        TabItem tabOverall = mView.findViewById(R.id.tab_overall);
-        TabItem tabCulturals = mView.findViewById(R.id.tab_culturals);
-        TabItem tabSpectrum = mView.findViewById(R.id.tab_spectrum);
-        TabItem tabSports = mView.findViewById(R.id.tab_sports);
-        ViewPager viewPager = mView.findViewById(R.id.viewPager);
+        tabLayout = mView.findViewById(R.id.tablayout);
+        viewPager = mView.findViewById(R.id.viewPager);
 
+        return mView;
+    }
 
-        PageAdapter pageAdapter = new PageAdapter(getChildFragmentManager());
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        PageAdapter pageAdapter = new PageAdapter(getFragmentManager());
         viewPager.setAdapter(pageAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        return mView;
+        tabLayout.setupWithViewPager(viewPager);
     }
 }

@@ -1,6 +1,8 @@
 package com.example.aaveg2020;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -15,6 +17,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.Toolbar;
 
 import com.example.aaveg2020.Scoreboard.ScoreboardFragment;
@@ -34,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
     TabLayout mainScreenTabLayout;
     Toolbar toolbar;
+    Button logOut;
+    ConstraintLayout mainActivityCL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +50,9 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
         mainScreenTabLayout = (TabLayout) findViewById(R.id.tab_layout_main_screen);
         toolbar = (Toolbar) findViewById(R.id.toolbar_main);
+        mainActivityCL = findViewById(R.id.cl_main_activity);
 
+        mainActivityCL.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.agatecard));
         mainScreenTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -96,11 +103,5 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Objects.requireNonNull(mainScreenTabLayout.getTabAt(2)).select();
-
-
-        /*FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.main_framelayout,new ScoreboardFragment());
-        fragmentTransaction.commit();*/
-
     }
 }

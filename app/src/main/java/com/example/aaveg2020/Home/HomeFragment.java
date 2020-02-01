@@ -53,7 +53,7 @@ public class HomeFragment extends Fragment implements HomeView {
         sportsPlace=mView.findViewById(R.id.sports_place);
         spectrumPlace=mView.findViewById(R.id.spectrum_place);
         hostelImage=mView.findViewById(R.id.home_hostel_img);
-        this.setHostelImg();
+        setHostelImg();
         return mView;
     }
 
@@ -65,7 +65,9 @@ public class HomeFragment extends Fragment implements HomeView {
         this.setPositions();
     }
     private void setHostelImg(){
-        switch (UserUtils.hostel){
+        // crash here if userutils.hostel primarily because login function not updating val.
+        // TODO Fix this.
+        switch ("agate"){
             case "agate":
                 hostelImage.setImageResource(R.drawable.agate);
                 break;

@@ -19,6 +19,7 @@ import android.os.Bundle;
 import com.example.aaveg2020.Scoreboard.ScoreboardFragment;
 import com.example.aaveg2020.events.Cluster;
 import com.example.aaveg2020.events.EventsFragment;
+import com.example.aaveg2020.events.EventsMainFragment;
 import com.example.aaveg2020.fragments.AboutUsFragment;
 import com.example.aaveg2020.login.LoginActivity;
 import com.example.aaveg2020.sponsors.SponsorsFragment;
@@ -28,7 +29,7 @@ import java.util.Objects;
 
 import com.example.aaveg2020.events.ClustersFragment;
 
-public class MainActivity extends AppCompatActivity implements FragmentChangeListener {
+public class MainActivity extends AppCompatActivity {
 
     TabLayout mainScreenTabLayout;
 
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements FragmentChangeLis
                         break;
 
                     case 1:
-                        f = new ClustersFragment(MainActivity.this::onFragmentChange);
+                        f = new EventsMainFragment();
                         break;
 
                     case 2:
@@ -102,12 +103,5 @@ public class MainActivity extends AppCompatActivity implements FragmentChangeLis
         fragmentTransaction.replace(R.id.main_framelayout,new ScoreboardFragment());
         fragmentTransaction.commit();*/
 
-    }
-
-    @Override
-    public void onFragmentChange(Fragment fragment) {
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.main_framelayout, fragment);
-        fragmentTransaction.commit();
     }
 }

@@ -6,8 +6,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.aaveg2020.Scoreboard.ScoreboardFragment;
+import com.example.aaveg2020.events.ClustersFragment;
+import com.example.aaveg2020.events.EventsMainFragment;
 import com.example.aaveg2020.fragments.AboutUsFragment;
-import com.example.aaveg2020.fragments.EventsFragment;
 import com.example.aaveg2020.fragments.HomeFragment;
 import com.example.aaveg2020.sponsors.SponsorsFragment;
 
@@ -26,7 +27,7 @@ public class ViewPagerAdapterHome extends FragmentStatePagerAdapter {
                 f= new AboutUsFragment();
                 break;
             case 1 :
-                f = new EventsFragment();
+                f = new EventsMainFragment();
                 break;
             case 2 :
                 f = new HomeFragment();

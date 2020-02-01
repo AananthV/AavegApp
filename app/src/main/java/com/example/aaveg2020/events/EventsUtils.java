@@ -11,20 +11,26 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class EventsUtils {
 
-    public static final String TIME_FORMAT = "HH:mm:ss";
-    public static final String DATE_FORMAT = "yyyy-MM-dd";
+    public static final String TIME_FORMAT = "hh:mm a";
+    public static final String DATE_FORMAT = "yyyy/MM/dd";
+    public static final String DATE_TIME_FORMAT = "yyyy/MM/dd HH:mm";
     public static final String ALL_EVENTS = "All";
     public static final int DEFAULT_TIME = 2;
+
+    public static final SimpleDateFormat SIMPLE_DATE_TIME_FORMAT = new SimpleDateFormat(DATE_TIME_FORMAT, Locale.US);
 
     public static final String MESSAGE_UNREGISTER_FAIL = "Failed to Unregister";
     public static final String MESSAGE_REGISTER_FAIL = "Failed to Register";
     public static final String MESSAGE_REGISTERED_ALREADY = "Already Registered";
     public static final String RESPONSE_REGISTERED_ALREADY = "You have already registered for the" +
             " event";
+
+    public static final String TAG = "EventsUtils";
 
     public static String parseEventName(String event) {
         String[] events = event.split("_");
@@ -68,7 +74,7 @@ public class EventsUtils {
         return formattedTime;
     }
 
-    public static ArrayList<View> getViewsByTag(ViewGroup root, String tag){
+    public static ArrayList<View> getViewsByTag(ViewGroup root, String tag) {
         ArrayList<View> views = new ArrayList<View>();
         final int childCount = root.getChildCount();
         for (int i = 0; i < childCount; i++) {
@@ -115,5 +121,30 @@ public class EventsUtils {
             default:
                 return resources.getDrawable(R.drawable.misc);
         }
+    }
+
+    public static List<Event> getAllEventsFromClusters(List<Cluster> clusters) {
+        List<Event> events = new ArrayList<>();
+        for (Cluster cluster : clusters) {
+            events.addAll(cluster.getEvents());
+        }
+        return events;
+    }
+
+    public static List<Event> getRecentEvents(List<Event> events, long hoursDiff) {
+        List<Event> recentEvents = new ArrayList<>();
+        Date now = new Date();
+        for (Event event : events) {
+            try {
+                Date eventDateTime = SIMPLE_DATE_TIME_FORMAT.parse(event.getStartDateTime());
+                long diff = (Math.abs(now.getTime() - eventDateTime.getTime())) / (60 * 60 * 1000);
+                if (diff <= hoursDiff) {
+                    recentEvents.add(event);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return recentEvents;
     }
 }

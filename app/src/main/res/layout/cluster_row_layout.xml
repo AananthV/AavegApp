@@ -18,7 +18,7 @@
         <ImageView
             android:id="@+id/cluster_image"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="170dp"
             android:src="@drawable/misc"
             android:scaleType="fitCenter"/>
 
@@ -28,7 +28,7 @@
         android:id="@+id/cluster_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="7dp"
         android:fontFamily="@font/comfortaa"
         android:text="Misc"
         android:textColor="@color/events_text"

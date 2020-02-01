@@ -13,33 +13,12 @@
         android:background="@color/colorPrimary"
         app:tabSelectedTextColor="@android:color/white"
         app:tabTextColor="@android:color/black">
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab_overall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Overall" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab_culturals"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Culturals" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab_spectrum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Spectrum" />
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab_sports"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sports" />
     </com.google.android.material.tabs.TabLayout>
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="#00000000"
+        />
 
 </LinearLayout>

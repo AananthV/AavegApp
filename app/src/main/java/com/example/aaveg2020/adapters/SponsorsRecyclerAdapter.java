@@ -1,5 +1,6 @@
 package com.example.aaveg2020.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.example.aaveg2020.MainActivity;
 import com.example.aaveg2020.R;
 import com.example.aaveg2020.sponsors.SponsorModel;
 
@@ -17,13 +20,15 @@ import java.util.List;
 public class SponsorsRecyclerAdapter extends RecyclerView.Adapter<SponsorsRecyclerAdapter.SponsorHolderClass> {
 
     private List<SponsorModel> sponsorData;
+    private Context mContext;
 
     public SponsorsRecyclerAdapter() {
         // empty
     }
 
-    public SponsorsRecyclerAdapter(List<SponsorModel> sponsorData) {
+    public SponsorsRecyclerAdapter(List<SponsorModel> sponsorData, Context context) {
         this.sponsorData = sponsorData;
+        mContext = context;
     }
 
     @NonNull
@@ -40,6 +45,11 @@ public class SponsorsRecyclerAdapter extends RecyclerView.Adapter<SponsorsRecycl
     public void onBindViewHolder(@NonNull SponsorHolderClass holder, int position) {
         holder.sponsorName.setText(sponsorData.get(position).name);
         holder.sponsorPartnerName.setText(sponsorData.get(position).title);
+
+        Glide.with(mContext)
+                .load(sponsorData.get(position).logo)
+                .into(holder.sponsorImage);
+
         //holder.sponsorImage.setImageResource();
     }
 

@@ -74,7 +74,7 @@ public class EventDetailsFragment extends Fragment {
         cupText.setText(event.getCup());
         clusterText.setText(event.getCluster());
         cupImg.setImageDrawable(EventsUtils.getCupDrawable(event.getCup(), getResources()));
-        clusterImg.setImageDrawable(EventsUtils.getClusterDrawable(event.getCluster(), getResources()));
+        clusterImg.setImageDrawable(EventsUtils.getClusterDrawableGold(event.getCluster(), getResources()));
 
         rulesText.setMovementMethod(LinkMovementMethod.getInstance());
         rulesLayout.setOnClickListener(new View.OnClickListener() {

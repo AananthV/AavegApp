@@ -4,15 +4,7 @@
     <item>
         <shape android:shape="rectangle">
             <solid android:color="@color/event_row_bg" />
-        </shape>
-    </item>
-
-    <item android:top="-2dp">
-        <shape>
-            <solid android:color="@android:color/transparent" />
-            <stroke
-                android:width="0.5dp"
-                android:color="@color/gray_underline" />
+            <corners android:radius="10dp" />
         </shape>
     </item>
 

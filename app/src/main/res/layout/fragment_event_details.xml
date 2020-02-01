@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -65,8 +65,8 @@
 
                 <ImageView
                     android:id="@+id/event_detail_cup_img"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/spectrum_cup" />
 
@@ -77,7 +77,7 @@
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/comfortaa"
                     android:text="Spectrum"
-                    android:textColor="@color/events_text"
+                    android:textColor="@color/light_yellow"
                     android:textSize="13sp" />
 
             </LinearLayout>
@@ -96,10 +96,10 @@
 
                 <ImageView
                     android:id="@+id/event_detail_cluster_img"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/misc" />
+                    android:src="@drawable/misc_gold" />
 
                 <TextView
                     android:id="@+id/event_detail_cluster_name"
@@ -108,7 +108,7 @@
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/comfortaa"
                     android:text="Misc"
-                    android:textColor="@color/events_text"
+                    android:textColor="@color/light_yellow"
                     android:textSize="13sp" />
 
             </LinearLayout>
@@ -128,7 +128,7 @@
                 android:id="@+id/event_detail_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="."
+                android:text="@string/lorem_ipsum_paragraph"
                 android:textColor="@color/events_text"
                 android:textSize="14sp"
                 android:lineSpacingMultiplier="1.5"
@@ -140,9 +140,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="25dp"
             android:layout_marginEnd="15dp"
-            android:layout_marginBottom="5dp">
+            android:layout_marginBottom="10dp">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -153,12 +153,12 @@
 
                 <TextView
                     android:id="@+id/event_detail_location_icon"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
                     android:tag="@string/icon_tag"
                     android:text="@string/location_pin_icon"
-                    android:textColor="@color/events_text"
+                    android:textColor="@color/events_text_light_yellow"
                     android:textSize="@dimen/icon_size" />
 
                 <TextView
@@ -166,10 +166,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:layout_marginTop="0dp"
+                    android:layout_marginTop="6dp"
                     android:fontFamily="@font/comfortaa"
                     android:text="LHC"
-                    android:textColor="@color/events_text"
+                    android:textColor="@color/events_text_light_yellow"
                     android:textSize="13sp" />
 
             </LinearLayout>
@@ -183,12 +183,12 @@
 
                 <TextView
                     android:id="@+id/event_detail_date_icon"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
                     android:tag="@string/icon_tag"
                     android:text="@string/calendar_icon"
-                    android:textColor="@color/events_text"
+                    android:textColor="@color/events_text_light_yellow"
                     android:textSize="@dimen/icon_size" />
 
                 <TextView
@@ -196,10 +196,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:layout_marginTop="0dp"
+                    android:layout_marginTop="6dp"
                     android:fontFamily="@font/comfortaa"
                     android:text="20/01/2020"
-                    android:textColor="@color/events_text"
+                    android:textColor="@color/events_text_light_yellow"
                     android:textSize="13sp" />
 
             </LinearLayout>
@@ -213,12 +213,12 @@
 
                 <TextView
                     android:id="@+id/event_detail_time_icon"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
                     android:tag="@string/icon_tag"
                     android:text="@string/time_icon"
-                    android:textColor="@color/events_text"
+                    android:textColor="@color/events_text_light_yellow"
                     android:textSize="@dimen/icon_size" />
 
                 <TextView
@@ -226,10 +226,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:layout_marginTop="0dp"
+                    android:layout_marginTop="6dp"
                     android:fontFamily="@font/comfortaa"
                     android:text="5:30 pm"
-                    android:textColor="@color/events_text"
+                    android:textColor="@color/events_text_light_yellow"
                     android:textSize="13sp" />
 
             </LinearLayout>
@@ -244,12 +244,12 @@
 
                 <TextView
                     android:id="@+id/event_detail_rules_icon"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
                     android:tag="@string/icon_tag"
                     android:text="@string/rules_icon"
-                    android:textColor="@color/events_text"
+                    android:textColor="@color/events_text_light_yellow"
                     android:textSize="@dimen/icon_size" />
 
                 <TextView
@@ -257,10 +257,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:layout_marginTop="0dp"
+                    android:layout_marginTop="6dp"
                     android:fontFamily="@font/comfortaa"
                     android:text="Rules"
-                    android:textColor="@color/events_text"
+                    android:textColor="@color/events_text_light_yellow"
                     android:textSize="13sp" />
 
             </LinearLayout>
@@ -332,4 +332,4 @@
 
     </LinearLayout>
 
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

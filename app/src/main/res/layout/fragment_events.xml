@@ -1,52 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_events"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/fragment_events_bg_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleX="0.9"
+        android:scaleY="0.9"
+        android:src="@drawable/media"
+        android:alpha="0.3"
+        android:scaleType="fitCenter" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="25dp"
-        android:background="@color/events_header_bg"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/event_detail_title"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="25dp"
+            android:background="@color/events_header_bg"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:id="@+id/cluster_detail_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/comfortaa_bold"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="Events"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="23sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:fontFamily="@font/comfortaa_bold"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:text="Events"
-            android:textAllCaps="true"
-            android:textColor="@color/black"
-            android:textSize="23sp"
-            android:textStyle="bold" />
+            android:layout_marginBottom="25dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/events_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="25dp">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/events_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

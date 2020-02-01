@@ -2,17 +2,27 @@ package com.example.aaveg2020.events;
 
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.aaveg2020.R;
+import com.example.aaveg2020.api.AavegApi;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class EventsUtils {
 
@@ -120,6 +130,46 @@ public class EventsUtils {
             case "Misc":
             default:
                 return resources.getDrawable(R.drawable.misc);
+        }
+    }
+
+    public static Drawable getClusterDrawableOrange(String clusterName, Resources resources) {
+        switch (clusterName) {
+            case "Arts":
+                return resources.getDrawable(R.drawable.arts_orange);
+            case "Dance":
+                return resources.getDrawable(R.drawable.dance_orange);
+            case "Lits":
+                return resources.getDrawable(R.drawable.lits_orange);
+            case "Dramatics":
+                return resources.getDrawable(R.drawable.dramatics_orange);
+            case "Sports":
+                return resources.getDrawable(R.drawable.sports_orange);
+            case "Media":
+                return resources.getDrawable(R.drawable.media_orange);
+            case "Misc":
+            default:
+                return resources.getDrawable(R.drawable.misc_orange);
+        }
+    }
+
+    public static Drawable getClusterDrawableGold(String clusterName, Resources resources) {
+        switch (clusterName) {
+            case "Arts":
+                return resources.getDrawable(R.drawable.arts_gold);
+            case "Dance":
+                return resources.getDrawable(R.drawable.dance_gold);
+            case "Lits":
+                return resources.getDrawable(R.drawable.lits_gold);
+            case "Dramatics":
+                return resources.getDrawable(R.drawable.dramatics_gold);
+            case "Sports":
+                return resources.getDrawable(R.drawable.sports_gold);
+            case "Media":
+                return resources.getDrawable(R.drawable.media_gold);
+            case "Misc":
+            default:
+                return resources.getDrawable(R.drawable.misc_gold);
         }
     }
 

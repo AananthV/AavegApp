@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.aaveg2020.FragmentChangeListener;
 import com.example.aaveg2020.R;
 
 import java.util.List;
@@ -19,16 +18,16 @@ import java.util.List;
 public class EventsFragment extends Fragment implements OnEventClickListener {
     private Cluster cluster;
     private List<Event> events;
-    private FragmentChangeListener fragmentChangeListener;
     private RecyclerView eventsRecyclerView;
+    private OnFragmentChangeListener fragmentChangeListener;
     private EventAdapter adapter;
 
-    public EventsFragment(Cluster cluster, FragmentChangeListener fragmentChangeListener) {
+    public EventsFragment(Cluster cluster, OnFragmentChangeListener fragmentChangeListener) {
         this.cluster = cluster;
         this.fragmentChangeListener = fragmentChangeListener;
     }
 
-    public EventsFragment(int contentLayoutId, Cluster cluster, FragmentChangeListener fragmentChangeListener) {
+    public EventsFragment(int contentLayoutId, Cluster cluster, OnFragmentChangeListener fragmentChangeListener) {
         super(contentLayoutId);
         this.cluster = cluster;
         this.fragmentChangeListener = fragmentChangeListener;

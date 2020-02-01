@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.aaveg2020.FragmentChangeListener;
 import com.example.aaveg2020.R;
 import com.example.aaveg2020.api.AavegApi;
 
@@ -29,14 +28,14 @@ public class ClustersFragment extends Fragment implements OnClusterClickListener
     private static final String TAG = "ClustersFragment";
     private RecyclerView clustersRecyclerView;
     private ClusterAdapter adapter;
-    private FragmentChangeListener fragmentChangeListener;
+    private OnFragmentChangeListener fragmentChangeListener;
     private List<Event> events = new ArrayList<>();
 
-    public ClustersFragment(FragmentChangeListener fragmentChangeListener) {
+    public ClustersFragment(OnFragmentChangeListener fragmentChangeListener) {
         this.fragmentChangeListener = fragmentChangeListener;
     }
 
-    public ClustersFragment(int contentLayoutId, FragmentChangeListener fragmentChangeListener) {
+    public ClustersFragment(int contentLayoutId, OnFragmentChangeListener fragmentChangeListener) {
         super(contentLayoutId);
         this.fragmentChangeListener = fragmentChangeListener;
     }
@@ -44,18 +43,16 @@ public class ClustersFragment extends Fragment implements OnClusterClickListener
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Log.d(TAG, "In clusters fragment");
         View mView = inflater.inflate(R.layout.fragment_clusters, container, false);
         clustersRecyclerView = mView.findViewById(R.id.clusters_recycler_view);
         clustersRecyclerView.setHasFixedSize(true);
         clustersRecyclerView.setLayoutManager(new LinearLayoutManager(mView.getContext()));
-        getEvents();
+        getClusters();
         return mView;
     }
 
-    private void getEvents() {
+    private void getClusters() {
         AavegApi api;
-        Log.d(TAG, "Getting events...");
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(AavegApi.base_url)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -79,15 +76,13 @@ public class ClustersFragment extends Fragment implements OnClusterClickListener
     }
 
     private void updateRecyclerView(ClusterResponse response) {
-        Log.d(TAG, "Response: " + response);
         List<Cluster> clusters = response.getEventsData();
-        for (Cluster cluster : clusters) {
-            events.addAll(cluster.getEvents());
-        }
+        events = EventsUtils.getAllEventsFromClusters(clusters);
+        Log.d(TAG, "All events: " + events);
+        Log.d(TAG, "Recent events: " + EventsUtils.getRecentEvents(events, 10 * 24));
+
         adapter = new ClusterAdapter(clusters, this);
         clustersRecyclerView.setAdapter(adapter);
-
-//        onItemClick(events.get(0));
     }
 
     @Override

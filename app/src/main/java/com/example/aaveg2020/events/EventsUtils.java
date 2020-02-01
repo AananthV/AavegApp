@@ -133,6 +133,46 @@ public class EventsUtils {
         }
     }
 
+    public static Drawable getClusterDrawableOrange(String clusterName, Resources resources) {
+        switch (clusterName) {
+            case "Arts":
+                return resources.getDrawable(R.drawable.arts_orange);
+            case "Dance":
+                return resources.getDrawable(R.drawable.dance_orange);
+            case "Lits":
+                return resources.getDrawable(R.drawable.lits_orange);
+            case "Dramatics":
+                return resources.getDrawable(R.drawable.dramatics_orange);
+            case "Sports":
+                return resources.getDrawable(R.drawable.sports_orange);
+            case "Media":
+                return resources.getDrawable(R.drawable.media_orange);
+            case "Misc":
+            default:
+                return resources.getDrawable(R.drawable.misc_orange);
+        }
+    }
+
+    public static Drawable getClusterDrawableGold(String clusterName, Resources resources) {
+        switch (clusterName) {
+            case "Arts":
+                return resources.getDrawable(R.drawable.arts_gold);
+            case "Dance":
+                return resources.getDrawable(R.drawable.dance_gold);
+            case "Lits":
+                return resources.getDrawable(R.drawable.lits_gold);
+            case "Dramatics":
+                return resources.getDrawable(R.drawable.dramatics_gold);
+            case "Sports":
+                return resources.getDrawable(R.drawable.sports_gold);
+            case "Media":
+                return resources.getDrawable(R.drawable.media_gold);
+            case "Misc":
+            default:
+                return resources.getDrawable(R.drawable.misc_gold);
+        }
+    }
+
     public static List<Event> getAllEventsFromClusters(List<Cluster> clusters) {
         List<Event> events = new ArrayList<>();
         for (Cluster cluster : clusters) {

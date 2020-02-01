@@ -59,7 +59,7 @@ public class EventDetailsFragment extends Fragment {
         rulesText = mView.findViewById(R.id.event_detail_rules);
 
         titleText.setText(event.getName());
-//        descriptionText.setText(event.getDescription());
+        descriptionText.setText(event.getDescription());
 
         locationText.setText(event.getVenue());
         dateText.setText(event.getDate());
@@ -74,7 +74,7 @@ public class EventDetailsFragment extends Fragment {
         cupText.setText(event.getCup());
         clusterText.setText(event.getCluster());
         cupImg.setImageDrawable(EventsUtils.getCupDrawable(event.getCup(), getResources()));
-        clusterImg.setImageDrawable(EventsUtils.getClusterDrawable(event.getCluster(), getResources()));
+        clusterImg.setImageDrawable(EventsUtils.getClusterDrawableGold(event.getCluster(), getResources()));
 
         rulesText.setMovementMethod(LinkMovementMethod.getInstance());
         rulesLayout.setOnClickListener(new View.OnClickListener() {

@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,6 +14,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.aaveg2020.R;
 
 import java.util.List;
@@ -43,6 +48,17 @@ public class EventsFragment extends Fragment implements OnEventClickListener {
 
         adapter = new EventAdapter(cluster.getEvents(), this);
         eventsRecyclerView.setAdapter(adapter);
+
+        final TextView titleText = mView.findViewById(R.id.cluster_detail_title);
+        final ImageView backgroundImg = mView.findViewById(R.id.fragment_events_bg_img);
+
+
+        titleText.setText(cluster.getId());
+        Glide.with(getContext())
+                .load(EventsUtils.getClusterDrawableOrange(cluster.getId(), getResources()))
+                .apply(RequestOptions.fitCenterTransform())
+                .into(backgroundImg);
+
         return mView;
     }
 

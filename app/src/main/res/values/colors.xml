@@ -6,6 +6,10 @@
     <color name="transparent">#00000000</color>
     <color name="darktransparent">#D1000000</color>
     <color name="whitetransparent">#90FFFFFF</color>
+    <color name="gold">#FADA5E</color>
+    <color name="orange">#EFA550</color>
+    <color name="light_gold">#FAEF95</color>
+    <color name="light_yellow">#FAEA9A</color>
 
     <color name="agate">#2a34c4</color>
     <color name="bloodstone">#e31a1a</color>
@@ -15,11 +19,13 @@
     <color name="darkBackground">#333335</color>
     <color name="darkelement">#a9a9a9</color>
 
-    <color name="event_row_bg">#b9bbbe</color>
+    <color name="event_row_bg">#ddb9bbbe</color>
     <color name="events_text">#f7f7f7</color>
+    <color name="events_text_light_yellow">#f7faea</color>
     <color name="events_header_bg">#c46210</color>
     <color name="events_bg">#292B2C</color>
     <color name="black">#000000</color>
+    <color name="black_text">#111111</color>
     <color name="gray_underline">#42464E</color>
     <color name="gray_border_color">#454D55</color>
     <color name="gray_1">#343A40</color>

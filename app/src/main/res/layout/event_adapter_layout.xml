@@ -2,8 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/gray_bottom"
+    android:background="@drawable/event_row_drawable"
     android:orientation="vertical"
+    android:layout_marginTop="13dp"
     android:paddingStart="15dp"
     android:paddingTop="9dp"
     android:paddingEnd="15dp"
@@ -16,7 +17,7 @@
         android:fontFamily="@font/comfortaa"
         android:gravity="center"
         android:text="Event"
-        android:textColor="@color/black"
-        android:textSize="17sp" />
+        android:textColor="@color/black_text"
+        android:textSize="18sp" />
 
 </LinearLayout>

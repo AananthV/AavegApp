@@ -41,4 +41,24 @@ public class OverallModel {
     public int getOpal() {
         return opal;
     }
+
+    public void setAzurite(int azurite) {
+        this.azurite = azurite;
+    }
+
+    public void setBloodstone(int bloodstone) {
+        this.bloodstone = bloodstone;
+    }
+
+    public void setCobalt(int cobalt) {
+        this.cobalt = cobalt;
+    }
+
+    public void setAgate(int agate) {
+        this.agate = agate;
+    }
+
+    public void setOpal(int opal) {
+        this.opal = opal;
+    }
 }

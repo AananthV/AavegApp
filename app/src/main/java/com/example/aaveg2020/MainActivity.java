@@ -17,15 +17,18 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toolbar;
 
 import com.example.aaveg2020.Scoreboard.ScoreboardFragment;
+import com.example.aaveg2020.aboutus.CurlFragment;
 import com.example.aaveg2020.events.Cluster;
 import com.example.aaveg2020.events.EventsFragment;
 import com.example.aaveg2020.events.EventsMainFragment;
 import com.example.aaveg2020.fragments.AboutUsFragment;
 import com.example.aaveg2020.login.LoginActivity;
+import com.example.aaveg2020.splash.SplashActivity;
 import com.example.aaveg2020.sponsors.SponsorsFragment;
 import com.google.android.material.tabs.TabLayout;
 
@@ -39,29 +42,38 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     Button logOut;
     ConstraintLayout mainActivityCL;
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        pref= this.getSharedPreferences("Aaveg2020", MODE_PRIVATE);
+        editor = pref.edit();
         FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_framelayout,new HomeFragment());
         fragmentTransaction.commit();
         mainScreenTabLayout = (TabLayout) findViewById(R.id.tab_layout_main_screen);
         toolbar = (Toolbar) findViewById(R.id.toolbar_main);
         mainActivityCL = findViewById(R.id.cl_main_activity);
-
+        logOut=findViewById(R.id.logout);
         mainActivityCL.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.agatecard));
+
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                doLogout();
+
+            }
+        });
         mainScreenTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 Fragment f;
                 switch (tab.getPosition()) {
-                    case 0:
-                        f = new AboutUsFragment();
-                        toolbar.setTitle("About Us");
-                        break;
 
                     case 1:
                         f = new EventsMainFragment();
@@ -84,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     default:
-                        f=new AboutUsFragment();
+                        f=new CurlFragment();
                         toolbar.setTitle("About Us");
                 }
                 FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
@@ -100,8 +112,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
             }
+
         });
 
         Objects.requireNonNull(mainScreenTabLayout.getTabAt(2)).select();
+    }
+    private void doLogout(){
+        editor.putString("user_id",null);
+        editor.putString("APIToken",null);
+        editor.putString("hostel",null);
+        editor.apply();
+        Intent intent=new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 }

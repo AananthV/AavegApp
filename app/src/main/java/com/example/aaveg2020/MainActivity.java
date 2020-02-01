@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.widget.Toolbar;
 
 import com.example.aaveg2020.Scoreboard.ScoreboardFragment;
 import com.example.aaveg2020.events.Cluster;
@@ -32,26 +33,18 @@ import com.example.aaveg2020.events.ClustersFragment;
 public class MainActivity extends AppCompatActivity {
 
     TabLayout mainScreenTabLayout;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
-        /*FragmentChangeListener fragmentChangeListener = new FragmentChangeListener() {
-            @Override
-            public void onFragmentChange(Fragment fragment) {
-                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.main_framelayout, fragment);
-                fragmentTransaction.commit();
-            }
-        };*/
-
 
         FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_framelayout,new HomeFragment());
         fragmentTransaction.commit();
         mainScreenTabLayout = (TabLayout) findViewById(R.id.tab_layout_main_screen);
+        toolbar = (Toolbar) findViewById(R.id.toolbar_main);
 
         mainScreenTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -60,26 +53,32 @@ public class MainActivity extends AppCompatActivity {
                 switch (tab.getPosition()) {
                     case 0:
                         f = new AboutUsFragment();
+                        toolbar.setTitle("About Us");
                         break;
 
                     case 1:
                         f = new EventsMainFragment();
+                        toolbar.setTitle("Events");
                         break;
 
                     case 2:
                         f = new HomeFragment();
+                        toolbar.setTitle("Home");
                         break;
 
                     case 3:
                         f = new ScoreboardFragment();
+                        toolbar.setTitle("Scoreboard");
                         break;
 
                     case 4:
                         f = new SponsorsFragment();
+                        toolbar.setTitle("Sponsors");
                         break;
 
                     default:
                         f=new AboutUsFragment();
+                        toolbar.setTitle("About Us");
                 }
                 FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.main_framelayout,f);

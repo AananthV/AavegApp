@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.aaveg2020.MainActivity;
 import com.example.aaveg2020.R;
 import com.example.aaveg2020.adapters.SponsorsRecyclerAdapter;
 import com.example.aaveg2020.api.AavegApi;
@@ -87,7 +88,7 @@ public class SponsorsFragment extends Fragment {
 
     private void init(List<SponsorModel> sponsorModelList){
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-            sponsorsRecyclerAdapter = new SponsorsRecyclerAdapter(sponsorModelList);
+            sponsorsRecyclerAdapter = new SponsorsRecyclerAdapter(sponsorModelList, getActivity());
             recyclerView.setLayoutManager(linearLayoutManager);
             recyclerView.setAdapter(sponsorsRecyclerAdapter);
     }

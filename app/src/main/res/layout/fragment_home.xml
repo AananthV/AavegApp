@@ -3,249 +3,163 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <!--    <LinearLayout-->
-    <!--        android:id="@+id/home_hostel_info1"-->
-    <!--        android:orientation="horizontal"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="250dp">-->
-    <!--            <RelativeLayout-->
-    <!--                android:layout_weight="1"-->
-    <!--                android:layout_margin="8dp"-->
-    <!--                android:layout_width="match_parent"-->
-    <!--                android:layout_height="match_parent">-->
-
-    <!--                <ImageView-->
-    <!--                    android:layout_width="match_parent"-->
-    <!--                    android:layout_height="match_parent"-->
-    <!--                    android:scaleType="centerCrop"-->
-    <!--                    android:src="@drawable/agate"-->
-    <!--                    android:layout_centerHorizontal="true"-->
-    <!--                    android:layout_centerVertical="true"-->
-    <!--                    android:foreground="#8f000000"/>-->
-    <!--                <TextView-->
-    <!--                    android:layout_width="wrap_content"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:lines="2"-->
-    <!--                    android:layout_centerVertical="true"-->
-    <!--                    android:layout_centerHorizontal="true"-->
-    <!--                    android:text="1st \nPlace"-->
-    <!--                    android:textSize="30dp"/>-->
-
-    <!--            </RelativeLayout>-->
-
-    <!--        <androidx.cardview.widget.CardView-->
-    <!--            app:cardCornerRadius="10dp"-->
-    <!--            app:cardBackgroundColor="@color/colorAccent"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_weight="1"-->
-    <!--            android:layout_height="match_parent"-->
-    <!--            android:layout_margin="8dp">-->
-    <!--            <RelativeLayout-->
-    <!--                android:layout_width="match_parent"-->
-    <!--                android:layout_height="match_parent"-->
-    <!--                android:orientation="vertical">-->
-    <!--                <TextView-->
-    <!--                    android:layout_weight="1"-->
-    <!--                    android:layout_width="match_parent"-->
-    <!--                    android:text="Culturals:\n1st"-->
-    <!--                    android:gravity="center"-->
-    <!--                    android:layout_centerVertical="true"-->
-    <!--                    android:textSize="25dp"-->
-    <!--                    android:lines="2"-->
-    <!--                    android:layout_height="wrap_content"/>-->
-
-    <!--            </RelativeLayout>-->
-
-    <!--        </androidx.cardview.widget.CardView>-->
-
-    <!--    </LinearLayout>-->
-    <!--    <LinearLayout-->
-    <!--        android:id="@+id/home_hostel_info2"-->
-    <!--        android:orientation="horizontal"-->
-    <!--        android:layout_below="@id/home_hostel_info1"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="250dp">-->
-
-    <!--        <androidx.cardview.widget.CardView-->
-    <!--            app:cardCornerRadius="10dp"-->
-    <!--            app:cardBackgroundColor="@color/colorAccent"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_weight="1"-->
-    <!--            android:layout_height="match_parent"-->
-    <!--            android:layout_margin="8dp">-->
-    <!--            <RelativeLayout-->
-    <!--                android:layout_width="match_parent"-->
-    <!--                android:layout_height="match_parent"-->
-    <!--                android:orientation="vertical">-->
-    <!--                <TextView-->
-    <!--                    android:layout_weight="1"-->
-    <!--                    android:layout_width="match_parent"-->
-    <!--                    android:text="Spectrum:\n1st"-->
-    <!--                    android:gravity="center"-->
-    <!--                    android:layout_centerVertical="true"-->
-    <!--                    android:textSize="25dp"-->
-    <!--                    android:lines="2"-->
-    <!--                    android:layout_height="wrap_content"/>-->
-
-    <!--            </RelativeLayout>-->
-
-    <!--        </androidx.cardview.widget.CardView>-->
-
-    <!--        <androidx.cardview.widget.CardView-->
-    <!--            app:cardCornerRadius="10dp"-->
-    <!--            app:cardBackgroundColor="@color/colorAccent"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_weight="1"-->
-    <!--            android:layout_height="match_parent"-->
-    <!--            android:layout_margin="8dp">-->
-    <!--            <RelativeLayout-->
-    <!--                android:layout_width="match_parent"-->
-    <!--                android:layout_height="match_parent"-->
-    <!--                android:orientation="vertical">-->
-    <!--                <TextView-->
-    <!--                    android:layout_weight="1"-->
-    <!--                    android:layout_width="match_parent"-->
-    <!--                    android:text="Sports:\n1st"-->
-    <!--                    android:gravity="center"-->
-    <!--                    android:layout_centerVertical="true"-->
-    <!--                    android:textSize="25dp"-->
-    <!--                    android:lines="2"-->
-    <!--                    android:layout_height="wrap_content"/>-->
-
-    <!--            </RelativeLayout>-->
-
-    <!--        </androidx.cardview.widget.CardView>-->
-
-    <!--    </LinearLayout>-->
-
-    <RelativeLayout
-        android:id="@+id/hostel_img_parent"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="250dp">
-        <ImageView
-            android:id="@+id/home_hostel_img"
+        android:layout_height="match_parent">
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:foreground="#af000000"
-            android:src="@drawable/agate" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:lines="2"
-            android:text="1st\nPlace"
-            android:textSize="35dp" />
-
-    </RelativeLayout>
-
-
-    <LinearLayout
-        android:id="@+id/hostel_cup_cards"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/hostel_img_parent"
-        android:layout_marginTop="-75dp"
-        android:orientation="horizontal">
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_margin="8dp"
-            app:cardCornerRadius="15dp"
-            android:layout_weight="1"
-            app:cardBackgroundColor="@color/colorAccent">
-
+            android:layout_height="wrap_content">
             <RelativeLayout
+                android:id="@+id/hostel_img_parent"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
+                android:layout_height="250dp">
+                <ImageView
+                    android:id="@+id/home_hostel_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:foreground="#af000000"
+                    android:src="@drawable/agate" />
                 <TextView
+                    android:id="@+id/overall_place"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:lines="2"
-                    android:text="Culturals:\n2st"
-                    android:textSize="25dp" />
+                    android:text="1st\nPlace"
+                    android:textSize="35dp" />
 
             </RelativeLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_margin="8dp"
-            app:cardCornerRadius="15dp"
-            android:layout_weight="1"
-            app:cardBackgroundColor="@color/colorAccent">
 
-            <RelativeLayout
+
+            <LinearLayout
+                android:id="@+id/hostel_cup_cards"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/hostel_img_parent"
+                android:layout_marginTop="-75dp"
+                android:orientation="horizontal">
 
-                <TextView
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:lines="2"
-                    android:text="Sports:\n3rd"
-                    android:textSize="25dp" />
+                    android:layout_height="150dp"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="15dp"
+                    android:layout_weight="1">
 
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            app:cardCornerRadius="15dp"
-            android:layout_margin="8dp"
-            android:layout_weight="1"
-            app:cardBackgroundColor="@color/colorAccent">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-            <RelativeLayout
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/culturals_cup"
+                            android:foreground="#af000000"/>
+
+                        <TextView
+                            android:id="@+id/culturals_place"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:lines="2"
+                            android:text="Culturals:\n2st"
+                            android:textSize="25dp" />
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="15dp"
+                    android:layout_weight="1">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/sports_cup"
+                            android:foreground="#af000000"/>
+
+                        <TextView
+                            android:id="@+id/sports_place"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:lines="2"
+                            android:text="Sports:\n3rd"
+                            android:textSize="25dp" />
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    app:cardCornerRadius="15dp"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/spectrum_cup"
+                            android:foreground="#af000000"/>
+
+                        <TextView
+                            android:id="@+id/spectrum_place"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:lines="2"
+                            android:text="Spectrum:\n1st"
+                            android:textSize="25dp" />
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/reccent_events_text"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/hostel_cup_cards"
+                android:layout_marginTop="16dp"
+                android:gravity="center_horizontal"
+                android:text="Recent Events"
+                android:textSize="30dp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:lines="2"
-                    android:text="Spectrum:\n1st"
-                    android:textSize="25dp" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/home_hostel_events"
+                android:layout_width="match_parent"
 
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/reccent_events_text"
+                android:layout_marginTop="16dp" />
+
+        </RelativeLayout>
+    </ScrollView>
 
 
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/reccent_events_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/hostel_cup_cards"
-        android:layout_marginTop="16dp"
-        android:gravity="center_horizontal"
-        android:text="Recent Events"
-        android:textSize="30dp" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/home_hostel_events"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/reccent_events_text"
-        android:layout_marginTop="16dp" />
 
 
 </RelativeLayout>

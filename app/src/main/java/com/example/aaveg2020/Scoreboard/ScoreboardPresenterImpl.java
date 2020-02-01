@@ -1,5 +1,6 @@
 package com.example.aaveg2020.Scoreboard;
 
+import com.example.aaveg2020.Home.HomeView;
 import com.example.aaveg2020.Scoreboard.ui.Cultural.CulturalsView;
 import com.example.aaveg2020.Scoreboard.ui.Overall.IOverallView;
 import com.example.aaveg2020.Scoreboard.ui.sports.SportsView;
@@ -17,6 +18,7 @@ public class ScoreboardPresenterImpl implements ScoreboardPresenter {
     IOverallView overallView;
     CulturalsView culturalsView;
     SportsView sportsView;
+    HomeView homeView;
 
     @Override
     public void getTotal() {
@@ -39,6 +41,8 @@ public class ScoreboardPresenterImpl implements ScoreboardPresenter {
                     culturalsView.onGetScoreboardSuccess(response.body());
                 if(sportsView!=null)
                     sportsView.onGetScoreboardSuccess(response.body());
+                if (homeView!=null)
+                    homeView.onGetScoreboardSuccess(response.body());
             }
 
             @Override
@@ -58,5 +62,9 @@ public class ScoreboardPresenterImpl implements ScoreboardPresenter {
 
     public ScoreboardPresenterImpl(SportsView sportsView) {
         this.sportsView = sportsView;
+    }
+
+    public ScoreboardPresenterImpl(HomeView homeView) {
+        this.homeView = homeView;
     }
 }

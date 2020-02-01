@@ -8,6 +8,8 @@ public class ScoreboardModel {
     OverallModel total;
     @SerializedName("standings")
     StandingsModel standings;
+    @SerializedName("recents")
+    RecentsModel recents;
 
     public OverallModel getTotal() {
         return total;
@@ -15,5 +17,15 @@ public class ScoreboardModel {
 
     public StandingsModel getStandings() {
         return standings;
+    }
+
+    public RecentsModel getRecents() {
+        return recents;
+    }
+
+    public ScoreboardModel(OverallModel total, StandingsModel standings, RecentsModel recents) {
+        this.total = total;
+        this.standings = standings;
+        this.recents = recents;
     }
 }

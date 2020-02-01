@@ -57,9 +57,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
         item = findViewById(R.id.hostel_chooser);
        child = getLayoutInflater()
                 .inflate(R.layout.loginview, item, false);
-        trans = getLayoutInflater()
-                .inflate(R.layout.login_transition, item, false);
-        item.addView(child);
+       item.addView(child);
         moveRight = AnimationUtils.loadAnimation(this, R.anim.falldown);
 
         editUser = this.findViewById(R.id.et_login_username);
@@ -71,10 +69,6 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
         loginPresenter.setProgressBarVisiblity(View.INVISIBLE);
         loginBanner=findViewById(R.id.loginBanner);
         loginBanner.setBackgroundResource(R.drawable.cardbanner);
-
-
-
-
     }
 
 

@@ -6,6 +6,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.example.aaveg2020.R;
+import com.example.aaveg2020.UserUtils;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -18,7 +19,7 @@ public class NotificationService extends FirebaseMessagingService {
     }
 
     public void showNotification(String title,String message){
-        NotificationCompat.Builder builder= new NotificationCompat.Builder(this,"MyNotifications")
+        NotificationCompat.Builder builder= new NotificationCompat.Builder(this, UserUtils.hostel)
                 .setContentTitle(title)
                 .setSmallIcon(R.drawable.aavegwhite)
                 .setAutoCancel(true)

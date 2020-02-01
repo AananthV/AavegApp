@@ -5,7 +5,7 @@ import com.example.aaveg2020.events.ClusterResponse;
 import com.example.aaveg2020.events.Event;
 import com.example.aaveg2020.events.ClusterResponse;
 import com.example.aaveg2020.login.LoginBody;
-import com.example.aaveg2020.model.SponsorModel;
+import com.example.aaveg2020.sponsors.SponsorModel;
 
 import java.util.List;
 

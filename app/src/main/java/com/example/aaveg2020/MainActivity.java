@@ -15,18 +15,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
-import android.view.View;
 
 import com.example.aaveg2020.Scoreboard.ScoreboardFragment;
 import com.example.aaveg2020.fragments.AboutUsFragment;
 import com.example.aaveg2020.fragments.EventsFragment;
-import com.example.aaveg2020.fragments.SponsorsFragment;
 import com.example.aaveg2020.login.LoginActivity;
+import com.example.aaveg2020.sponsors.SponsorsFragment;
 import com.google.android.material.tabs.TabLayout;
 
-import static androidx.fragment.app.FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT;
+import java.util.Objects;
 
 import com.example.aaveg2020.events.ClustersFragment;
 
@@ -87,6 +84,9 @@ public class MainActivity extends AppCompatActivity implements FragmentChangeLis
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
+
+        Objects.requireNonNull(mainScreenTabLayout.getTabAt(2)).select();
+
 
         /*FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_framelayout,new ScoreboardFragment());

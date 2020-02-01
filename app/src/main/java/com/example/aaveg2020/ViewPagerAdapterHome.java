@@ -9,8 +9,7 @@ import com.example.aaveg2020.Scoreboard.ScoreboardFragment;
 import com.example.aaveg2020.fragments.AboutUsFragment;
 import com.example.aaveg2020.fragments.EventsFragment;
 import com.example.aaveg2020.fragments.HomeFragment;
-import com.example.aaveg2020.fragments.LeaderboardFragment;
-import com.example.aaveg2020.fragments.SponsorsFragment;
+import com.example.aaveg2020.sponsors.SponsorsFragment;
 
 public class ViewPagerAdapterHome extends FragmentStatePagerAdapter {
 

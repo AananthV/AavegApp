@@ -17,8 +17,9 @@ import android.os.Build;
 import android.os.Bundle;
 
 import com.example.aaveg2020.Scoreboard.ScoreboardFragment;
+import com.example.aaveg2020.events.Cluster;
+import com.example.aaveg2020.events.EventsFragment;
 import com.example.aaveg2020.fragments.AboutUsFragment;
-import com.example.aaveg2020.fragments.EventsFragment;
 import com.example.aaveg2020.login.LoginActivity;
 import com.example.aaveg2020.sponsors.SponsorsFragment;
 import com.google.android.material.tabs.TabLayout;
@@ -36,6 +37,15 @@ public class MainActivity extends AppCompatActivity implements FragmentChangeLis
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+        /*FragmentChangeListener fragmentChangeListener = new FragmentChangeListener() {
+            @Override
+            public void onFragmentChange(Fragment fragment) {
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.main_framelayout, fragment);
+                fragmentTransaction.commit();
+            }
+        };*/
+
 
         FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_framelayout,new HomeFragment());
@@ -52,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements FragmentChangeLis
                         break;
 
                     case 1:
-                        f = new EventsFragment();
+                        f = new ClustersFragment(MainActivity.this::onFragmentChange);
                         break;
 
                     case 2:

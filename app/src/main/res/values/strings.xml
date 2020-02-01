@@ -8,4 +8,10 @@
     <string name="title_home">Overall</string>
     <string name="title_dashboard">Culturals</string>
     <string name="title_notifications">Sports</string>
+
+    <string name="location_pin_icon">&#xf3c5;</string>
+    <string name="calendar_icon">&#xf073;</string>
+    <string name="time_icon">&#xf017;</string>
+    <string name="rules_icon">&#xf02d;</string>
+    <string name="icon_tag">icon</string>
 </resources>

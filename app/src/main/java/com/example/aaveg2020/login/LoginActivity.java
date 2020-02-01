@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.animation.Animation;
@@ -20,6 +22,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,6 +49,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
     ImageView ground;
     CardView loginBanner;
     Animation moveRight;
+    TextView madeWith;
 
 
 
@@ -69,6 +73,12 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
         loginPresenter.setProgressBarVisiblity(View.INVISIBLE);
         loginBanner=findViewById(R.id.loginBanner);
         loginBanner.setBackgroundResource(R.drawable.cardbanner);
+        madeWith = findViewById(R.id.tv_made_with);
+
+        madeWith.setClickable(true);
+        madeWith.setMovementMethod(LinkMovementMethod.getInstance());
+        String text = "<p>Made with ♥ by <a href=\"https://delta.nitt.edu\" target=\"_blank\">DeltaForce</a> and Aaveg Design Team </p>";
+        madeWith.setText(Html.fromHtml(text));
     }
 
 

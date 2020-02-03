@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.aaveg2020.Home.HomeFragment;
 import com.example.aaveg2020.R;
 import com.example.aaveg2020.Scoreboard.ScoreboardModel;
 import com.example.aaveg2020.Scoreboard.ScoreboardPresenter;
@@ -38,6 +39,7 @@ public class OverallFragment extends Fragment implements IOverallView {
     View dialog;
     AlertDialog loadingDialog;
     Context context;
+    ArrayList<HomeFragment.HostelScore> scores;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -52,6 +54,7 @@ public class OverallFragment extends Fragment implements IOverallView {
         dialog = LayoutInflater.from(context).inflate(R.layout.progress_dialog, null);
         TextView tv = dialog.findViewById(R.id.progressDialog_textView);
         tv.setText("Loading...");
+        scores=new ArrayList<>();
         loadingDialog = new AlertDialog.Builder(context).setView(dialog).setCancelable(false).create();
         loadingDialog.show();
     }
@@ -126,9 +129,15 @@ public class OverallFragment extends Fragment implements IOverallView {
         legend.setLabels(new String[]{"Culturals","Spectrum","Sports"});
     }
     public void assignPointsToHostel(){
+        scores.add(new HomeFragment.HostelScore("Agate",scoreboardModel.getTotal().getAgate()));
+        scores.add(new HomeFragment.HostelScore("Azurite",scoreboardModel.getTotal().getAzurite()));
+        scores.add(new HomeFragment.HostelScore("Bloodstone",scoreboardModel.getTotal().getBloodstone()));
+        scores.add(new HomeFragment.HostelScore("Cobalt",scoreboardModel.getTotal().getCobalt()));
+        scores.add(new HomeFragment.HostelScore("Opal",scoreboardModel.getTotal().getOpal()));
+        scores=HomeFragment.doSelectionSort(scores);
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(getContext());
         points.setLayoutManager(layoutManager);
-        TotalPointsAdapter adapter=new TotalPointsAdapter(getContext(),scoreboardModel.getTotal());
+        TotalPointsAdapter adapter=new TotalPointsAdapter(getContext(),scores);
         points.setAdapter(adapter);
     }
 }

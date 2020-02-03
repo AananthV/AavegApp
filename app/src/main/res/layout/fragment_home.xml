@@ -182,6 +182,22 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/reccent_events_text"
                     android:layout_marginTop="16dp" />
+                <TextView
+                    android:id="@+id/tv_made_with"
+                    android:layout_width="match_parent"
+                    android:background="#6f000000"
+                    android:gravity="center"
+                    android:layout_below="@+id/home_hostel_events"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="bottom|center"
+                    android:layout_marginBottom="8dp"
+                    android:text="Made with♥by Delta Force &amp; Aaveg Design Team"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"></TextView>
 
             </RelativeLayout>
         </ScrollView>

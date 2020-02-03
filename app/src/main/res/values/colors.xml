@@ -36,9 +36,9 @@
     <color name="scoreboard_sports">#f49d6e</color>
     <color name="scoreboard_spectrum">#75dddd</color>
 
-    <color name="event_agate">#580063</color>
-    <color name="event_azurite">#2e4800</color>
-    <color name="event_bloodstone">#e31a1a</color>
-    <color name="event_cobalt">#e9e9e9</color>
-    <color name="event_opal">#ffe399</color>
+    <color name="event_agate">#744A06</color>
+    <color name="event_azurite">#8D8B8B</color>
+    <color name="event_bloodstone">#CC090404</color>
+    <color name="event_cobalt">#E13D4A63</color>
+    <color name="event_opal">#383838</color>
 </resources>

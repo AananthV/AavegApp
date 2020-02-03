@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -102,19 +103,19 @@ public class HomeFragment extends Fragment implements HomeView {
         // TODO Fix this.
         switch (hostel){
             case "Agate":
-                hostelImage.setImageResource(R.drawable.agate);
+                hostelImage.setImageResource(R.drawable.agatelogo);
                 break;
             case "Azurite":
-                hostelImage.setImageResource(R.drawable.azurite);
+                hostelImage.setImageResource(R.drawable.azuritelogo);
                 break;
             case "Bloodstone":
-                hostelImage.setImageResource(R.drawable.bloodstone);
+                hostelImage.setImageResource(R.drawable.bloodstonelogo);
                 break;
             case "Cobalt":
-                hostelImage.setImageResource(R.drawable.cobalt);
+                hostelImage.setImageResource(R.drawable.cobaltlogo);
                 break;
             case "Opal":
-                hostelImage.setImageResource(R.drawable.opal);
+                hostelImage.setImageResource(R.drawable.opallogo);
                 break;
         }
     }
@@ -224,16 +225,16 @@ public class HomeFragment extends Fragment implements HomeView {
     private void setSuffix(int pos,TextView tv){
         switch (pos){
             case 0:
-                tv.setText(Integer.toString(pos+1)+"st\nplace");
+                tv.setText(Html.fromHtml(Integer.toString(pos+1)+"<sup><small>st</small></sup>"));
                 break;
             case 1:
-                tv.setText(Integer.toString(pos+1)+"nd\nplace");
+                tv.setText(Html.fromHtml(Integer.toString(pos+1)+"<sup><small>nd</small></sup>"));
                 break;
             case 2:
-                tv.setText(Integer.toString(pos+1)+"rd\nplace");
+                tv.setText(Html.fromHtml(Integer.toString(pos+1)+"<sup><small>rd</small></sup>"));
                 break;
             default:
-                tv.setText(Integer.toString(pos+1)+"th\nplace");
+                tv.setText(Html.fromHtml(Integer.toString(pos+1)+"<sup><small>th</small></sup>"));
                 break;
         }
     }

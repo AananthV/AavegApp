@@ -4,6 +4,7 @@ package com.example.aaveg2020.login;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -148,7 +149,8 @@ public class ChooseHostel extends Fragment {
                 editor = pref.edit();
                 editor.putString("hostel",chosenHostel);
                 editor.apply();
-                Toast.makeText(getActivity(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                Log.d("Fukk",pref.getString("hostel",null));
+               Toast.makeText(getActivity(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
 

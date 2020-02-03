@@ -101,8 +101,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
                                 .setAction("Retry", new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        View view = findViewById(R.id.btn_login_login);
-                                        LoginActivity.this.onClick(view);
+                                        loginPresenter.doLogin(editUser.getText().toString(), editPass.getText().toString());
                                     }
                                 })
                                 .show();

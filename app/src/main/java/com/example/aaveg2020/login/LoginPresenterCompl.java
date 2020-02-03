@@ -94,8 +94,10 @@ public class LoginPresenterCompl implements ILoginPresenter {
                     }
                     else{
                         editor.putString("hostel",response.body().getHostel());
-                        UserUtils.hostel=pref.getString("hostel",null);
+                        editor.apply();
+                        UserUtils.hostel=response.body().getHostel();
                         iLoginView.goToMainScreen();
+
                     }
                 }
                 else{

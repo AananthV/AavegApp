@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -271,10 +272,9 @@ public class SplashActivity extends AppCompatActivity {
     private void startNextActivity() {
         Intent intent;
         UserUtils.APIToken=pref.getString("APIToken",null);
-        //  UserUtils.hostel=pref.getString("hostel",null);
+        UserUtils.hostel=pref.getString("hostel",null);
         System.out.println("value of api token is "+UserUtils.APIToken);
         System.out.println("value of hostel is "+UserUtils.hostel);
-
         if(UserUtils.APIToken!=null && UserUtils.hostel!=null)
             intent = new Intent(SplashActivity.this, MainActivity.class);
         else

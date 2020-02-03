@@ -27,7 +27,6 @@ import com.example.aaveg2020.aboutus.CurlFragment;
 import com.example.aaveg2020.events.Cluster;
 import com.example.aaveg2020.events.EventsFragment;
 import com.example.aaveg2020.events.EventsMainFragment;
-import com.example.aaveg2020.fragments.AboutUsFragment;
 import com.example.aaveg2020.login.LoginActivity;
 import com.example.aaveg2020.splash.SplashActivity;
 import com.example.aaveg2020.sponsors.SponsorsFragment;

@@ -1,5 +1,7 @@
 package com.example.aaveg2020.Home;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -40,6 +42,26 @@ public class HomeFragment extends Fragment implements HomeView {
     TextView overallPlace,culturalsPlace,sportsPlace,spectrumPlace;
     OverallModel total,culturals,sports,spectrum;
     final int spacing = 20;
+    View dialog;
+    AlertDialog loadingDialog;
+    Context context;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        dialog = LayoutInflater.from(context).inflate(R.layout.progress_dialog, null);
+        TextView tv = dialog.findViewById(R.id.progressDialog_textView);
+        tv.setText("Loading...");
+        loadingDialog = new AlertDialog.Builder(context).setView(dialog).setCancelable(false).create();
+        loadingDialog.show();
+    }
 
     @Nullable
     @Override
@@ -87,6 +109,7 @@ public class HomeFragment extends Fragment implements HomeView {
     }
     private void assignDataToRecycler()
     {
+        loadingDialog.dismiss();
         adapter=new RecentEventsAdapter(events);
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(),2,GridLayoutManager.VERTICAL,false);
         helper = new LinearSnapHelper();

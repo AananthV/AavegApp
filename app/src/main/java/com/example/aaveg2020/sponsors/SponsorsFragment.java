@@ -1,10 +1,12 @@
 package com.example.aaveg2020.sponsors;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,6 +34,8 @@ public class SponsorsFragment extends Fragment {
     private SponsorsRecyclerAdapter sponsorsRecyclerAdapter;
     private RecyclerView recyclerView;
     private Context context;
+    View dialog;
+    AlertDialog loadingDialog;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -43,6 +47,11 @@ public class SponsorsFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sponsorsRecyclerAdapter = new SponsorsRecyclerAdapter();
+        dialog = LayoutInflater.from(context).inflate(R.layout.progress_dialog, null);
+        TextView tv = dialog.findViewById(R.id.progressDialog_textView);
+        tv.setText("Loading...");
+        loadingDialog = new AlertDialog.Builder(context).setView(dialog).setCancelable(false).create();
+        loadingDialog.show();
     }
 
     private void feedData() {
@@ -71,6 +80,7 @@ public class SponsorsFragment extends Fragment {
                 Toast.makeText(context, "Check your internet.", Toast.LENGTH_SHORT).show();
             }
         });
+        loadingDialog.dismiss();
     }
 
     @Nullable

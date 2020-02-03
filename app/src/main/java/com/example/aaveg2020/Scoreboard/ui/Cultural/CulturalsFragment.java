@@ -1,12 +1,16 @@
 package com.example.aaveg2020.Scoreboard.ui.Cultural;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,6 +35,26 @@ public class CulturalsFragment extends Fragment implements CulturalsView {
     BarChart chart;
     ScoreboardModel scoreboardModel;
     RecyclerView standings;
+    View dialog;
+    AlertDialog loadingDialog;
+    Context context;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        dialog = LayoutInflater.from(context).inflate(R.layout.progress_dialog, null);
+        TextView tv = dialog.findViewById(R.id.progressDialog_textView);
+        tv.setText("Loading...");
+        loadingDialog = new AlertDialog.Builder(context).setView(dialog).setCancelable(false).create();
+        loadingDialog.show();
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -51,6 +75,7 @@ public class CulturalsFragment extends Fragment implements CulturalsView {
         return xAxis;
     }
     private ArrayList<BarDataSet> getDataSet() {
+        loadingDialog.dismiss();
         ArrayList<BarDataSet> dataSets = null;
         ArrayList<BarEntry> valueSet1 = new ArrayList<>();
         BarEntry v1e1 = new BarEntry(scoreboardModel.getStandings().getCulturals().getAgate(), 0); // agate
@@ -90,6 +115,7 @@ public class CulturalsFragment extends Fragment implements CulturalsView {
         chart.invalidate();
     }
     public void assignDataToTable(){
+        loadingDialog.dismiss();
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(getContext());
         standings.setLayoutManager(layoutManager);
         TotalPointsAdapter adapter=new TotalPointsAdapter(getContext(),scoreboardModel.getStandings().getCulturals());

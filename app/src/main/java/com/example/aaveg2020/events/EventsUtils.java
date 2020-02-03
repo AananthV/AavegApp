@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.aaveg2020.R;
+import com.example.aaveg2020.UserUtils;
 import com.example.aaveg2020.api.AavegApi;
 
 import java.text.ParseException;
@@ -196,5 +197,45 @@ public class EventsUtils {
             }
         }
         return recentEvents;
+    }
+
+    public static Drawable getHostelCard(Resources resources) {
+        if (UserUtils.hostel == null) {
+            return resources.getDrawable(R.drawable.gold_bg_drawable);
+        }
+        switch (UserUtils.hostel) {
+            case "Agate":
+                return resources.getDrawable(R.drawable.agate_bg_drawable);
+            case "Azurite":
+                return resources.getDrawable(R.drawable.azurite_bg_drawable);
+            case "Bloodstone":
+                return resources.getDrawable(R.drawable.bloodstone_bg_drawable);
+            case "Cobalt":
+                return resources.getDrawable(R.drawable.cobalt_bg_drawable);
+            case "Opal":
+                return resources.getDrawable(R.drawable.opal_bg_drawable);
+            default:
+                return resources.getDrawable(R.drawable.gold_bg_drawable);
+        }
+    }
+
+    public static Drawable getHostelColor(Resources resources) {
+        if (UserUtils.hostel == null) {
+            return resources.getDrawable(R.drawable.gold_bg_drawable);
+        }
+        switch (UserUtils.hostel) {
+            case "Agate":
+                return resources.getDrawable(R.color.event_agate);
+            case "Azurite":
+                return resources.getDrawable(R.color.event_azurite);
+            case "Bloodstone":
+                return resources.getDrawable(R.color.event_bloodstone);
+            case "Cobalt":
+                return resources.getDrawable(R.color.event_cobalt);
+            case "Opal":
+                return resources.getDrawable(R.color.event_opal);
+            default:
+                return resources.getDrawable(R.color.events_header_bg);
+        }
     }
 }

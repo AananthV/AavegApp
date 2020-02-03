@@ -13,30 +13,46 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <RelativeLayout
+                <LinearLayout
                     android:id="@+id/hostel_img_parent"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp">
+                    android:layout_height="250dp"
+                    android:layout_margin="8dp">
                     <ImageView
                         android:id="@+id/home_hostel_img"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_marginTop="20dp"
                         android:layout_height="match_parent"
                         android:src="@drawable/agatelogo" />
-                    <TextView
-                        android:id="@+id/overall_place"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:layout_centerHorizontal="true"
-                        android:lines="2"
-                        android:textColor="#ffffff"
-                        android:text="1st\nPlace"
-                        android:textSize="60sp" />
+                        android:orientation="vertical"
+                        android:gravity="center_vertical">
 
-                </RelativeLayout>
+                        <TextView
+                            android:id="@+id/overall_place"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:gravity="center"
+                            android:text="1"
+                            android:textColor="#ffffff"
+                            android:textSize="80sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:text="OVERALL"
+                            android:textColor="#ffffff"
+                            android:textSize="30sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
 
 
                 <LinearLayout

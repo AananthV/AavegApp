@@ -16,12 +16,6 @@
                 android:id="@+id/cultural_graph"
                 android:layout_width="match_parent"
                 android:layout_height="500dp"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Points"
-                android:gravity="center"
-                android:textSize="30dp"/>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/culturals_standings"
                 android:layout_width="match_parent"

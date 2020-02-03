@@ -14,6 +14,8 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.aaveg2020.R;
+import com.example.aaveg2020.UserUtils;
+import com.example.aaveg2020.events.EventsUtils;
 import com.google.android.material.tabs.TabLayout;
 
 public class ScoreboardFragment extends Fragment {
@@ -39,5 +41,6 @@ public class ScoreboardFragment extends Fragment {
         viewPager.setAdapter(pageAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setBackground(EventsUtils.getHostelColor(view.getResources()));
     }
 }

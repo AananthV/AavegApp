@@ -8,6 +8,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="16dp"
         android:layout_marginLeft="16dp"
+        android:id="@+id/hostel_standing_card"
         android:layout_marginBottom="16dp">
 
         <LinearLayout

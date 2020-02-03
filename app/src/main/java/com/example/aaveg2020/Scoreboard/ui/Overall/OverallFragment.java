@@ -20,6 +20,7 @@ import com.example.aaveg2020.Scoreboard.ScoreboardModel;
 import com.example.aaveg2020.Scoreboard.ScoreboardPresenter;
 import com.example.aaveg2020.Scoreboard.ScoreboardPresenterImpl;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
@@ -121,6 +122,8 @@ public class OverallFragment extends Fragment implements IOverallView {
         chart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
         chart.getAxisLeft().setValueFormatter(new LargeValueFormatter());
         chart.invalidate();
+        Legend legend=chart.getLegend();
+        legend.setLabels(new String[]{"Culturals","Spectrum","Sports"});
     }
     public void assignPointsToHostel(){
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(getContext());

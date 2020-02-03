@@ -45,6 +45,10 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
     private Button btnLogin;
     private ILoginPresenter loginPresenter;
     private ProgressBar progressBar;
+
+    ImageView hostelLogo,aaveglogo;
+    ImageView ground;
+
     TextView loginBanner;
     Animation moveRight;
     TextView madeWith;

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:weightSum="6"
+    android:background="@color/darkBackground">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:src="@drawable/aavegwhite"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="About Us"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="14sp"
+        app:autoSizeMaxTextSize="100sp"
+        app:autoSizeStepGranularity="2sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="10dp"
+        android:layout_weight="4"
+        android:text="Aaveg is NIT Trichy’s one and only inter-hostel battle arena for the first-years. Aaveg is by the first-year students, and for the first-year students. There are 5 cups for which the hostels are pitted against each other: The Sports Cup, where teamwork, skills, along with efforts are essential to gain the trophy. The Culturals Cup, where artists, musicians, and dancers showcase their mastery for this trophy. The Spectrum Cup, where a ton of fun and hard events like JAM, Adzap, and Online Gaming events are held. And finally, The Cheering Cup, that tests the bonds of the hostels, that observes the support the hostels provide while their teams enter the stage! And the hostel with the highest amount of points in the end will win the Overall Cup. So this Aaveg, call upon the Abyss, and LET THE BATTLE BEGIN!"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="14sp"
+        app:autoSizeMaxTextSize="100sp"
+        app:autoSizeStepGranularity="2sp"/>
+
+</LinearLayout>

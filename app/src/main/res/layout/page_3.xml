@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/opalcard">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:padding="15dp"
+        android:src="@drawable/opallogo" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="10dp"
+        android:layout_weight="4.5"
+        android:text="Besides the rage and the war, what's more important is the journey itself. It's about the choices made along the way, the paths chosen to victory, the bonds that sprout through the expedition and the lessons learnt. With strength and resilience they defeat, and with fair play and team spirit, they overtake. They are equipped and ready to triumph this Aaveg'20."
+        app:autoSizeTextType="uniform"
+        android:textColor="#000"
+        android:textAlignment="center"
+        app:autoSizeMinTextSize="14sp"
+        app:autoSizeMaxTextSize="100sp"
+        app:autoSizeStepGranularity="2sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.25"
+        android:text="swipe ->"
+        android:textAlignment="viewEnd"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="10sp"
+        app:autoSizeMaxTextSize="100sp"
+        app:autoSizeStepGranularity="2sp"/>
+
+</LinearLayout>

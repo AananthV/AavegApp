@@ -1,9 +1,11 @@
 package com.example.aaveg2020.splash;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -31,12 +33,15 @@ public class SplashActivity extends AppCompatActivity {
     ExplosionField explosionField;
     FlashingView flashingView;
     RemoveFlashView removeFlashView;
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
+        pref= this.getSharedPreferences("Aaveg2020", MODE_PRIVATE);
         removeFlashView = () -> splashConstraint.removeView(flashingView);
         splashConstraint = findViewById(R.id.cl_splash_layout);
         buildingsView = new ImageView(this);
@@ -236,7 +241,8 @@ public class SplashActivity extends AppCompatActivity {
             public void onAnimationEnd(Animation animation) {
 
                 Intent intent;
-
+                UserUtils.APIToken=pref.getString("APIToken",null);
+                UserUtils.hostel=pref.getString("hostel",null);
                 System.out.println("value of api token is "+UserUtils.APIToken);
                 System.out.println("value of hostel is "+UserUtils.hostel);
 

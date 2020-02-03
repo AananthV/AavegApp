@@ -45,9 +45,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
     private Button btnLogin;
     private ILoginPresenter loginPresenter;
     private ProgressBar progressBar;
-    ImageView hostelLogo,aaveglogo;
-    ImageView ground;
-    CardView loginBanner;
+    TextView loginBanner;
     Animation moveRight;
     TextView madeWith;
 
@@ -62,7 +60,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
        child = getLayoutInflater()
                 .inflate(R.layout.loginview, item, false);
        item.addView(child);
-        moveRight = AnimationUtils.loadAnimation(this, R.anim.falldown);
+        moveRight = AnimationUtils.loadAnimation(this, R.anim.move_right);
 
         editUser = this.findViewById(R.id.et_login_username);
         editPass = this.findViewById(R.id.et_login_password);
@@ -79,6 +77,11 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
         madeWith.setMovementMethod(LinkMovementMethod.getInstance());
         String text = "<p>Made with ♥ by <a href=\"https://delta.nitt.edu\" target=\"_blank\">DeltaForce</a> and Aaveg Design Team </p>";
         madeWith.setText(Html.fromHtml(text));
+        loginBanner.startAnimation(moveRight);
+
+
+
+
     }
 
 

@@ -221,6 +221,12 @@
                     android:scaleType="fitXY" />
                 <TextView
                     android:id="@+id/cobalttext"
+                    android:layout_marginStart="125dp"
+                android:layout_marginLeft="125dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="125dp"
+                android:layout_marginRight="125dp"
+                android:layout_marginBottom="25dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -249,24 +255,43 @@
             android:orientation="horizontal"
 
             android:weightSum="2">
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.30"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/opal"
+
+
+                />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.30"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/opal"
+
+                />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/opal"
-                android:backgroundTint="@color/darktransparent"
-                android:layout_width="match_parent"
+
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginStart="125dp"
-                android:layout_marginLeft="125dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="125dp"
-                android:layout_marginRight="125dp"
-                android:layout_marginBottom="25dp"
+                android:layout_margin="20dp"
+                android:layout_marginStart="30dp"
+                app:layout_constraintWidth_percent="0.45"
+                android:layout_marginEnd="30dp"
                 android:layout_weight="1"
+                android:backgroundTint="@color/darktransparent"
                 app:cardCornerRadius="4dp"
                 app:cardElevation="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -283,19 +308,28 @@
                     android:layout_gravity="center"
 
                     android:fontFamily="sans-serif-condensed-medium"
-                    android:text="Opal"
+                    android:text="Azurite"
                     android:textSize="18sp"
                     android:textStyle="bold" />
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/opallogo"
-                    android:background="@color/transparent"
-
                     android:layout_margin="10dp"/>
 
-
             </androidx.cardview.widget.CardView>
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="top" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="left" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -308,6 +342,7 @@
             android:background="@color/transparent"
 
             android:orientation="horizontal">
+
 
             <Button
                 android:layout_width="wrap_content"

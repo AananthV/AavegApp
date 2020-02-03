@@ -89,7 +89,7 @@ public class CulturalsFragment extends Fragment implements CulturalsView {
         BarEntry v1e5 = new BarEntry(scoreboardModel.getStandings().getCulturals().getOpal(), 4); // May
         valueSet1.add(v1e5);
         BarDataSet barDataSet1 = new BarDataSet(valueSet1,"Culturals");
-        barDataSet1.setColor(Color.RED);
+        barDataSet1.setColor(Color.parseColor("#09bc9a"));
         barDataSet1.setValueFormatter(new LargeValueFormatter());
         dataSets = new ArrayList<>();
         dataSets.add(barDataSet1);

@@ -35,7 +35,7 @@ public class ScoreboardFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        PageAdapter pageAdapter = new PageAdapter(getFragmentManager());
+        PageAdapter pageAdapter = new PageAdapter(getChildFragmentManager());
         viewPager.setAdapter(pageAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setupWithViewPager(viewPager);

@@ -31,4 +31,9 @@
     <color name="gray_1">#343A40</color>
     <color name="gray_2">#555D65</color>
     <color name="gray_3">#B9BBBE</color>
+    <color name="scoreboard_culturals">#09bc8a</color>
+    <color name="scoreboard_sports">#f49d6e</color>
+    <color name="scoreboard_spectrum">#75dddd</color>
+
+
 </resources>

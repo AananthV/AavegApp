@@ -2,13 +2,16 @@ package com.example.aaveg2020.Home;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,6 +33,8 @@ import com.example.aaveg2020.UserUtils;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class HomeFragment extends Fragment implements HomeView {
 
     ScoreboardPresenter presenter;
@@ -45,6 +50,9 @@ public class HomeFragment extends Fragment implements HomeView {
     View dialog;
     AlertDialog loadingDialog;
     Context context;
+
+    SharedPreferences pref;
+    String hostel;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -67,6 +75,8 @@ public class HomeFragment extends Fragment implements HomeView {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View mView=inflater.inflate(R.layout.fragment_home,container,false);
+        pref= getContext().getSharedPreferences("Aaveg2020", MODE_PRIVATE);
+        hostel=pref.getString("hostel",null);
         presenter = new ScoreboardPresenterImpl(this);
         presenter.getTotal();
         recentEvents=mView.findViewById(R.id.home_hostel_events);
@@ -75,6 +85,7 @@ public class HomeFragment extends Fragment implements HomeView {
         sportsPlace=mView.findViewById(R.id.sports_place);
         spectrumPlace=mView.findViewById(R.id.spectrum_place);
         hostelImage=mView.findViewById(R.id.home_hostel_img);
+        Toast.makeText(getContext(),UserUtils.hostel,Toast.LENGTH_SHORT).show();
         setHostelImg();
         return mView;
     }
@@ -89,20 +100,20 @@ public class HomeFragment extends Fragment implements HomeView {
     private void setHostelImg(){
         // crash here if userutils.hostel primarily because login function not updating val.
         // TODO Fix this.
-        switch ("agate"){
-            case "agate":
+        switch (hostel){
+            case "Agate":
                 hostelImage.setImageResource(R.drawable.agate);
                 break;
-            case "azurite":
+            case "Azurite":
                 hostelImage.setImageResource(R.drawable.azurite);
                 break;
-            case "bloodstone":
+            case "Bloodstone":
                 hostelImage.setImageResource(R.drawable.bloodstone);
                 break;
-            case "cobalt":
+            case "Cobalt":
                 hostelImage.setImageResource(R.drawable.cobalt);
                 break;
-            case "opal":
+            case "Opal":
                 hostelImage.setImageResource(R.drawable.opal);
                 break;
         }
@@ -131,26 +142,26 @@ public class HomeFragment extends Fragment implements HomeView {
     }
     private void setHostelEvents()
     {
-        if(UserUtils.hostel!=null){
+        if(hostel!=null){
 
-            switch (UserUtils.hostel){
-                case "agate":
+            switch (hostel){
+                case "Agate":
                     events=scoreboardModel.getRecents().getAgate();
                     break;
-                case "azurite":
+                case "Azurite":
                     events=scoreboardModel.getRecents().getAzurite();
                     break;
-                case "bloodstone":
+                case "Bloodstone":
                     events=scoreboardModel.getRecents().getBloodstone();
                     break;
-                case "cobalt":
+                case "Cobalt":
                     events=scoreboardModel.getRecents().getCobalt();
                     break;
-                case "opal":
+                case "Opal":
                     events=scoreboardModel.getRecents().getOpal();
                     break;
                 default:
-                    events=scoreboardModel.getRecents().getAgate();
+                    events=scoreboardModel.getRecents().getOpal();
             }
 
         }
@@ -175,17 +186,16 @@ public class HomeFragment extends Fragment implements HomeView {
     {
         int pos = -1;
         ArrayList<HostelScore> scores=new ArrayList<HostelScore>();
-        scores.add(new HostelScore("agate",overallModel.getAgate()));
-        scores.add(new HostelScore("azurite",overallModel.getAzurite()));
-        scores.add(new HostelScore("bloodstone",overallModel.getBloodstone()));
-        scores.add(new HostelScore("cobalt",overallModel.getCobalt()));
-        scores.add(new HostelScore("opal",overallModel.getOpal()));
+        scores.add(new HostelScore("Agate",overallModel.getAgate()));
+        scores.add(new HostelScore("Azurite",overallModel.getAzurite()));
+        scores.add(new HostelScore("Bloodstone",overallModel.getBloodstone()));
+        scores.add(new HostelScore("Cobalt",overallModel.getCobalt()));
+        scores.add(new HostelScore("Opal",overallModel.getOpal()));
         scores=this.doSelectionSort(scores);
         for (int i=0;i<5;i++)
         {
-            if(scores.get(i).name==UserUtils.hostel){
+            if(scores.get(i).name.equals(hostel)){
                 pos=i;
-                break;
             }
         }
         return pos;

@@ -32,15 +32,15 @@ public class PageAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return overallFragment;
+                return new OverallFragment();
             case 1:
-                return culturalsFragment;
+                return new CulturalsFragment();
             case 2:
-                return spectrumFragment;
+                return new SpectrumFragment();
             case 3:
-                return sportsFragment;
+                return new SportsFragment();
             default:
-                return null;
+                return new OverallFragment();
         }
     }
 

@@ -242,7 +242,7 @@ public class SplashActivity extends AppCompatActivity {
 
                 Intent intent;
                 UserUtils.APIToken=pref.getString("APIToken",null);
-                UserUtils.hostel=pref.getString("hostel",null);
+              //  UserUtils.hostel=pref.getString("hostel",null);
                 System.out.println("value of api token is "+UserUtils.APIToken);
                 System.out.println("value of hostel is "+UserUtils.hostel);
 

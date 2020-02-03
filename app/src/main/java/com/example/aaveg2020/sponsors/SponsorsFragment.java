@@ -1,5 +1,7 @@
 package com.example.aaveg2020.sponsors;
 
+import android.app.Activity;
+import android.content.Context;
 import android.graphics.ColorSpace;
 import android.os.Bundle;
 import android.util.Log;
@@ -36,6 +38,13 @@ public class SponsorsFragment extends Fragment {
     List<SponsorModel> sponsorModelList;
     private SponsorsRecyclerAdapter sponsorsRecyclerAdapter;
     private RecyclerView recyclerView;
+    private Context context;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,7 +66,7 @@ public class SponsorsFragment extends Fragment {
             @Override
             public void onResponse(Call<List<SponsorModel>> call, Response<List<SponsorModel>> response) {
                 if (!response.isSuccessful()) {
-                    Toast.makeText(getContext(),"Server Error",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,"Server Error",Toast.LENGTH_SHORT).show();
                     return;
                 }
                 sponsorModelList = response.body();
@@ -66,7 +75,7 @@ public class SponsorsFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<SponsorModel>> call, Throwable t) {
-                Toast.makeText(getContext(),"Server Error",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"Check your internet.",Toast.LENGTH_SHORT).show();
             }
         });
     }

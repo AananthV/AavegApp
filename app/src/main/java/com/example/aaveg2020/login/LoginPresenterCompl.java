@@ -32,9 +32,6 @@ public class LoginPresenterCompl implements ILoginPresenter {
         editor = pref.edit();
 
     }
-
-
-
     @Override
     public void doLogin(final String userId, final String password) {
         AavegApi api;
@@ -62,13 +59,10 @@ public class LoginPresenterCompl implements ILoginPresenter {
                     UserUtils.userId=pref.getString("user_id",null);
                     UserUtils.APIToken=pref.getString("APIToken",null);
                     iLoginView.onLoginResult(response.code(),"Login Success");
-
                 }
                 else {
                     iLoginView.onLoginResult(response.code(), "user not found");
                 }
-
-
             }
 
             @Override
@@ -102,10 +96,7 @@ public class LoginPresenterCompl implements ILoginPresenter {
                         editor.putString("hostel",response.body().getHostel());
                         UserUtils.hostel=pref.getString("hostel",null);
                         iLoginView.goToMainScreen();
-
                     }
-
-
                 }
                 else{
                     Toast.makeText(context,response.toString(),Toast.LENGTH_SHORT).show();

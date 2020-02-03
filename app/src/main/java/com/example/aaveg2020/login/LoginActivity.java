@@ -38,7 +38,7 @@ import com.example.aaveg2020.api.AavegApi;
 import static com.example.aaveg2020.UserUtils.APIToken;
 
 public class LoginActivity extends AppCompatActivity implements ILoginView, View.OnClickListener {
-    View child,trans;
+    View child, trans;
     FrameLayout item;
     private EditText editUser;
     private EditText editPass;
@@ -46,13 +46,12 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
     private ILoginPresenter loginPresenter;
     private ProgressBar progressBar;
 
-    ImageView hostelLogo,aaveglogo;
+    ImageView hostelLogo, aaveglogo;
     ImageView ground;
 
     TextView loginBanner;
     Animation moveRight;
     TextView madeWith;
-
 
 
     @Override
@@ -61,9 +60,9 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
         setContentView(R.layout.activity_login);
 
         item = findViewById(R.id.hostel_chooser);
-       child = getLayoutInflater()
+        child = getLayoutInflater()
                 .inflate(R.layout.loginview, item, false);
-       item.addView(child);
+        item.addView(child);
         moveRight = AnimationUtils.loadAnimation(this, R.anim.move_right);
 
         editUser = this.findViewById(R.id.et_login_username);
@@ -73,7 +72,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
         btnLogin.setOnClickListener(this);
         loginPresenter = new LoginPresenterCompl(this);
         loginPresenter.setProgressBarVisiblity(View.INVISIBLE);
-        loginBanner=findViewById(R.id.loginBanner);
+        loginBanner = findViewById(R.id.loginBanner);
         loginBanner.setBackgroundResource(R.drawable.cardbanner);
         madeWith = findViewById(R.id.tv_made_with);
 
@@ -82,10 +81,6 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
         String text = "<p>Made with ♥ by <a href=\"https://delta.nitt.edu\" target=\"_blank\">DeltaForce</a> and Aaveg Design Team </p>";
         madeWith.setText(Html.fromHtml(text));
         loginBanner.startAnimation(moveRight);
-
-
-
-
     }
 
 
@@ -114,12 +109,9 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
         if (code == 200) {
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
             loginPresenter.hasHostel(APIToken);
-
-
-        } else{
+        } else {
             Toast.makeText(this, "Login Fail, code = " + code + " " + message, Toast.LENGTH_SHORT).show();
         }
-
     }
 
     @Override
@@ -147,12 +139,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
 
     @Override
     public void goToMainScreen() {
-
-
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-
-
-
     }
 }

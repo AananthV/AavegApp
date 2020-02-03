@@ -25,6 +25,7 @@
     <color name="events_header_bg">#c46210</color>
     <color name="events_bg">#292B2C</color>
     <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
     <color name="black_text">#111111</color>
     <color name="gray_underline">#42464E</color>
     <color name="gray_border_color">#454D55</color>

@@ -32,9 +32,9 @@
                         android:gravity="center"
                         android:layout_centerHorizontal="true"
                         android:lines="2"
-                        android:background="#6f000000"
+                        android:textColor="#ffffff"
                         android:text="1st\nPlace"
-                        android:textSize="40dp" />
+                        android:textSize="60sp" />
 
                 </RelativeLayout>
 

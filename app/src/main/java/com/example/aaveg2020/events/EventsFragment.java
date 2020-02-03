@@ -1,5 +1,7 @@
 package com.example.aaveg2020.events;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +28,27 @@ public class EventsFragment extends Fragment implements OnEventClickListener {
     private RecyclerView eventsRecyclerView;
     private OnFragmentChangeListener fragmentChangeListener;
     private EventAdapter adapter;
+
+    View dialog;
+    AlertDialog loadingDialog;
+    Context context;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        dialog = LayoutInflater.from(context).inflate(R.layout.progress_dialog, null);
+        TextView tv = dialog.findViewById(R.id.progressDialog_textView);
+        tv.setText("Loading...");
+        loadingDialog = new AlertDialog.Builder(context).setView(dialog).setCancelable(false).create();
+        loadingDialog.show();
+    }
 
     public EventsFragment(Cluster cluster, OnFragmentChangeListener fragmentChangeListener) {
         this.cluster = cluster;
@@ -58,6 +81,8 @@ public class EventsFragment extends Fragment implements OnEventClickListener {
                 .load(EventsUtils.getClusterDrawableOrange(cluster.getId(), getResources()))
                 .apply(RequestOptions.fitCenterTransform())
                 .into(backgroundImg);
+
+        loadingDialog.dismiss();
 
         return mView;
     }

@@ -1,13 +1,17 @@
 package com.example.aaveg2020.Scoreboard.ui.sports;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,6 +36,26 @@ public class SportsFragment extends Fragment implements SportsView {
     BarChart chart;
     ScoreboardModel scoreboardModel;
     RecyclerView standings;
+    View dialog;
+    AlertDialog loadingDialog;
+    Context context;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        dialog = LayoutInflater.from(context).inflate(R.layout.progress_dialog, null);
+        TextView tv = dialog.findViewById(R.id.progressDialog_textView);
+        tv.setText("Loading...");
+        loadingDialog = new AlertDialog.Builder(context).setView(dialog).setCancelable(false).create();
+        loadingDialog.show();
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -73,6 +97,7 @@ public class SportsFragment extends Fragment implements SportsView {
     }
     public void assignDataToGraph()
     {
+        loadingDialog.dismiss();
         BarData data = new BarData(getXAxisValues(), getDataSet());
         Log.d("!!!!!!!!!!", data.toString());
         chart.setData(data);

@@ -1,10 +1,13 @@
 package com.example.aaveg2020.events;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,6 +33,26 @@ public class ClustersFragment extends Fragment implements OnClusterClickListener
     private ClusterAdapter adapter;
     private OnFragmentChangeListener fragmentChangeListener;
     private List<Event> events = new ArrayList<>();
+    View dialog;
+    AlertDialog loadingDialog;
+    Context context;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        dialog = LayoutInflater.from(context).inflate(R.layout.progress_dialog, null);
+        TextView tv = dialog.findViewById(R.id.progressDialog_textView);
+        tv.setText("Loading...");
+        loadingDialog = new AlertDialog.Builder(context).setView(dialog).setCancelable(false).create();
+        loadingDialog.show();
+    }
 
     public ClustersFragment(OnFragmentChangeListener fragmentChangeListener) {
         this.fragmentChangeListener = fragmentChangeListener;
@@ -73,6 +96,7 @@ public class ClustersFragment extends Fragment implements OnClusterClickListener
                 Log.d(TAG, "Error: ", t);
             }
         });
+        loadingDialog.dismiss();
     }
 
     private void updateRecyclerView(ClusterResponse response) {

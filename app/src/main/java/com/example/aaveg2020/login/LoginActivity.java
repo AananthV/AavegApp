@@ -1,18 +1,12 @@
 package com.example.aaveg2020.login;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.VibrationEffect;
-import android.os.Vibrator;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
-import android.util.DisplayMetrics;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -20,23 +14,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.aaveg2020.MainActivity;
 import com.example.aaveg2020.R;
-import com.example.aaveg2020.UserUtils;
-import com.example.aaveg2020.api.AavegApi;
 import com.google.android.material.snackbar.Snackbar;
-
-
-import java.util.TimerTask;
 
 import static com.example.aaveg2020.UserUtils.APIToken;
 
@@ -47,7 +34,6 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
     private EditText editPass;
     private Button btnLogin;
     private ILoginPresenter loginPresenter;
-    private ProgressBar progressBar;
 
     ImageView hostelLogo, aaveglogo;
     ImageView ground;
@@ -55,7 +41,8 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
     TextView loginBanner;
     Animation moveRight;
     TextView madeWith;
-
+    View dialog;
+    AlertDialog loadingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,13 +58,15 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
         editUser = this.findViewById(R.id.et_login_username);
         editPass = this.findViewById(R.id.et_login_password);
         btnLogin = this.findViewById(R.id.btn_login_login);
-        progressBar = this.findViewById(R.id.progress_login);
+
         btnLogin.setOnClickListener(this);
         loginPresenter = new LoginPresenterCompl(this);
         loginPresenter.setProgressBarVisiblity(View.INVISIBLE);
         loginBanner = findViewById(R.id.loginBanner);
         loginBanner.setBackgroundResource(R.drawable.cardbanner);
         madeWith = findViewById(R.id.tv_made_with);
+        dialog = LayoutInflater.from(this).inflate(R.layout.progress_dialog, null);
+        loadingDialog = new AlertDialog.Builder(this).setView(dialog).setCancelable(false).create();
 
         madeWith.setClickable(true);
         madeWith.setMovementMethod(LinkMovementMethod.getInstance());
@@ -92,28 +81,31 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
 
         switch (v.getId()) {
             case R.id.btn_login_login:
-                System.out.println("hit btn");
                 final Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Snackbar.make(findViewById(android.R.id.content), "Check your internet and try again.", Snackbar.LENGTH_INDEFINITE)
-                                .setAction("Retry", new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        loginPresenter.doLogin(editUser.getText().toString(), editPass.getText().toString());
-                                    }
-                                })
-                                .show();
-                    }
-                }, 3000);
 
-                loginPresenter.setProgressBarVisiblity(View.VISIBLE);
-                btnLogin.setEnabled(false);
-                if(editUser.getText().toString().length()==9)
-                loginPresenter.doLogin(editUser.getText().toString(), editPass.getText().toString());
-                else
+                if (editUser.getText().toString().length() == 9) {
+                    loginPresenter.setProgressBarVisiblity(View.VISIBLE);
+                    btnLogin.setEnabled(false);
+                    loginPresenter.doLogin(editUser.getText().toString(), editPass.getText().toString());
+                    loadingDialog.show();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Snackbar.make(findViewById(android.R.id.content), "Check your internet and try again.", Snackbar.LENGTH_INDEFINITE)
+                                    .setAction("Retry", new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            View view = findViewById(R.id.btn_login_login);
+                                            LoginActivity.this.onClick(view);
+                                        }
+                                    })
+                                    .show();
+                        }
+                    }, 8000);
+                } else {
                     Toast.makeText(this, "Check your User ID.", Toast.LENGTH_SHORT).show();
+                    break;
+                }
                 break;
         }
     }
@@ -127,13 +119,16 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
     @Override
     public void onLoginResult(int code, String message) {
         loginPresenter.setProgressBarVisiblity(View.INVISIBLE);
+        loadingDialog.dismiss();
         btnLogin.setEnabled(true);
         if (code == 200) {
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
             loginPresenter.hasHostel(APIToken);
         }
         // TODO: Add more cases of code, like pass and user id worng
-        else {
+        else if (code == 401) {
+            Toast.makeText(this, "Wrong credentials.", Toast.LENGTH_SHORT).show();
+        } else {
             Toast.makeText(this, "Login Fail, code = " + code, Toast.LENGTH_SHORT).show();
         }
     }
@@ -145,7 +140,6 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
 
     @Override
     public void onSetProgressBarVisibility(int visibility) {
-        progressBar.setVisibility(visibility);
     }
 
     @Override

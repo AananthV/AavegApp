@@ -1,5 +1,7 @@
 package com.example.aaveg2020.events;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -28,6 +30,26 @@ public class EventDetailsFragment extends Fragment {
 
     private Event event;
     private EventPointAdapter adapter;
+    View dialog;
+    AlertDialog loadingDialog;
+    Context context;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        dialog = LayoutInflater.from(context).inflate(R.layout.progress_dialog, null);
+        TextView tv = dialog.findViewById(R.id.progressDialog_textView);
+        tv.setText("Loading...");
+        loadingDialog = new AlertDialog.Builder(context).setView(dialog).setCancelable(false).create();
+        loadingDialog.show();
+    }
 
     public EventDetailsFragment(Event event) {
         this.event = event;
@@ -106,6 +128,7 @@ public class EventDetailsFragment extends Fragment {
         pointsRecyclerView.setHasFixedSize(true);
         pointsRecyclerView.setLayoutManager(new LinearLayoutManager(mView.getContext()));
         pointsRecyclerView.setAdapter(adapter);
+        loadingDialog.dismiss();
         return mView;
     }
 }

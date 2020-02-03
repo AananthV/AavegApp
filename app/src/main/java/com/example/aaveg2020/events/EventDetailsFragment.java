@@ -59,7 +59,7 @@ public class EventDetailsFragment extends Fragment {
         rulesText = mView.findViewById(R.id.event_detail_rules);
 
         titleText.setText(event.getName());
-        descriptionText.setText(event.getDescription());
+//        descriptionText.setText(event.getDescription());
 
         locationText.setText(event.getVenue());
         dateText.setText(event.getDate());

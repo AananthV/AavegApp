@@ -19,6 +19,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toolbar;
 
 import com.example.aaveg2020.Scoreboard.ScoreboardFragment;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     TabLayout mainScreenTabLayout;
     Toolbar toolbar;
-    Button logOut;
+    ImageView logOut;
     ConstraintLayout mainActivityCL;
     SharedPreferences pref;
     SharedPreferences.Editor editor;

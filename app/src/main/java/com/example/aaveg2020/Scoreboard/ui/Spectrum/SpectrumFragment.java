@@ -122,6 +122,7 @@ public class SpectrumFragment extends Fragment implements SportsView {
         chart.invalidate();
     }
     public void assignDataToTable(){
+        scores=new ArrayList<>();
         scores.add(new HomeFragment.HostelScore("Agate",scoreboardModel.getStandings().getSpectrum().getAgate()));
         scores.add(new HomeFragment.HostelScore("Azurite",scoreboardModel.getStandings().getSpectrum().getAzurite()));
         scores.add(new HomeFragment.HostelScore("Bloodstone",scoreboardModel.getStandings().getSpectrum().getBloodstone()));

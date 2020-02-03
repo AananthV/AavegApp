@@ -119,6 +119,7 @@ public class CulturalsFragment extends Fragment implements CulturalsView {
         chart.invalidate();
     }
     public void assignDataToTable(){
+        scores=new ArrayList<>();
         scores.add(new HomeFragment.HostelScore("Agate",scoreboardModel.getStandings().getCulturals().getAgate()));
         scores.add(new HomeFragment.HostelScore("Azurite",scoreboardModel.getStandings().getCulturals().getAzurite()));
         scores.add(new HomeFragment.HostelScore("Bloodstone",scoreboardModel.getStandings().getCulturals().getBloodstone()));

@@ -8,11 +8,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.aaveg2020.MainActivity;
 import com.example.aaveg2020.R;
+import com.example.aaveg2020.events.EventsUtils;
 import com.example.aaveg2020.sponsors.SponsorModel;
 
 import java.util.List;
@@ -63,6 +65,7 @@ public class SponsorsRecyclerAdapter extends RecyclerView.Adapter<SponsorsRecycl
         ImageView sponsorImage;
         TextView sponsorPartnerName;
         TextView sponsorName;
+        ConstraintLayout parent;
 
         public SponsorHolderClass(@NonNull View itemView) {
             super(itemView);
@@ -70,7 +73,8 @@ public class SponsorsRecyclerAdapter extends RecyclerView.Adapter<SponsorsRecycl
             sponsorImage = (ImageView) itemView.findViewById(R.id.iv_sponsors);
             sponsorPartnerName = (TextView) itemView.findViewById(R.id.tv_partner_sponsor_item);
             sponsorName = (TextView) itemView.findViewById(R.id.tv_sponsor_name);
-
+            parent=itemView.findViewById(R.id.sponsor_item_parent);
+            parent.setBackground(EventsUtils.getHostelCard(itemView.getResources()));
         }
     }
 }

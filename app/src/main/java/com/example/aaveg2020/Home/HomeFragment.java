@@ -120,9 +120,15 @@ public class HomeFragment extends Fragment implements HomeView {
     @Override
     public void onGetScoreboardSuccess(ScoreboardModel scoreboardModel) {
         this.scoreboardModel=scoreboardModel;
-        this.setHostelEvents();
-        this.calculateTotal();
-        this.setPositions();
+        try {
+            this.setHostelEvents();
+            this.calculateTotal();
+            this.setPositions();
+        }
+        catch (Exception e){
+            Toast.makeText(context,"Something went wrong",Toast.LENGTH_SHORT).show();
+
+        }
     }
     private void setHostelImg(){
         // crash here if userutils.hostel primarily because login function not updating val.

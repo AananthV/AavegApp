@@ -10,7 +10,6 @@
         android:layout_width="wrap_content"
         android:layout_height="150dp"
         app:cardCornerRadius="20dp"
-        app:cardBackgroundColor="#6f000000"
         >
 
         <RelativeLayout
@@ -20,7 +19,8 @@
                 android:id="@+id/hostel_events_img"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/gold"
+                android:src="@drawable/bronze"
+                android:foreground="#6f000000"
                 android:scaleType="fitXY"/>
             <TextView
                 android:id="@+id/recent_events_card_text"

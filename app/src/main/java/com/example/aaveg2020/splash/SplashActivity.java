@@ -53,6 +53,12 @@ public class SplashActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         screenHeight = displayMetrics.heightPixels;
         screenWidth = displayMetrics.widthPixels;
+        splashConstraint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startNextActivity();
+            }
+        });
 
         setupTrophy();
         setupBuildings();   // adds building to the view in correct location.
@@ -239,20 +245,7 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-
-                Intent intent;
-                UserUtils.APIToken=pref.getString("APIToken",null);
-              //  UserUtils.hostel=pref.getString("hostel",null);
-                System.out.println("value of api token is "+UserUtils.APIToken);
-                System.out.println("value of hostel is "+UserUtils.hostel);
-
-                if(UserUtils.APIToken!=null && UserUtils.hostel!=null)
-                    intent = new Intent(SplashActivity.this, MainActivity.class);
-                else
-                    intent = new Intent(SplashActivity.this, LoginActivity.class);
-
-                startActivity(intent);
-                overridePendingTransition(0,0);
+                startNextActivity();
             }
 
             @Override
@@ -273,5 +266,21 @@ public class SplashActivity extends AppCompatActivity {
         // call blasting thing
         explosionField = ExplosionField.attach2Window(this);
         explosionField.explode(trophy);
+    }
+
+    private void startNextActivity() {
+        Intent intent;
+        UserUtils.APIToken=pref.getString("APIToken",null);
+        //  UserUtils.hostel=pref.getString("hostel",null);
+        System.out.println("value of api token is "+UserUtils.APIToken);
+        System.out.println("value of hostel is "+UserUtils.hostel);
+
+        if(UserUtils.APIToken!=null && UserUtils.hostel!=null)
+            intent = new Intent(SplashActivity.this, MainActivity.class);
+        else
+            intent = new Intent(SplashActivity.this, LoginActivity.class);
+
+        startActivity(intent);
+        overridePendingTransition(0,0);
     }
 }

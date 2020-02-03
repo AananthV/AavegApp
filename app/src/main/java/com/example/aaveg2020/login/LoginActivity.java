@@ -33,7 +33,10 @@ import com.example.aaveg2020.MainActivity;
 import com.example.aaveg2020.R;
 import com.example.aaveg2020.UserUtils;
 import com.example.aaveg2020.api.AavegApi;
+import com.google.android.material.snackbar.Snackbar;
 
+
+import java.util.TimerTask;
 
 import static com.example.aaveg2020.UserUtils.APIToken;
 
@@ -89,9 +92,29 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
 
         switch (v.getId()) {
             case R.id.btn_login_login:
+                System.out.println("hit btn");
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Snackbar.make(findViewById(android.R.id.content), "Check your internet and try again.", Snackbar.LENGTH_INDEFINITE)
+                                .setAction("Retry", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        View view = findViewById(R.id.btn_login_login);
+                                        LoginActivity.this.onClick(view);
+                                    }
+                                })
+                                .show();
+                    }
+                }, 3000);
+
                 loginPresenter.setProgressBarVisiblity(View.VISIBLE);
                 btnLogin.setEnabled(false);
+                if(editUser.getText().toString().length()==9)
                 loginPresenter.doLogin(editUser.getText().toString(), editPass.getText().toString());
+                else
+                    Toast.makeText(this, "Check your User ID.", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
@@ -109,8 +132,10 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
         if (code == 200) {
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
             loginPresenter.hasHostel(APIToken);
-        } else {
-            Toast.makeText(this, "Login Fail, code = " + code + " " + message, Toast.LENGTH_SHORT).show();
+        }
+        // TODO: Add more cases of code, like pass and user id worng
+        else {
+            Toast.makeText(this, "Login Fail, code = " + code, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -141,5 +166,6 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
     public void goToMainScreen() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 }

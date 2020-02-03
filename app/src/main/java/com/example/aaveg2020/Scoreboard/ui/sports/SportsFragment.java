@@ -89,7 +89,7 @@ public class SportsFragment extends Fragment implements SportsView {
         BarEntry v1e5 = new BarEntry(scoreboardModel.getStandings().getSports().getOpal(), 4); // May
         valueSet1.add(v1e5);
         BarDataSet barDataSet1 = new BarDataSet(valueSet1,"Sports");
-        barDataSet1.setColor(Color.BLUE);
+        barDataSet1.setColor(getResources().getColor(R.color.scoreboard_spectrum));
         barDataSet1.setValueFormatter(new LargeValueFormatter());
         dataSets = new ArrayList<>();
         dataSets.add(barDataSet1);

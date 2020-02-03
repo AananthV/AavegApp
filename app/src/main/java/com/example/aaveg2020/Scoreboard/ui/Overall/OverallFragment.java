@@ -20,6 +20,7 @@ import com.example.aaveg2020.Scoreboard.ScoreboardModel;
 import com.example.aaveg2020.Scoreboard.ScoreboardPresenter;
 import com.example.aaveg2020.Scoreboard.ScoreboardPresenterImpl;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
@@ -89,7 +90,7 @@ public class OverallFragment extends Fragment implements IOverallView {
         BarEntry v1e5 = new BarEntry(new float[]{scoreboardModel.getStandings().getCulturals().getOpal(),scoreboardModel.getStandings().getSpectrum().getOpal(),scoreboardModel.getStandings().getSports().getOpal()}, 4); // May
         valueSet1.add(v1e5);
         BarDataSet barDataSet1 = new BarDataSet(valueSet1,"");
-        barDataSet1.setColors(new int[]{Color.RED,Color.GREEN,Color.BLUE});
+        barDataSet1.setColors(new int[]{Color.parseColor("#09bc9a"),Color.parseColor("#f49d6e"),Color.parseColor("#75dddd")});
         barDataSet1.setValueFormatter(new LargeValueFormatter());
         dataSets = new ArrayList<>();
         dataSets.add(barDataSet1);
@@ -121,6 +122,8 @@ public class OverallFragment extends Fragment implements IOverallView {
         chart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
         chart.getAxisLeft().setValueFormatter(new LargeValueFormatter());
         chart.invalidate();
+        Legend legend=chart.getLegend();
+        legend.setLabels(new String[]{"Culturals","Spectrum","Sports"});
     }
     public void assignPointsToHostel(){
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(getContext());

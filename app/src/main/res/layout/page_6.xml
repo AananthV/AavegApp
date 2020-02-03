@@ -26,16 +26,6 @@ Feel the bonds forged by battles and blood. Witness their brawl with even gods, 
         app:autoSizeMaxTextSize="100sp"
         app:autoSizeStepGranularity="2sp"
         android:fontFamily="@font/exo2_regular"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.25"
-        android:text="swipe ->"
-        android:textAlignment="viewEnd"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="10sp"
-        app:autoSizeMaxTextSize="100sp"
-        app:autoSizeStepGranularity="2sp"
-        android:fontFamily="@font/exo2_regular"/>
+
 
 </LinearLayout>

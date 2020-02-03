@@ -72,7 +72,7 @@ public class SplashActivity extends AppCompatActivity {
         ConstraintSet constraintSetExplosion = new ConstraintSet();
 
         explosionView.setImageResource(R.drawable.explosion_compressed);
-        explosionView.setScaleType(ImageView.ScaleType.FIT_XY);
+        explosionView.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
         explosionView.setId(View.generateViewId());
 
@@ -235,7 +235,7 @@ public class SplashActivity extends AppCompatActivity {
                 0,
                 0,
                 0,
-                -1*screenHeight*0.7f);
+                -1*screenHeight*0.77f);
 
         explosionAnimation.setDuration(5000);
         explosionAnimation.setFillAfter(true);

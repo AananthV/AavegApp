@@ -54,7 +54,6 @@ public class OverallFragment extends Fragment implements IOverallView {
         dialog = LayoutInflater.from(context).inflate(R.layout.progress_dialog, null);
         TextView tv = dialog.findViewById(R.id.progressDialog_textView);
         tv.setText("Loading...");
-        scores=new ArrayList<>();
         loadingDialog = new AlertDialog.Builder(context).setView(dialog).setCancelable(false).create();
         loadingDialog.show();
     }
@@ -129,6 +128,7 @@ public class OverallFragment extends Fragment implements IOverallView {
         legend.setLabels(new String[]{"Culturals","Spectrum","Sports"});
     }
     public void assignPointsToHostel(){
+        scores=new ArrayList<>();
         scores.add(new HomeFragment.HostelScore("Agate",scoreboardModel.getTotal().getAgate()));
         scores.add(new HomeFragment.HostelScore("Azurite",scoreboardModel.getTotal().getAzurite()));
         scores.add(new HomeFragment.HostelScore("Bloodstone",scoreboardModel.getTotal().getBloodstone()));

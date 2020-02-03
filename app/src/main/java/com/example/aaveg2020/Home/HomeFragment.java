@@ -207,7 +207,7 @@ public class HomeFragment extends Fragment implements HomeView {
         this.setSuffix(getPosition(sports),sportsPlace);
         this.setSuffix(getPosition(spectrum),spectrumPlace);
     }
-    public ArrayList<HostelScore> doSelectionSort(ArrayList<HostelScore> arr) {
+    public static ArrayList<HostelScore> doSelectionSort(ArrayList<HostelScore> arr) {
         for (int i = 0; i < arr.size(); i++) {
             // find position of smallest num between (i + 1)th element and last element
             int pos = i;
@@ -238,13 +238,21 @@ public class HomeFragment extends Fragment implements HomeView {
                 break;
         }
     }
-    public class HostelScore{
+    public static class HostelScore{
         String name;
         int score;
 
         public HostelScore(String name, int score) {
             this.name = name;
             this.score = score;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public int getScore() {
+            return score;
         }
     }
 

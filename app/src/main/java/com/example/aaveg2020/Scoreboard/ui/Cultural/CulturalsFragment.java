@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.aaveg2020.Home.HomeFragment;
 import com.example.aaveg2020.R;
 import com.example.aaveg2020.Scoreboard.ScoreboardModel;
 import com.example.aaveg2020.Scoreboard.ScoreboardPresenter;
@@ -38,6 +39,8 @@ public class CulturalsFragment extends Fragment implements CulturalsView {
     View dialog;
     AlertDialog loadingDialog;
     Context context;
+    ArrayList<HomeFragment.HostelScore> scores;
+
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -52,6 +55,7 @@ public class CulturalsFragment extends Fragment implements CulturalsView {
         dialog = LayoutInflater.from(context).inflate(R.layout.progress_dialog, null);
         TextView tv = dialog.findViewById(R.id.progressDialog_textView);
         tv.setText("Loading...");
+        scores=new ArrayList<>();
         loadingDialog = new AlertDialog.Builder(context).setView(dialog).setCancelable(false).create();
         loadingDialog.show();
     }
@@ -115,10 +119,16 @@ public class CulturalsFragment extends Fragment implements CulturalsView {
         chart.invalidate();
     }
     public void assignDataToTable(){
+        scores.add(new HomeFragment.HostelScore("Agate",scoreboardModel.getStandings().getCulturals().getAgate()));
+        scores.add(new HomeFragment.HostelScore("Azurite",scoreboardModel.getStandings().getCulturals().getAzurite()));
+        scores.add(new HomeFragment.HostelScore("Bloodstone",scoreboardModel.getStandings().getCulturals().getBloodstone()));
+        scores.add(new HomeFragment.HostelScore("Cobalt",scoreboardModel.getStandings().getCulturals().getCobalt()));
+        scores.add(new HomeFragment.HostelScore("Opal",scoreboardModel.getStandings().getCulturals().getOpal()));
+        scores=HomeFragment.doSelectionSort(scores);
         loadingDialog.dismiss();
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(getContext());
         standings.setLayoutManager(layoutManager);
-        TotalPointsAdapter adapter=new TotalPointsAdapter(getContext(),scoreboardModel.getStandings().getCulturals());
+        TotalPointsAdapter adapter=new TotalPointsAdapter(getContext(),scores);
         standings.setAdapter(adapter);
     }
 

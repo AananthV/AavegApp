@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar_main);
         mainActivityCL = findViewById(R.id.cl_main_activity);
         logOut=findViewById(R.id.logout);
-        mainActivityCL.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.agatecard));
+        setHostelBackground(UserUtils.hostel);
 
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,6 +142,22 @@ public class MainActivity extends AppCompatActivity {
 
         Objects.requireNonNull(mainScreenTabLayout.getTabAt(2)).select();
     }
+
+    private void setHostelBackground(String chosenHostel) {
+        int backgroundId = R.drawable.agatecard;
+        switch(chosenHostel){
+            case "Agate": backgroundId=R.drawable.agatecard;
+                break;
+            case "Azurite": backgroundId=R.drawable.azuritecard;break;
+            case "Bloodstone":backgroundId=R.drawable.bloodstonecard;break;
+            case "Cobalt":backgroundId=R.drawable.cobaltcard; break;
+            case "Opal":backgroundId=R.drawable.opalcard;break;
+
+        }
+        mainActivityCL.setBackground(ContextCompat.getDrawable(getApplicationContext(),backgroundId));
+
+    }
+
     private void doLogout(){
         editor.putString("user_id",null);
         editor.putString("APIToken",null);

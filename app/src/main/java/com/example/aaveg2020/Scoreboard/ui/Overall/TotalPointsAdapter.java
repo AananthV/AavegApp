@@ -7,10 +7,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.aaveg2020.Home.HomeFragment;
 import com.example.aaveg2020.R;
+import com.example.aaveg2020.events.EventsUtils;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -67,12 +69,16 @@ public class TotalPointsAdapter extends RecyclerView.Adapter<TotalPointsAdapter.
 
         CircleImageView hostelImage;
         TextView hostelName,hostelScore;
+        CardView hostelBackground;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             hostelImage=itemView.findViewById(R.id.standings_hostel_pic);
             hostelName=itemView.findViewById(R.id.standings_hostel_name);
             hostelScore=itemView.findViewById(R.id.standings_hostel_score);
+            hostelBackground=itemView.findViewById(R.id.hostel_standing_card);
+            hostelBackground.setBackground(EventsUtils.getHostelCard(itemView.getResources()));
+
         }
     }
 }

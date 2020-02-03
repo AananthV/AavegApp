@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
+import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.aaveg2020.R;
+import com.example.aaveg2020.UserUtils;
 import com.example.aaveg2020.api.AavegApi;
 
 import java.util.ArrayList;
@@ -70,6 +71,9 @@ public class ClustersFragment extends Fragment implements OnClusterClickListener
         clustersRecyclerView = mView.findViewById(R.id.clusters_recycler_view);
         clustersRecyclerView.setHasFixedSize(true);
         clustersRecyclerView.setLayoutManager(new LinearLayoutManager(mView.getContext()));
+        Log.d(TAG, "Hostel: " + UserUtils.hostel);
+        final LinearLayout headerLayout = mView.findViewById(R.id.event_header_layout);
+        headerLayout.setBackground(EventsUtils.getHostelColor(getResources()));
         getClusters();
         return mView;
     }

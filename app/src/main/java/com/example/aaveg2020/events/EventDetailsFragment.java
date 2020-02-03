@@ -72,6 +72,9 @@ public class EventDetailsFragment extends Fragment {
         final TextView cupText, clusterText;
         final TextView locationText, dateText, timeText, rulesText;
 
+        final LinearLayout headerLayout = mView.findViewById(R.id.event_header_layout);
+        headerLayout.setBackground(EventsUtils.getHostelColor(getResources()));
+
         titleText = mView.findViewById(R.id.event_detail_title);
         descriptionText = mView.findViewById(R.id.event_detail_description);
 

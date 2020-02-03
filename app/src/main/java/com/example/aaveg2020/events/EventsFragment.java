@@ -72,13 +72,16 @@ public class EventsFragment extends Fragment implements OnEventClickListener {
         adapter = new EventAdapter(cluster.getEvents(), this);
         eventsRecyclerView.setAdapter(adapter);
 
+        final LinearLayout headerLayout = mView.findViewById(R.id.event_header_layout);
+        headerLayout.setBackground(EventsUtils.getHostelColor(getResources()));
+
         final TextView titleText = mView.findViewById(R.id.cluster_detail_title);
         final ImageView backgroundImg = mView.findViewById(R.id.fragment_events_bg_img);
 
 
         titleText.setText(cluster.getId());
         Glide.with(getContext())
-                .load(EventsUtils.getClusterDrawableOrange(cluster.getId(), getResources()))
+                .load(EventsUtils.getClusterDrawable(cluster.getId(), getResources()))
                 .apply(RequestOptions.fitCenterTransform())
                 .into(backgroundImg);
 

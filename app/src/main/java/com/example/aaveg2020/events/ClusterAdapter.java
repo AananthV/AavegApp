@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -81,6 +82,7 @@ public class ClusterAdapter extends RecyclerView
         public final TextView eventTitleNameView;
         final ImageView clusterImg;
         final TextView clusterNameText;
+        final LinearLayout clusterLayout;
 
         public ViewHolder(View view) {
             super(view);
@@ -88,6 +90,8 @@ public class ClusterAdapter extends RecyclerView
             eventTitleNameView = view.findViewById(R.id.event_title);
             clusterImg = view.findViewById(R.id.cluster_image);
             clusterNameText = view.findViewById(R.id.cluster_name);
+            clusterLayout = view.findViewById(R.id.cluster_image_layout);
+            clusterLayout.setBackground(EventsUtils.getHostelCard(view.getResources()));
         }
 
         public void bind(final Cluster cluster, final OnClusterClickListener listener) {

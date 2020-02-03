@@ -73,31 +73,56 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 Fragment f;
-                switch (tab.getPosition()) {
-
+                int currentPosition = tab.getPosition();
+                switch (currentPosition) {
                     case 1:
                         f = new EventsMainFragment();
                         toolbar.setTitle("Events");
+                        tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.scheduleclicked));
+                        mainScreenTabLayout.getTabAt(0).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aboutus));
+                        mainScreenTabLayout.getTabAt(2).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.home));
+                        mainScreenTabLayout.getTabAt(3).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.leaderboard));
+                        mainScreenTabLayout.getTabAt(4).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.sponsoricon));
                         break;
 
                     case 2:
                         f = new HomeFragment();
                         toolbar.setTitle("Home");
+                        tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.homeclicked));
+                        mainScreenTabLayout.getTabAt(0).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aboutus));
+                        mainScreenTabLayout.getTabAt(1).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.schedule));
+                        mainScreenTabLayout.getTabAt(3).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.leaderboard));
+                        mainScreenTabLayout.getTabAt(4).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.sponsoricon));
                         break;
 
                     case 3:
                         f = new ScoreboardFragment();
                         toolbar.setTitle("Scoreboard");
+                        tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.leaderboardclicked));
+                        mainScreenTabLayout.getTabAt(0).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aboutus));
+                        mainScreenTabLayout.getTabAt(2).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.home));
+                        mainScreenTabLayout.getTabAt(1).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.schedule));
+                        mainScreenTabLayout.getTabAt(4).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.sponsoricon));
                         break;
 
                     case 4:
                         f = new SponsorsFragment();
                         toolbar.setTitle("Sponsors");
+                        tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.sponsorsclicked));
+                        mainScreenTabLayout.getTabAt(0).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aboutus));
+                        mainScreenTabLayout.getTabAt(2).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.home));
+                        mainScreenTabLayout.getTabAt(3).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.leaderboard));
+                        mainScreenTabLayout.getTabAt(1).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.schedule));
                         break;
 
                     default:
                         f=new CurlFragment();
                         toolbar.setTitle("About Us");
+                        tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aboutusclicked));
+                        mainScreenTabLayout.getTabAt(1).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.schedule));
+                        mainScreenTabLayout.getTabAt(2).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.home));
+                        mainScreenTabLayout.getTabAt(3).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.leaderboard));
+                        mainScreenTabLayout.getTabAt(4).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.sponsoricon));
                 }
                 FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.main_framelayout,f);

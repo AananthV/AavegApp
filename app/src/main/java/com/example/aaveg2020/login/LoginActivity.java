@@ -33,22 +33,28 @@ import com.example.aaveg2020.MainActivity;
 import com.example.aaveg2020.R;
 import com.example.aaveg2020.UserUtils;
 import com.example.aaveg2020.api.AavegApi;
+import com.google.android.material.snackbar.Snackbar;
 
+
+import java.util.TimerTask;
 
 import static com.example.aaveg2020.UserUtils.APIToken;
 
 public class LoginActivity extends AppCompatActivity implements ILoginView, View.OnClickListener {
-    View child,trans;
+    View child, trans;
     FrameLayout item;
     private EditText editUser;
     private EditText editPass;
     private Button btnLogin;
     private ILoginPresenter loginPresenter;
     private ProgressBar progressBar;
+
+    ImageView hostelLogo, aaveglogo;
+    ImageView ground;
+
     TextView loginBanner;
     Animation moveRight;
     TextView madeWith;
-
 
 
     @Override
@@ -57,9 +63,9 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
         setContentView(R.layout.activity_login);
 
         item = findViewById(R.id.hostel_chooser);
-       child = getLayoutInflater()
+        child = getLayoutInflater()
                 .inflate(R.layout.loginview, item, false);
-       item.addView(child);
+        item.addView(child);
         moveRight = AnimationUtils.loadAnimation(this, R.anim.move_right);
 
         editUser = this.findViewById(R.id.et_login_username);
@@ -69,7 +75,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
         btnLogin.setOnClickListener(this);
         loginPresenter = new LoginPresenterCompl(this);
         loginPresenter.setProgressBarVisiblity(View.INVISIBLE);
-        loginBanner=findViewById(R.id.loginBanner);
+        loginBanner = findViewById(R.id.loginBanner);
         loginBanner.setBackgroundResource(R.drawable.cardbanner);
         madeWith = findViewById(R.id.tv_made_with);
 
@@ -78,10 +84,6 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
         String text = "<p>Made with ♥ by <a href=\"https://delta.nitt.edu\" target=\"_blank\">DeltaForce</a> and Aaveg Design Team </p>";
         madeWith.setText(Html.fromHtml(text));
         loginBanner.startAnimation(moveRight);
-
-
-
-
     }
 
 
@@ -90,9 +92,29 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
 
         switch (v.getId()) {
             case R.id.btn_login_login:
+                System.out.println("hit btn");
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Snackbar.make(findViewById(android.R.id.content), "Check your internet and try again.", Snackbar.LENGTH_INDEFINITE)
+                                .setAction("Retry", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        View view = findViewById(R.id.btn_login_login);
+                                        LoginActivity.this.onClick(view);
+                                    }
+                                })
+                                .show();
+                    }
+                }, 3000);
+
                 loginPresenter.setProgressBarVisiblity(View.VISIBLE);
                 btnLogin.setEnabled(false);
+                if(editUser.getText().toString().length()==9)
                 loginPresenter.doLogin(editUser.getText().toString(), editPass.getText().toString());
+                else
+                    Toast.makeText(this, "Check your User ID.", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
@@ -110,12 +132,11 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
         if (code == 200) {
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
             loginPresenter.hasHostel(APIToken);
-
-
-        } else{
-            Toast.makeText(this, "Login Fail, code = " + code + " " + message, Toast.LENGTH_SHORT).show();
         }
-
+        // TODO: Add more cases of code, like pass and user id worng
+        else {
+            Toast.makeText(this, "Login Fail, code = " + code, Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -143,12 +164,8 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
 
     @Override
     public void goToMainScreen() {
-
-
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-
-
-
+        finish();
     }
 }

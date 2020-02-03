@@ -1,27 +1,22 @@
 package com.example.aaveg2020.sponsors;
 
-import android.graphics.ColorSpace;
+import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.aaveg2020.MainActivity;
 import com.example.aaveg2020.R;
 import com.example.aaveg2020.adapters.SponsorsRecyclerAdapter;
 import com.example.aaveg2020.api.AavegApi;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -36,6 +31,13 @@ public class SponsorsFragment extends Fragment {
     List<SponsorModel> sponsorModelList;
     private SponsorsRecyclerAdapter sponsorsRecyclerAdapter;
     private RecyclerView recyclerView;
+    private Context context;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,7 +59,7 @@ public class SponsorsFragment extends Fragment {
             @Override
             public void onResponse(Call<List<SponsorModel>> call, Response<List<SponsorModel>> response) {
                 if (!response.isSuccessful()) {
-                    Toast.makeText(getContext(),"Server Error",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Server Error", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 sponsorModelList = response.body();
@@ -66,7 +68,7 @@ public class SponsorsFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<SponsorModel>> call, Throwable t) {
-                Toast.makeText(getContext(),"Server Error",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Check your internet.", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -75,7 +77,7 @@ public class SponsorsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.layout_sponsors_fragment,container,false);
+        View view = inflater.inflate(R.layout.layout_sponsors_fragment, container, false);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.rv_sponsor_list);
 
@@ -87,10 +89,10 @@ public class SponsorsFragment extends Fragment {
         feedData();
     }
 
-    private void init(List<SponsorModel> sponsorModelList){
-            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2);
-            sponsorsRecyclerAdapter = new SponsorsRecyclerAdapter(sponsorModelList, getActivity());
-            recyclerView.setLayoutManager(gridLayoutManager);
-            recyclerView.setAdapter(sponsorsRecyclerAdapter);
+    private void init(List<SponsorModel> sponsorModelList) {
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
+        sponsorsRecyclerAdapter = new SponsorsRecyclerAdapter(sponsorModelList, getActivity());
+        recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerView.setAdapter(sponsorsRecyclerAdapter);
     }
 }

@@ -54,7 +54,7 @@ public class HomeFragment extends Fragment implements HomeView {
     TextView overallPlace,culturalsPlace,sportsPlace,spectrumPlace, madeWith;
     OverallModel total,culturals,sports,spectrum;
     final int spacing = 20;
-    int count=0,mCount=0;
+    int count=0,mCount=0,hCount;
     View dialog;
     AlertDialog loadingDialog;
     Context context;
@@ -119,7 +119,18 @@ public class HomeFragment extends Fragment implements HomeView {
         madeWith.setMovementMethod(LinkMovementMethod.getInstance());
         String text = "Made with ♥ by <a href=\"https://delta.nitt.edu\" target=\"_blank\">DeltaForce</a> and Aaveg Design Team";
         madeWith.setText(Html.fromHtml(text));
-
+        madeWith.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                hCount++;
+                if(hCount>=5)
+                {
+                    hCount=0;
+                    Intent intent=new Intent(getContext(),HameedActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -118,7 +118,11 @@ public class ChooseHostel extends Fragment {
             public void onClick(View v) {
                 if (!chosenHostel.isEmpty()) {
                     setHostel(chosenHostel);
-
+                    UserUtils.hostel=chosenHostel;
+                    pref= getActivity().getSharedPreferences("Aaveg2020", MODE_PRIVATE);
+                    editor = pref.edit();
+                    editor.putString("hostel",chosenHostel);
+                    editor.apply();
                 } else {
                     Toast.makeText(getActivity(), "Please choose a hostel", Toast.LENGTH_LONG).show();
                 }

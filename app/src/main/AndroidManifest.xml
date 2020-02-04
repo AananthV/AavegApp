@@ -17,10 +17,14 @@
         <activity android:name=".Home.MarioActivity" />
         <activity android:name=".Home.HopeThisWorks" />
         <activity
+            android:noHistory="true"
+
             android:name=".login.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
+            android:noHistory="true"
+
             android:screenOrientation="portrait" />
         <activity
             android:name=".splash.SplashActivity"
@@ -32,10 +36,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <service android:name=".notifications.NotificationService">
+        <service
+            android:name=".notifications.FirebaseMessagingService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
         </service>
 

@@ -133,9 +133,6 @@ public class ChooseHostel extends Fragment {
     }
 
     private void setHostel(final String chosenHostel) {
-        Toast.makeText(getActivity(), chosenHostel, Toast.LENGTH_LONG).show();
-
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://aaveg.in/api/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -153,7 +150,6 @@ public class ChooseHostel extends Fragment {
                 editor = pref.edit();
                 editor.putString("hostel",chosenHostel);
                 editor.apply();
-//               Toast.makeText(getActivity(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
 
@@ -183,7 +179,6 @@ public class ChooseHostel extends Fragment {
 
         chosenHostel = hostel.getText().toString();
         hostelBack.setBackgroundResource(background);
-        Toast.makeText(getActivity(),chosenHostel,Toast.LENGTH_SHORT).show();
     }
 
 }

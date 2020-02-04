@@ -351,7 +351,6 @@ public class SplashActivity extends AppCompatActivity implements HomeView {
 
     @Override
     public void onGetScoreboardSuccess(ScoreboardModel scoreboardModel) {
-        System.out.println("hithithithit");
         splashConstraint.setClickable(true);
         this.scoreboardModel = scoreboardModel;
         startNextActivityAndResetCallback();

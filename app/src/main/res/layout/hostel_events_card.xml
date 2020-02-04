@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:lines="4"
-                android:textSize="30dp"
+                android:textSize="20sp"
                 android:layout_centerVertical="true"
                 android:text="NOX\n2"/>
 

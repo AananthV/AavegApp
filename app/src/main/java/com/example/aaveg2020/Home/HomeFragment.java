@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,7 +49,7 @@ public class HomeFragment extends Fragment implements HomeView {
     ImageView hostelImage;
     ArrayList<EventsModel> events;
     SnapHelper helper;
-    TextView overallPlace,culturalsPlace,sportsPlace,spectrumPlace;
+    TextView overallPlace,culturalsPlace,sportsPlace,spectrumPlace, madeWith;
     OverallModel total,culturals,sports,spectrum;
     final int spacing = 20;
     int count=0;
@@ -105,7 +106,13 @@ public class HomeFragment extends Fragment implements HomeView {
         hostelImage=mView.findViewById(R.id.home_hostel_img);
         toolbar = mView.findViewById(R.id.toolbar_main);
         logOut=toolbar.findViewById(R.id.logout);
+        madeWith = mView.findViewById(R.id.tv_made_with_home);
         count=0;
+
+        madeWith.setClickable(true);
+        madeWith.setMovementMethod(LinkMovementMethod.getInstance());
+        String text = "Made with ♥ by <a href=\"https://delta.nitt.edu\" target=\"_blank\">DeltaForce</a> and Aaveg Design Team";
+        madeWith.setText(Html.fromHtml(text));
 
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override

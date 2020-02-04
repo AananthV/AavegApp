@@ -23,6 +23,7 @@ import com.example.aaveg2020.Scoreboard.ScoreboardPresenter;
 import com.example.aaveg2020.Scoreboard.ScoreboardPresenterImpl;
 import com.example.aaveg2020.Scoreboard.ui.Overall.TotalPointsAdapter;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
@@ -117,6 +118,13 @@ public class SportsFragment extends Fragment implements SportsView {
         chart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
         chart.getAxisLeft().setValueFormatter(new LargeValueFormatter());
         chart.invalidate();
+        chart.setBackgroundColor(Color.parseColor("#8f000000"));
+        chart.setBorderColor(getResources().getColor(R.color.white));
+        Legend legend=chart.getLegend();
+        legend.setTextColor(getResources().getColor(R.color.white));
+        chart.getXAxis().setTextColor(getResources().getColor(R.color.white));
+        chart.getAxisLeft().setTextColor(getResources().getColor(R.color.white));
+        data.setValueTextColor(getResources().getColor(R.color.white));
     }
     public void assignDataToTable(){
         scores=new ArrayList<>();

@@ -3,6 +3,7 @@ package com.example.aaveg2020.Scoreboard.ui.Cultural;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +24,7 @@ import com.example.aaveg2020.Scoreboard.ScoreboardPresenter;
 import com.example.aaveg2020.Scoreboard.ScoreboardPresenterImpl;
 import com.example.aaveg2020.Scoreboard.ui.Overall.TotalPointsAdapter;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
@@ -117,6 +120,13 @@ public class CulturalsFragment extends Fragment implements CulturalsView {
         chart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
         chart.getAxisLeft().setValueFormatter(new LargeValueFormatter());
         chart.invalidate();
+        chart.setBackgroundColor(Color.parseColor("#8f000000"));
+        chart.setBorderColor(getResources().getColor(R.color.white));
+        Legend legend=chart.getLegend();
+        legend.setTextColor(getResources().getColor(R.color.white));
+        chart.getXAxis().setTextColor(getResources().getColor(R.color.white));
+        chart.getAxisLeft().setTextColor(getResources().getColor(R.color.white));
+        data.setValueTextColor(getResources().getColor(R.color.white));
     }
     public void assignDataToTable(){
         scores=new ArrayList<>();

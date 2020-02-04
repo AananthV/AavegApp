@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements LogOutInterface {
     SharedPreferences.Editor editor;
     static int cup=0;
     int currentPosition;
+    int flag=0;
     CurlFragment fragment=new CurlFragment();
 
 
@@ -71,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements LogOutInterface {
         mainScreenTabLayout = (TabLayout) findViewById(R.id.tab_layout_main_screen);
         mainActivityCL = findViewById(R.id.cl_main_activity);
         setHostelBackground(pref.getString("hostel",null));
+        flag=0;
         mainScreenTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -172,7 +174,12 @@ public class MainActivity extends AppCompatActivity implements LogOutInterface {
         int count = getSupportFragmentManager().getBackStackEntryCount();
 
         if (count == 0) {
-            mainScreenTabLayout.getTabAt(2).select();
+            if(flag==0){
+                flag=1;
+                mainScreenTabLayout.getTabAt(2).select();
+            }
+            else
+                finish();
             //additional code
         } else {
             getSupportFragmentManager().popBackStack();

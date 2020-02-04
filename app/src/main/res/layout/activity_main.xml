@@ -24,7 +24,6 @@
         android:id="@+id/tab_layout_main_screen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/btn_bground_ripple"
         >
 
         <com.google.android.material.tabs.TabItem

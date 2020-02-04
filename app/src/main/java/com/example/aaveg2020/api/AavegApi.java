@@ -20,7 +20,7 @@ import retrofit2.http.PUT;
 
 public interface AavegApi {
 
-    String base_url="https://www.aaveg.in/api/";
+    String base_url="https://aaveg.in/api/";
 //    String base_url="http://192.168.0.197:4000/";
 
     @FormUrlEncoded

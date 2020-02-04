@@ -20,7 +20,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toolbar;
 
 import com.example.aaveg2020.Scoreboard.ScoreboardFragment;
 import com.example.aaveg2020.aboutus.CurlFragment;
@@ -36,10 +35,9 @@ import java.util.Objects;
 
 import com.example.aaveg2020.events.ClustersFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LogOutInterface {
 
     TabLayout mainScreenTabLayout;
-    Toolbar toolbar;
     ImageView logOut;
     ConstraintLayout mainActivityCL;
     SharedPreferences pref;
@@ -56,17 +54,9 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.main_framelayout,new HomeFragment());
         fragmentTransaction.commit();
         mainScreenTabLayout = (TabLayout) findViewById(R.id.tab_layout_main_screen);
-        toolbar = (Toolbar) findViewById(R.id.toolbar_main);
         mainActivityCL = findViewById(R.id.cl_main_activity);
-        logOut=findViewById(R.id.logout);
         setHostelBackground(pref.getString("hostel",null));
 
-        logOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                doLogout();
-            }
-        });
         mainScreenTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -75,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
                 switch (currentPosition) {
                     case 1:
                         f = new EventsMainFragment();
-                        toolbar.setTitle("Events");
                         tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.calendar_black));
                         mainScreenTabLayout.getTabAt(0).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aaveg_gray));
                         mainScreenTabLayout.getTabAt(2).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.home_gray));
@@ -84,8 +73,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case 2:
-                        f = new HomeFragment();
-                        toolbar.setTitle("Home");
+                        f = new HomeFragment(MainActivity.this::doLogout);
                         tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.home_black));
                         mainScreenTabLayout.getTabAt(0).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aaveg_gray));
                         mainScreenTabLayout.getTabAt(1).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.calendar_gray));
@@ -95,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
 
                     case 3:
                         f = new ScoreboardFragment();
-                        toolbar.setTitle("Scoreboard");
                         tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.leaderboard_black));
                         mainScreenTabLayout.getTabAt(0).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aaveg_gray));
                         mainScreenTabLayout.getTabAt(2).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.home_gray));
@@ -105,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
 
                     case 4:
                         f = new SponsorsFragment();
-                        toolbar.setTitle("Sponsors");
                         tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.sponsors_black));
                         mainScreenTabLayout.getTabAt(0).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aaveg_gray));
                         mainScreenTabLayout.getTabAt(2).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.home_gray));
@@ -115,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
 
                     default:
                         f=new CurlFragment();
-                        toolbar.setTitle("About Us");
                         tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aaveg_black));
                         mainScreenTabLayout.getTabAt(1).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.calendar_gray));
                         mainScreenTabLayout.getTabAt(2).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.home_gray));
@@ -156,7 +141,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void doLogout(){
+    @Override
+    public void doLogout(){
         editor.putString("user_id",null);
         editor.putString("APIToken",null);
         editor.putString("hostel",null);

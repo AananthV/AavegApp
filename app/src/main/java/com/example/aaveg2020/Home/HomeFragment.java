@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,6 +24,7 @@ import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
+import com.example.aaveg2020.LogOutInterface;
 import com.example.aaveg2020.R;
 import com.example.aaveg2020.Scoreboard.EventsModel;
 import com.example.aaveg2020.Scoreboard.ScoreboardModel;
@@ -54,6 +56,17 @@ public class HomeFragment extends Fragment implements HomeView {
 
     SharedPreferences pref;
     String hostel;
+    Toolbar toolbar;
+    ImageView logOut;
+    LogOutInterface logOutInterface;
+
+    public HomeFragment(LogOutInterface logOutInterface) {
+        this.logOutInterface = logOutInterface;
+    }
+
+    public HomeFragment() {
+
+    }
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -86,8 +99,22 @@ public class HomeFragment extends Fragment implements HomeView {
         sportsPlace=mView.findViewById(R.id.sports_place);
         spectrumPlace=mView.findViewById(R.id.spectrum_place);
         hostelImage=mView.findViewById(R.id.home_hostel_img);
+        toolbar = mView.findViewById(R.id.toolbar_main);
+        logOut=toolbar.findViewById(R.id.logout);
+
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onLogOutClicked();
+            }
+        });
+
         setHostelImg();
         return mView;
+    }
+
+    private void onLogOutClicked() {
+        logOutInterface.doLogout();
     }
 
     @Override
@@ -120,7 +147,6 @@ public class HomeFragment extends Fragment implements HomeView {
     }
     private void assignDataToRecycler()
     {
-        loadingDialog.dismiss();
         adapter=new RecentEventsAdapter(events);
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(),2,GridLayoutManager.VERTICAL,false);
         helper = new LinearSnapHelper();
@@ -138,7 +164,7 @@ public class HomeFragment extends Fragment implements HomeView {
             }
         });
         //recentEvents.smoothScrollToPosition(1);
-
+        loadingDialog.dismiss();
     }
     private void setHostelEvents()
     {

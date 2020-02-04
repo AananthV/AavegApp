@@ -187,7 +187,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
         startActivity(a);
     }
     private void getSnackBarAfterFixedTime() {
-        handler.postDelayed(runnable,200);
+        handler.postDelayed(runnable,8000);
     }
 
     private void removeSnackBarTimer() {

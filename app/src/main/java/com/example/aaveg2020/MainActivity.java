@@ -59,14 +59,12 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar_main);
         mainActivityCL = findViewById(R.id.cl_main_activity);
         logOut=findViewById(R.id.logout);
-        setHostelBackground(UserUtils.hostel);
+        setHostelBackground(pref.getString("hostel",null));
 
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 doLogout();
-
             }
         });
         mainScreenTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

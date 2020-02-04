@@ -46,13 +46,6 @@ public class ChooseHostel extends Fragment {
     CardView hostelBanner;
     ImageView agateBack,azuriteBack,bloodstoneBack,opalBack,cobaltBack;
 
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        getActivity().onBackPressed();
-    }
-
     public ChooseHostel() {
         // Required empty public constructor
     }
@@ -156,8 +149,7 @@ public class ChooseHostel extends Fragment {
                 editor = pref.edit();
                 editor.putString("hostel",chosenHostel);
                 editor.apply();
-                Log.d("Fukk",pref.getString("hostel",null));
-               Toast.makeText(getActivity(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
+//               Toast.makeText(getActivity(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
 

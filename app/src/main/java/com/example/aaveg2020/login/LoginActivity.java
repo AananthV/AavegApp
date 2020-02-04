@@ -163,6 +163,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
         ft.replace(R.id.hostel_chooser, new ChooseHostel());
         ft.commit();
         removeSnackBarTimer();
+        if(snackbar!=null)
         snackbar.dismiss();
     }
 

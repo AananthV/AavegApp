@@ -39,6 +39,7 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.Objects;
 
 import com.example.aaveg2020.events.ClustersFragment;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import static com.example.aaveg2020.events.EventsMainFragment.isCluster;
 
@@ -58,6 +59,10 @@ public class MainActivity extends AppCompatActivity implements LogOutInterface {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Set custom hostel notifications
+        FirebaseMessaging.getInstance().subscribeToTopic(UserUtils.hostel);
+
         pref= this.getSharedPreferences("Aaveg2020", MODE_PRIVATE);
         editor = pref.edit();
         FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
@@ -66,7 +71,6 @@ public class MainActivity extends AppCompatActivity implements LogOutInterface {
         mainScreenTabLayout = (TabLayout) findViewById(R.id.tab_layout_main_screen);
         mainActivityCL = findViewById(R.id.cl_main_activity);
         setHostelBackground(pref.getString("hostel",null));
-
         mainScreenTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {

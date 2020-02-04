@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".sponsors.SibiActivity"></activity>
+        <activity android:name=".Home.HameedActivity"></activity>
+        <activity android:name=".sponsors.SibiActivity" />
         <activity android:name=".Home.MarioActivity" />
         <activity android:name=".Home.HopeThisWorks" />
         <activity

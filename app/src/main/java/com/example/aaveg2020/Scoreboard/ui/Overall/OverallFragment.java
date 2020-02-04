@@ -109,23 +109,29 @@ public class OverallFragment extends Fragment implements IOverallView {
     {
         loadingDialog.dismiss();
         BarData data = new BarData(getXAxisValues(), getDataSet());
+        data.setValueTextColor(getResources().getColor(R.color.white));
         chart.setData(data);
         chart.getAxisLeft().setDrawGridLines(false);
+        chart.getAxisLeft().setTextColor(getResources().getColor(R.color.white));
         chart.getAxisRight().setDrawGridLines(false);
         chart.getAxisRight().setDrawAxisLine(false);
         chart.getAxisRight().setDrawLabels(false);
         chart.getXAxis().setDrawGridLines(false);
+        chart.getXAxis().setTextColor(getResources().getColor(R.color.white));
         chart.setDrawGridBackground(false);
         chart.setDrawBorders(false);
         chart.setDrawValuesForWholeStack(false);
         chart.setDescription("");
         chart.animateY(1000);
         chart.setDragEnabled(false);
+        chart.setBackgroundColor(Color.parseColor("#8f000000"));
+        chart.setBorderColor(getResources().getColor(R.color.white));
         chart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
         chart.getAxisLeft().setValueFormatter(new LargeValueFormatter());
         chart.invalidate();
         Legend legend=chart.getLegend();
         legend.setLabels(new String[]{"Culturals","Spectrum","Sports"});
+        legend.setTextColor(getResources().getColor(R.color.white));
     }
     public void assignPointsToHostel(){
         scores=new ArrayList<>();

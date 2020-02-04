@@ -58,7 +58,7 @@ public class SpectrumFragment extends Fragment implements SportsView {
         tv.setText("Loading...");
         scores=new ArrayList<>();
         loadingDialog = new AlertDialog.Builder(context).setView(dialog).setCancelable(false).create();
-        loadingDialog.show();
+    //    loadingDialog.show();
     }
 
     @Nullable
@@ -102,7 +102,7 @@ public class SpectrumFragment extends Fragment implements SportsView {
     }
     public void assignDataToGraph()
     {
-        loadingDialog.dismiss();
+    //    loadingDialog.dismiss();
         BarData data = new BarData(getXAxisValues(), getDataSet());
         Log.d("!!!!!!!!!!", data.toString());
         chart.setData(data);

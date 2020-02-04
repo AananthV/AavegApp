@@ -57,7 +57,7 @@ public class CulturalsFragment extends Fragment implements CulturalsView {
         tv.setText("Loading...");
         scores=new ArrayList<>();
         loadingDialog = new AlertDialog.Builder(context).setView(dialog).setCancelable(false).create();
-        loadingDialog.show();
+    //    loadingDialog.show();
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -79,7 +79,7 @@ public class CulturalsFragment extends Fragment implements CulturalsView {
         return xAxis;
     }
     private ArrayList<BarDataSet> getDataSet() {
-        loadingDialog.dismiss();
+    //    loadingDialog.dismiss();
         ArrayList<BarDataSet> dataSets = null;
         ArrayList<BarEntry> valueSet1 = new ArrayList<>();
         BarEntry v1e1 = new BarEntry(scoreboardModel.getStandings().getCulturals().getAgate(), 0); // agate
@@ -126,7 +126,7 @@ public class CulturalsFragment extends Fragment implements CulturalsView {
         scores.add(new HomeFragment.HostelScore("Cobalt",scoreboardModel.getStandings().getCulturals().getCobalt()));
         scores.add(new HomeFragment.HostelScore("Opal",scoreboardModel.getStandings().getCulturals().getOpal()));
         scores=HomeFragment.doSelectionSort(scores);
-        loadingDialog.dismiss();
+    //    loadingDialog.dismiss();
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(getContext());
         standings.setLayoutManager(layoutManager);
         TotalPointsAdapter adapter=new TotalPointsAdapter(getContext(),scores);

@@ -238,4 +238,23 @@ public class EventsUtils {
                 return resources.getDrawable(R.color.events_header_bg);
         }
     }
+    public static Drawable getTabColor(Resources resources) {
+        if (UserUtils.hostel == null) {
+            return resources.getDrawable(R.drawable.gold_bg_drawable);
+        }
+        switch (UserUtils.hostel) {
+            case "Agate":
+                return resources.getDrawable(R.color.tab_agate);
+            case "Azurite":
+                return resources.getDrawable(R.color.tab_azurite);
+            case "Bloodstone":
+                return resources.getDrawable(R.color.tab_bloodstone);
+            case "Cobalt":
+                return resources.getDrawable(R.color.tab_cobalt);
+            case "Opal":
+                return resources.getDrawable(R.color.tab_opal);
+            default:
+                return resources.getDrawable(R.color.events_header_bg);
+        }
+    }
 }

@@ -42,4 +42,11 @@
     <color name="event_bloodstone">#CC090404</color>
     <color name="event_cobalt">#E13D4A63</color>
     <color name="event_opal">#383838</color>
+
+    <color name="tab_agate">#744A06</color>
+    <color name="tab_azurite">#8D8B8B</color>
+    <color name="tab_bloodstone">#090404</color>
+    <color name="tab_cobalt">#3D4A63</color>
+    <color name="tab_opal">#383838</color>
+
 </resources>

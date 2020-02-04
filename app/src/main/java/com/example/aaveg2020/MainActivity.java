@@ -27,6 +27,7 @@ import com.example.aaveg2020.aboutus.CurlFragment;
 import com.example.aaveg2020.events.Cluster;
 import com.example.aaveg2020.events.EventsFragment;
 import com.example.aaveg2020.events.EventsMainFragment;
+import com.example.aaveg2020.events.EventsUtils;
 import com.example.aaveg2020.login.LoginActivity;
 import com.example.aaveg2020.splash.SplashActivity;
 import com.example.aaveg2020.sponsors.SponsorsFragment;
@@ -56,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements LogOutInterface {
         fragmentTransaction.replace(R.id.main_framelayout,new HomeFragment(this));
         fragmentTransaction.commit();
         mainScreenTabLayout = (TabLayout) findViewById(R.id.tab_layout_main_screen);
+        mainScreenTabLayout.setBackground(EventsUtils.getTabColor(getResources()));
+        mainScreenTabLayout.setAlpha(1);
         mainActivityCL = findViewById(R.id.cl_main_activity);
         setHostelBackground(pref.getString("hostel",null));
 
@@ -67,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements LogOutInterface {
                 switch (currentPosition) {
                     case 1:
                         f = new EventsMainFragment();
-                        tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.calendar_black));
+                        tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.calendar_white));
                         mainScreenTabLayout.getTabAt(0).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aaveg_gray));
                         mainScreenTabLayout.getTabAt(2).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.home_gray));
                         mainScreenTabLayout.getTabAt(3).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.leaderboard_gray));
@@ -76,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements LogOutInterface {
 
                     case 2:
                         f = new HomeFragment(MainActivity.this::doLogout);
-                        tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.home_black));
+                        tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.home_white));
                         mainScreenTabLayout.getTabAt(0).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aaveg_gray));
                         mainScreenTabLayout.getTabAt(1).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.calendar_gray));
                         mainScreenTabLayout.getTabAt(3).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.leaderboard_gray));
@@ -85,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements LogOutInterface {
 
                     case 3:
                         f = new ScoreboardFragment(cup);
-                        tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.leaderboard_black));
+                        tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.leaderboard_white));
                         mainScreenTabLayout.getTabAt(0).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aaveg_gray));
                         mainScreenTabLayout.getTabAt(2).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.home_gray));
                         mainScreenTabLayout.getTabAt(1).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.calendar_gray));
@@ -95,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements LogOutInterface {
 
                     case 4:
                         f = new SponsorsFragment();
-                        tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.sponsors_black));
+                        tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.sponsors_white));
                         mainScreenTabLayout.getTabAt(0).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aaveg_gray));
                         mainScreenTabLayout.getTabAt(2).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.home_gray));
                         mainScreenTabLayout.getTabAt(3).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.leaderboard_gray));
@@ -104,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements LogOutInterface {
 
                     default:
                         f=new CurlFragment();
-                        tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aaveg_black));
+                        tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aaveg_white));
                         mainScreenTabLayout.getTabAt(1).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.calendar_gray));
                         mainScreenTabLayout.getTabAt(2).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.home_gray));
                         mainScreenTabLayout.getTabAt(3).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.leaderboard_gray));

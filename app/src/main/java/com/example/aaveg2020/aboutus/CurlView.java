@@ -29,7 +29,7 @@ public class CurlView extends GLSurfaceView implements View.OnTouchListener,
 	// Shows two pages side by side.
 	public static final int SHOW_TWO_PAGES = 2;
 
-	private boolean mAllowLastPageCurl = true;
+	private boolean mAllowLastPageCurl = false;
 
 	private boolean mAnimate = false;
 	private long mAnimationDurationTime = 300;
@@ -130,7 +130,8 @@ public class CurlView extends GLSurfaceView implements View.OnTouchListener,
 		long currentTime = System.currentTimeMillis();
 		// If animation is done.
 		if (currentTime >= mAnimationStartTime + mAnimationDurationTime) {
-			if (mAnimationTargetEvent == SET_CURL_TO_RIGHT) {
+
+			 if (mAnimationTargetEvent == SET_CURL_TO_RIGHT) {
 				// Switch curled page to right.
 				CurlMesh right = mPageCurl;
 				CurlMesh curl = mPageRight;
@@ -334,7 +335,7 @@ public class CurlView extends GLSurfaceView implements View.OnTouchListener,
 	 * Allow the last page to curl.
 	 */
 	public void setAllowLastPageCurl(boolean allowLastPageCurl) {
-		mAllowLastPageCurl = allowLastPageCurl;
+		mAllowLastPageCurl = false;
 	}
 
 	/**

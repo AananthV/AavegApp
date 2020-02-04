@@ -117,6 +117,6 @@ public class ClustersFragment extends Fragment implements OnClusterClickListener
     @Override
     public void onClickCluster(Cluster cluster) {
         EventsFragment fragment = new EventsFragment(cluster, fragmentChangeListener);
-        fragmentChangeListener.onFragmentChange(fragment);
+        fragmentChangeListener.onFragmentChange(fragment,"EventFragment");
     }
 }

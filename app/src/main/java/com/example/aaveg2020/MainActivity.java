@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
@@ -17,9 +18,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.aaveg2020.Home.OpenScoreboard;
 import com.example.aaveg2020.Scoreboard.ScoreboardFragment;
@@ -37,14 +40,18 @@ import java.util.Objects;
 
 import com.example.aaveg2020.events.ClustersFragment;
 
-public class MainActivity extends AppCompatActivity implements LogOutInterface {
+import static com.example.aaveg2020.events.EventsMainFragment.isCluster;
 
+
+public class MainActivity extends AppCompatActivity implements LogOutInterface {
     static TabLayout mainScreenTabLayout;
     ImageView logOut;
     ConstraintLayout mainActivityCL;
     SharedPreferences pref;
     SharedPreferences.Editor editor;
     static int cup=0;
+    int currentPosition;
+    CurlFragment fragment=new CurlFragment();
 
 
     @Override
@@ -64,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements LogOutInterface {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 Fragment f;
-                int currentPosition = tab.getPosition();
+                currentPosition = tab.getPosition();
                 switch (currentPosition) {
                     case 1:
                         f = new EventsMainFragment();
@@ -104,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements LogOutInterface {
                         break;
 
                     default:
-                        f=new CurlFragment();
+                        f=fragment;
                         tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aaveg_white));
                         mainScreenTabLayout.getTabAt(1).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.calendar_gray));
                         mainScreenTabLayout.getTabAt(2).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.home_gray));
@@ -158,11 +165,14 @@ public class MainActivity extends AppCompatActivity implements LogOutInterface {
     }
     @Override
     public void onBackPressed(){
-        finish();
-        Intent a = new Intent(Intent.ACTION_MAIN);
-        a.addCategory(Intent.CATEGORY_HOME);
-        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(a);
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+
+        if (count == 0) {
+            mainScreenTabLayout.getTabAt(2).select();
+            //additional code
+        } else {
+            getSupportFragmentManager().popBackStack();
+        }
 
     }
     public static void openScoreboard(int i){
@@ -174,4 +184,8 @@ public class MainActivity extends AppCompatActivity implements LogOutInterface {
        // ScoreboardFragment.openCupScoreboard(i);
         //mainScreenTabLayout.addOnTabSelectedListener(this);
     }
-}
+
+
+    }
+
+

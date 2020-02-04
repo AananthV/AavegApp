@@ -17,10 +17,14 @@
         <activity android:name=".Home.MarioActivity" />
         <activity android:name=".Home.HopeThisWorks" />
         <activity
+            android:noHistory="true"
+
             android:name=".login.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
+            android:noHistory="true"
+
             android:screenOrientation="portrait" />
         <activity
             android:name=".splash.SplashActivity"

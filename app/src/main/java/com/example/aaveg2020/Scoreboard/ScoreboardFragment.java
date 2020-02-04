@@ -21,7 +21,12 @@ import com.google.android.material.tabs.TabLayout;
 public class ScoreboardFragment extends Fragment {
 
     ViewPager viewPager;
-    TabLayout tabLayout;
+    static TabLayout tabLayout;
+    int i=0;
+
+    public ScoreboardFragment(int i) {
+        this.i = i;
+    }
 
     @Nullable
     @Override
@@ -42,5 +47,8 @@ public class ScoreboardFragment extends Fragment {
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setBackground(EventsUtils.getHostelColor(view.getResources()));
+        TabLayout.Tab tab = tabLayout.getTabAt(i);
+        tab.select();
+
     }
 }

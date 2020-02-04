@@ -52,7 +52,7 @@ public class HomeFragment extends Fragment implements HomeView {
     TextView overallPlace,culturalsPlace,sportsPlace,spectrumPlace, madeWith;
     OverallModel total,culturals,sports,spectrum;
     final int spacing = 20;
-    int count=0;
+    int count=0,mCount=0;
     View dialog;
     AlertDialog loadingDialog;
     Context context;
@@ -124,10 +124,22 @@ public class HomeFragment extends Fragment implements HomeView {
             @Override
             public void onClick(View view) {
                 count++;
-                if(count>=20)
+                if(count>=5)
                 {
                     count=0;
                     Intent intent=new Intent(getContext(),HopeThisWorks.class);
+                    startActivity(intent);
+                }
+            }
+        });
+        hostelImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCount++;
+                if(mCount>=5)
+                {
+                    mCount=0;
+                    Intent intent=new Intent(getContext(),MarioActivity.class);
                     startActivity(intent);
                 }
             }

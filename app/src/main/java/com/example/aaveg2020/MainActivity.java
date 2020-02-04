@@ -21,6 +21,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.aaveg2020.Home.OpenScoreboard;
 import com.example.aaveg2020.Scoreboard.ScoreboardFragment;
 import com.example.aaveg2020.aboutus.CurlFragment;
 import com.example.aaveg2020.events.Cluster;
@@ -37,11 +38,12 @@ import com.example.aaveg2020.events.ClustersFragment;
 
 public class MainActivity extends AppCompatActivity implements LogOutInterface {
 
-    TabLayout mainScreenTabLayout;
+    static TabLayout mainScreenTabLayout;
     ImageView logOut;
     ConstraintLayout mainActivityCL;
     SharedPreferences pref;
     SharedPreferences.Editor editor;
+    static int cup=0;
 
 
     @Override
@@ -51,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements LogOutInterface {
         pref= this.getSharedPreferences("Aaveg2020", MODE_PRIVATE);
         editor = pref.edit();
         FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.main_framelayout,new HomeFragment());
+        fragmentTransaction.replace(R.id.main_framelayout,new HomeFragment(this));
         fragmentTransaction.commit();
         mainScreenTabLayout = (TabLayout) findViewById(R.id.tab_layout_main_screen);
         mainActivityCL = findViewById(R.id.cl_main_activity);
@@ -82,12 +84,13 @@ public class MainActivity extends AppCompatActivity implements LogOutInterface {
                         break;
 
                     case 3:
-                        f = new ScoreboardFragment();
+                        f = new ScoreboardFragment(cup);
                         tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.leaderboard_black));
                         mainScreenTabLayout.getTabAt(0).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aaveg_gray));
                         mainScreenTabLayout.getTabAt(2).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.home_gray));
                         mainScreenTabLayout.getTabAt(1).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.calendar_gray));
                         mainScreenTabLayout.getTabAt(4).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.sponsors_gray));
+                        cup=0;
                         break;
 
                     case 4:
@@ -161,5 +164,14 @@ public class MainActivity extends AppCompatActivity implements LogOutInterface {
         a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(a);
 
+    }
+    public static void openScoreboard(int i){
+        cup=i+1;
+        TabLayout.Tab tab = mainScreenTabLayout.getTabAt(3);
+
+      //  mainScreenTabLayout.removeOnTabSelectedListener(this);
+        tab.select();
+       // ScoreboardFragment.openCupScoreboard(i);
+        //mainScreenTabLayout.addOnTabSelectedListener(this);
     }
 }

@@ -19,6 +19,7 @@ import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -27,6 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
 import com.example.aaveg2020.LogOutInterface;
+import com.example.aaveg2020.MainActivity;
 import com.example.aaveg2020.R;
 import com.example.aaveg2020.Scoreboard.EventsModel;
 import com.example.aaveg2020.Scoreboard.ScoreboardModel;
@@ -57,20 +59,21 @@ public class HomeFragment extends Fragment implements HomeView {
     AlertDialog loadingDialog;
     Context context;
     TextView aananth;
-
+    CardView cult,sport,spec;
     SharedPreferences pref;
     String hostel;
     Toolbar toolbar;
     ImageView logOut;
     LogOutInterface logOutInterface;
+    OpenScoreboard openScoreboard;
 
     public HomeFragment(LogOutInterface logOutInterface) {
         this.logOutInterface = logOutInterface;
     }
 
-    public HomeFragment() {
-
-    }
+//    public HomeFragment(OpenScoreboard openScoreboard) {
+//        this.openScoreboard=openScoreboard;
+//    }
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -106,6 +109,9 @@ public class HomeFragment extends Fragment implements HomeView {
         hostelImage=mView.findViewById(R.id.home_hostel_img);
         toolbar = mView.findViewById(R.id.toolbar_main);
         logOut=toolbar.findViewById(R.id.logout);
+        cult=mView.findViewById(R.id.culturals_place_card);
+        sport=mView.findViewById(R.id.sports_place_card);
+        spec=mView.findViewById(R.id.spectrum_place_card);
         madeWith = mView.findViewById(R.id.tv_made_with_home);
         count=0;
 
@@ -142,6 +148,24 @@ public class HomeFragment extends Fragment implements HomeView {
                     Intent intent=new Intent(getContext(),MarioActivity.class);
                     startActivity(intent);
                 }
+            }
+        });
+        cult.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.openScoreboard(0);
+            }
+        });
+        sport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.openScoreboard(2);
+            }
+        });
+        spec.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.openScoreboard(1);
             }
         });
 

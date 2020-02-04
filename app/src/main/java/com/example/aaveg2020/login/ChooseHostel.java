@@ -169,8 +169,7 @@ public class ChooseHostel extends Fragment {
 
     int x=0;
         switch(chosenHostel){
-            case "Agate": agateBack.setBackgroundResource(x);
-            break;
+            case "Agate": agateBack.setBackgroundResource(x);break;
             case "Azurite": azuriteBack.setBackgroundResource(x);break;
             case "Bloodstone":bloodstoneBack.setBackgroundResource(x);break;
             case "Cobalt":cobaltBack.setBackgroundResource(x); break;

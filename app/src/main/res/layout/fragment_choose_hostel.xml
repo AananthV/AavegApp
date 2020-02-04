@@ -308,7 +308,7 @@
                     android:layout_gravity="center"
 
                     android:fontFamily="sans-serif-condensed-medium"
-                    android:text="Azurite"
+                    android:text="Opal"
                     android:textSize="18sp"
                     android:textStyle="bold" />
                 <ImageView

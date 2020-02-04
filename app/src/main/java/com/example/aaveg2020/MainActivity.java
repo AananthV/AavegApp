@@ -132,12 +132,11 @@ public class MainActivity extends AppCompatActivity implements LogOutInterface {
     private void setHostelBackground(String chosenHostel) {
         int backgroundId = R.drawable.agatecard;
         switch(chosenHostel){
-            case "Agate": backgroundId=R.drawable.agatecard;
-                break;
-            case "Azurite": backgroundId=R.drawable.azuritecard;break;
-            case "Bloodstone":backgroundId=R.drawable.bloodstonecard;break;
-            case "Cobalt":backgroundId=R.drawable.cobaltcard; break;
-            case "Opal":backgroundId=R.drawable.opalcard;break;
+            case "Agate": backgroundId=R.drawable.agate_bg;break;
+            case "Azurite": backgroundId=R.drawable.azurite_bg;break;
+            case "Bloodstone":backgroundId=R.drawable.bloodstone_bg;break;
+            case "Cobalt":backgroundId=R.drawable.cobalt_bg; break;
+            case "Opal":backgroundId=R.drawable.opal_bg;break;
 
         }
         mainActivityCL.setBackground(ContextCompat.getDrawable(getApplicationContext(),backgroundId));

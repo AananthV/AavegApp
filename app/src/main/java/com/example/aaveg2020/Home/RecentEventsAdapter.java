@@ -47,10 +47,9 @@ public class RecentEventsAdapter extends RecyclerView.Adapter<RecentEventsAdapte
                 //holder.parent.setBackgroundResource(R.drawable.silver);
                 holder.img.setImageResource(R.drawable.silver);
                 break;
-            case "3rd":
+            default:
                 //holder.parent.setBackgroundResource(R.drawable.bronze);
-                holder.parent.setBackgroundResource(R.drawable.bronze);
-                break;
+                holder.img.setBackgroundResource(R.drawable.bronze);
         }
     }
 

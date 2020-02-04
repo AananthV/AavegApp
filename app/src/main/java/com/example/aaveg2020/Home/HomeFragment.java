@@ -2,6 +2,7 @@ package com.example.aaveg2020.Home;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -50,9 +51,11 @@ public class HomeFragment extends Fragment implements HomeView {
     TextView overallPlace,culturalsPlace,sportsPlace,spectrumPlace;
     OverallModel total,culturals,sports,spectrum;
     final int spacing = 20;
+    int count=0;
     View dialog;
     AlertDialog loadingDialog;
     Context context;
+    TextView aananth;
 
     SharedPreferences pref;
     String hostel;
@@ -97,15 +100,29 @@ public class HomeFragment extends Fragment implements HomeView {
         overallPlace=mView.findViewById(R.id.overall_place);
         culturalsPlace=mView.findViewById(R.id.culturals_place);
         sportsPlace=mView.findViewById(R.id.sports_place);
+        aananth=mView.findViewById(R.id.reccent_events_text);
         spectrumPlace=mView.findViewById(R.id.spectrum_place);
         hostelImage=mView.findViewById(R.id.home_hostel_img);
         toolbar = mView.findViewById(R.id.toolbar_main);
         logOut=toolbar.findViewById(R.id.logout);
+        count=0;
 
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onLogOutClicked();
+            }
+        });
+        aananth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                count++;
+                if(count>=20)
+                {
+                    count=0;
+                    Intent intent=new Intent(getContext(),HopeThisWorks.class);
+                    startActivity(intent);
+                }
             }
         });
 

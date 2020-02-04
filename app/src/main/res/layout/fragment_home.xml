@@ -225,7 +225,7 @@
                     android:layout_below="@+id/reccent_events_text"
                     android:layout_marginTop="16dp" />
                 <TextView
-                    android:id="@+id/tv_made_with"
+                    android:id="@+id/tv_made_with_home"
                     android:layout_width="match_parent"
                     android:background="#6f000000"
                     android:gravity="center"

@@ -93,14 +93,15 @@ public class ClustersFragment extends Fragment implements OnClusterClickListener
             public void onResponse(Call<ClusterResponse> call, Response<ClusterResponse> response) {
                 Log.d(TAG, "Response: " + response + ", status: " + response.code());
                 updateRecyclerView(response.body());
+                loadingDialog.dismiss();
             }
 
             @Override
             public void onFailure(Call<ClusterResponse> call, Throwable t) {
                 Log.d(TAG, "Error: ", t);
+                loadingDialog.dismiss();
             }
         });
-        loadingDialog.dismiss();
     }
 
     private void updateRecyclerView(ClusterResponse response) {

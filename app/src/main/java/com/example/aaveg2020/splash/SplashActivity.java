@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -13,19 +14,29 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 
+import com.example.aaveg2020.Home.HomeView;
 import com.example.aaveg2020.MainActivity;
 import com.example.aaveg2020.R;
+import com.example.aaveg2020.Scoreboard.EventsModel;
+import com.example.aaveg2020.Scoreboard.ScoreboardModel;
+import com.example.aaveg2020.Scoreboard.ScoreboardPresenter;
+import com.example.aaveg2020.Scoreboard.ScoreboardPresenterImpl;
 import com.example.aaveg2020.UserUtils;
 import com.example.aaveg2020.editableexplosionlibrarycode.ExplosionField;
 import com.example.aaveg2020.login.ChooseHostel;
 import com.example.aaveg2020.login.LoginActivity;
+import com.google.android.material.snackbar.Snackbar;
 
-public class SplashActivity extends AppCompatActivity {
+import java.util.ArrayList;
 
+public class SplashActivity extends AppCompatActivity implements HomeView {
+
+    ScoreboardModel scoreboardModel;
     ConstraintLayout splashConstraint;
     ImageView buildingsView;
     ImageView trophy;
@@ -36,15 +47,53 @@ public class SplashActivity extends AppCompatActivity {
     RemoveFlashView removeFlashView;
     SharedPreferences pref;
     SharedPreferences.Editor editor;
+    ScoreboardPresenter presenter;
+    String canLoadMainActivity="NO";
+
+    View dialog;
+    AlertDialog loadingDialog;
+    Handler handler;
+    Runnable runnable;
+    Snackbar snackbar;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        splashConstraint = findViewById(R.id.cl_splash_layout);
+        splashConstraint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startNextActivity();
+            }
+        });
+        splashConstraint.setClickable(false);
+        handler = new Handler();
+        presenter = new ScoreboardPresenterImpl(this);
+        presenter.getTotal();
+
+        dialog = LayoutInflater.from(this).inflate(R.layout.progress_dialog, null);
+        loadingDialog = new AlertDialog.Builder(this).setView(dialog).setCancelable(false).create();
+
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                removeSnackBarTimer();
+                snackbar = Snackbar.make(findViewById(android.R.id.content), "Check your internet and try again.", Snackbar.LENGTH_INDEFINITE);
+                snackbar.setAction("Retry", v -> {
+                    presenter.getTotal();
+                    loadingDialog.show();
+                    getSnackBarAfterFixedTime();
+                })
+                        .show();
+                loadingDialog.dismiss();
+            }
+        };
+
         pref= this.getSharedPreferences("Aaveg2020", MODE_PRIVATE);
         removeFlashView = () -> splashConstraint.removeView(flashingView);
-        splashConstraint = findViewById(R.id.cl_splash_layout);
         buildingsView = new ImageView(this);
         trophy = new ImageView(this);
         flashingView = new FlashingView(this,removeFlashView);
@@ -54,12 +103,6 @@ public class SplashActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         screenHeight = displayMetrics.heightPixels;
         screenWidth = displayMetrics.widthPixels;
-        splashConstraint.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startNextActivity();
-            }
-        });
 
         setupTrophy();
         setupBuildings();   // adds building to the view in correct location.
@@ -275,13 +318,65 @@ public class SplashActivity extends AppCompatActivity {
         UserUtils.hostel=pref.getString("hostel",null);
         System.out.println("value of api token is "+UserUtils.APIToken);
         System.out.println("value of hostel is "+UserUtils.hostel);
-        if(UserUtils.APIToken!=null && UserUtils.hostel!=null)
+        if(UserUtils.APIToken!=null && UserUtils.hostel!=null&&scoreboardModel!=null) {
             intent = new Intent(SplashActivity.this, MainActivity.class);
-        else
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+            finish();
+        }
+        else if (UserUtils.APIToken==null || UserUtils.hostel==null) {
             intent = new Intent(SplashActivity.this, LoginActivity.class);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+            finish();
+        }
+        else {
+            splashConstraint.setClickable(false);
+            loadingDialog.show();
+            getSnackBarAfterFixedTime();
+        }
+    }
 
-        startActivity(intent);
-        overridePendingTransition(0,0);
-        finish();
+    @Override
+    public void onGetScoreboardSuccess(ScoreboardModel scoreboardModel) {
+        canLoadMainActivity="YES";
+        splashConstraint.setClickable(true);
+        this.scoreboardModel = scoreboardModel;
+        startNextActivityAndResetCallback();
+    }
+
+    private void startNextActivityAndResetCallback() {
+        Intent intent;
+        UserUtils.APIToken=pref.getString("APIToken",null);
+        UserUtils.hostel=pref.getString("hostel",null);
+        System.out.println("value of api token is "+UserUtils.APIToken);
+        System.out.println("value of hostel is "+UserUtils.hostel);
+        if(UserUtils.APIToken!=null && UserUtils.hostel!=null&&scoreboardModel!=null) {
+            intent = new Intent(SplashActivity.this, MainActivity.class);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+            finish();
+            removeSnackBarTimer();
+        }
+        else if (UserUtils.APIToken==null || UserUtils.hostel==null) {
+            intent = new Intent(SplashActivity.this, LoginActivity.class);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+            finish();
+            removeSnackBarTimer();
+        }
+        else {
+            splashConstraint.setClickable(false);
+            loadingDialog.show();
+            getSnackBarAfterFixedTime();
+        }
+    }
+
+    private void getSnackBarAfterFixedTime() {
+        handler.postDelayed(runnable,8000);
+    }
+
+    private void removeSnackBarTimer() {
+        handler.removeCallbacks(runnable);
     }
 }

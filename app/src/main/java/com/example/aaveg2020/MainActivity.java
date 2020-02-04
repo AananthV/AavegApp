@@ -57,8 +57,6 @@ public class MainActivity extends AppCompatActivity implements LogOutInterface {
         fragmentTransaction.replace(R.id.main_framelayout,new HomeFragment(this));
         fragmentTransaction.commit();
         mainScreenTabLayout = (TabLayout) findViewById(R.id.tab_layout_main_screen);
-        mainScreenTabLayout.setBackground(EventsUtils.getTabColor(getResources()));
-        mainScreenTabLayout.setAlpha(1);
         mainActivityCL = findViewById(R.id.cl_main_activity);
         setHostelBackground(pref.getString("hostel",null));
 

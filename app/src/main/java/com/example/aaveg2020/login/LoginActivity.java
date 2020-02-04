@@ -23,13 +23,17 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.aaveg2020.Home.HomeView;
 import com.example.aaveg2020.MainActivity;
 import com.example.aaveg2020.R;
+import com.example.aaveg2020.Scoreboard.ScoreboardModel;
+import com.example.aaveg2020.Scoreboard.ScoreboardPresenter;
+import com.example.aaveg2020.Scoreboard.ScoreboardPresenterImpl;
 import com.google.android.material.snackbar.Snackbar;
 
 import static com.example.aaveg2020.UserUtils.APIToken;
 
-public class LoginActivity extends AppCompatActivity implements ILoginView, View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements ILoginView, View.OnClickListener, HomeView {
     View child, trans;
     FrameLayout item;
     private EditText editUser;
@@ -48,11 +52,27 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
     Handler handler;
     Runnable runnable;
     Snackbar snackbar;
+    ScoreboardModel scoreboardModel;
+
+    ScoreboardPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        snackbar = Snackbar.make(findViewById(android.R.id.content), "Check your internet and try again.", Snackbar.LENGTH_INDEFINITE);
+        /*snackbar.setAction("Retry", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View view = findViewById(R.id.btn_login_login);
+                LoginActivity.this.onClick(view);
+                loadingDialog.show();
+            }
+        });*/
+
+        presenter = new ScoreboardPresenterImpl(this);
+        presenter.getTotal();
 
         handler = new Handler();
         item = findViewById(R.id.hostel_chooser);
@@ -80,20 +100,18 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
         madeWith.setText(Html.fromHtml(text));
         loginBanner.startAnimation(moveRight);
 
-        runnable = new Runnable() {
-            @Override
-            public void run() {
-                snackbar = Snackbar.make(findViewById(android.R.id.content), "Check your internet and try again.", Snackbar.LENGTH_INDEFINITE);
-                snackbar.setAction("Retry", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                View view = findViewById(R.id.btn_login_login);
-                                LoginActivity.this.onClick(view);
-                            }
-                        })
-                        .show();
-                loadingDialog.dismiss();
-            }
+        runnable = () -> {
+            snackbar = Snackbar.make(findViewById(android.R.id.content), "Check your internet and try again.", Snackbar.LENGTH_INDEFINITE);
+            snackbar.setAction("Retry", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            View view = findViewById(R.id.btn_login_login);
+                            LoginActivity.this.onClick(view);
+                        }
+                    })
+                    .show();
+            presenter.getTotal();
+            loadingDialog.dismiss();
         };
     }
 
@@ -131,18 +149,22 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
     @Override
     public void onLoginResult(int code, String message) {
         loginPresenter.setProgressBarVisiblity(View.INVISIBLE);
-        loadingDialog.dismiss();
         removeSnackBarTimer();
         btnLogin.setEnabled(true);
-        if (code == 200) {
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-            loginPresenter.hasHostel(APIToken);
+        if(scoreboardModel!=null) {
+            if (code == 200) {
+                Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+                loginPresenter.hasHostel(APIToken);
+            }
+            // TODO: Add more cases of code, like pass and user id worng
+            else if (code == 401) {
+                Toast.makeText(this, "Wrong credentials.", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Login Fail, code = " + code, Toast.LENGTH_SHORT).show();
+            }
         }
-        // TODO: Add more cases of code, like pass and user id worng
-        else if (code == 401) {
-            Toast.makeText(this, "Wrong credentials.", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Login Fail, code = " + code, Toast.LENGTH_SHORT).show();
+        else {
+            getSnackBarAfterFixedTime();
         }
     }
 
@@ -165,6 +187,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
         removeSnackBarTimer();
         if(snackbar!=null)
         snackbar.dismiss();
+        loadingDialog.dismiss();
     }
 
     @Override
@@ -174,6 +197,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
 
     @Override
     public void goToMainScreen() {
+        loadingDialog.dismiss();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
@@ -192,5 +216,10 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
 
     private void removeSnackBarTimer() {
         handler.removeCallbacks(runnable);
+    }
+
+    @Override
+    public void onGetScoreboardSuccess(ScoreboardModel scoreboardModel) {
+        this.scoreboardModel = scoreboardModel;
     }
 }

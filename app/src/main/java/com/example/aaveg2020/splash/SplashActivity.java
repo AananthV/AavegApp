@@ -48,13 +48,14 @@ public class SplashActivity extends AppCompatActivity implements HomeView {
     SharedPreferences pref;
     SharedPreferences.Editor editor;
     ScoreboardPresenter presenter;
-    String canLoadMainActivity="NO";
 
     View dialog;
     AlertDialog loadingDialog;
     Handler handler;
     Runnable runnable;
     Snackbar snackbar;
+
+    int flag=0;
 
 
     @Override
@@ -318,58 +319,74 @@ public class SplashActivity extends AppCompatActivity implements HomeView {
         UserUtils.hostel=pref.getString("hostel",null);
         System.out.println("value of api token is "+UserUtils.APIToken);
         System.out.println("value of hostel is "+UserUtils.hostel);
-        if(UserUtils.APIToken!=null && UserUtils.hostel!=null&&scoreboardModel!=null) {
-            intent = new Intent(SplashActivity.this, MainActivity.class);
-            startActivity(intent);
-            overridePendingTransition(0, 0);
-            finish();
-        }
-        else if (UserUtils.APIToken==null || UserUtils.hostel==null) {
+        if(UserUtils.hostel==null || UserUtils.APIToken==null)
+        {
             intent = new Intent(SplashActivity.this, LoginActivity.class);
+            loadingDialog.dismiss();
             startActivity(intent);
             overridePendingTransition(0, 0);
             finish();
+            removeSnackBarTimer();
         }
         else {
-            splashConstraint.setClickable(false);
-            loadingDialog.show();
-            getSnackBarAfterFixedTime();
+            if (UserUtils.APIToken != null && UserUtils.hostel != null && scoreboardModel != null) {
+                intent = new Intent(SplashActivity.this, MainActivity.class);
+                loadingDialog.dismiss();
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+                finish();
+            } else if (UserUtils.APIToken == null || UserUtils.hostel == null) {
+                intent = new Intent(SplashActivity.this, LoginActivity.class);
+                loadingDialog.dismiss();
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+                finish();
+            } else {
+                splashConstraint.setClickable(false);
+                loadingDialog.show();
+                getSnackBarAfterFixedTime();
+            }
         }
     }
 
     @Override
     public void onGetScoreboardSuccess(ScoreboardModel scoreboardModel) {
-        canLoadMainActivity="YES";
+        System.out.println("hithithithit");
         splashConstraint.setClickable(true);
         this.scoreboardModel = scoreboardModel;
         startNextActivityAndResetCallback();
     }
 
     private void startNextActivityAndResetCallback() {
+        if(flag==1)
+        {
         Intent intent;
-        UserUtils.APIToken=pref.getString("APIToken",null);
-        UserUtils.hostel=pref.getString("hostel",null);
-        System.out.println("value of api token is "+UserUtils.APIToken);
-        System.out.println("value of hostel is "+UserUtils.hostel);
-        if(UserUtils.APIToken!=null && UserUtils.hostel!=null&&scoreboardModel!=null) {
+        UserUtils.APIToken = pref.getString("APIToken", null);
+        UserUtils.hostel = pref.getString("hostel", null);
+        System.out.println("value of api token is " + UserUtils.APIToken);
+        System.out.println("value of hostel is " + UserUtils.hostel);
+
+        if (UserUtils.APIToken != null && UserUtils.hostel != null && scoreboardModel != null) {
             intent = new Intent(SplashActivity.this, MainActivity.class);
+            loadingDialog.dismiss();
             startActivity(intent);
             overridePendingTransition(0, 0);
             finish();
             removeSnackBarTimer();
-        }
-        else if (UserUtils.APIToken==null || UserUtils.hostel==null) {
+        } else if (UserUtils.APIToken == null || UserUtils.hostel == null) {
             intent = new Intent(SplashActivity.this, LoginActivity.class);
+            loadingDialog.dismiss();
             startActivity(intent);
             overridePendingTransition(0, 0);
             finish();
             removeSnackBarTimer();
-        }
-        else {
+        } else {
             splashConstraint.setClickable(false);
             loadingDialog.show();
             getSnackBarAfterFixedTime();
         }
+    }
+        flag=1;
     }
 
     private void getSnackBarAfterFixedTime() {

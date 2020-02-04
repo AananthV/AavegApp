@@ -73,7 +73,7 @@ public class ClustersFragment extends Fragment implements OnClusterClickListener
         clustersRecyclerView.setLayoutManager(new LinearLayoutManager(mView.getContext()));
         Log.d(TAG, "Hostel: " + UserUtils.hostel);
         final LinearLayout headerLayout = mView.findViewById(R.id.event_header_layout);
-        headerLayout.setBackground(EventsUtils.getHostelColor(getResources()));
+        headerLayout.setBackground(getResources().getDrawable(R.color.event_bloodstone));
         getClusters();
         return mView;
     }

@@ -73,7 +73,7 @@ public class EventsFragment extends Fragment implements OnEventClickListener {
         eventsRecyclerView.setAdapter(adapter);
 
         final LinearLayout headerLayout = mView.findViewById(R.id.event_header_layout);
-        headerLayout.setBackground(EventsUtils.getHostelColor(getResources()));
+        headerLayout.setBackground(getResources().getDrawable(R.color.event_bloodstone));
 
         final TextView titleText = mView.findViewById(R.id.cluster_detail_title);
         final ImageView backgroundImg = mView.findViewById(R.id.fragment_events_bg_img);

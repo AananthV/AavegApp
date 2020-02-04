@@ -86,7 +86,6 @@ public class HomeFragment extends Fragment implements HomeView {
         sportsPlace=mView.findViewById(R.id.sports_place);
         spectrumPlace=mView.findViewById(R.id.spectrum_place);
         hostelImage=mView.findViewById(R.id.home_hostel_img);
-        Toast.makeText(getContext(),UserUtils.hostel,Toast.LENGTH_SHORT).show();
         setHostelImg();
         return mView;
     }

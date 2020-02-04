@@ -78,51 +78,51 @@ public class MainActivity extends AppCompatActivity {
                     case 1:
                         f = new EventsMainFragment();
                         toolbar.setTitle("Events");
-                        tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.scheduleclicked));
-                        mainScreenTabLayout.getTabAt(0).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aboutus));
-                        mainScreenTabLayout.getTabAt(2).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.home));
-                        mainScreenTabLayout.getTabAt(3).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.leaderboard));
-                        mainScreenTabLayout.getTabAt(4).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.sponsoricon));
+                        tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.calendar_black));
+                        mainScreenTabLayout.getTabAt(0).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aaveg_gray));
+                        mainScreenTabLayout.getTabAt(2).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.home_gray));
+                        mainScreenTabLayout.getTabAt(3).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.leaderboard_gray));
+                        mainScreenTabLayout.getTabAt(4).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.sponsors_gray));
                         break;
 
                     case 2:
                         f = new HomeFragment();
                         toolbar.setTitle("Home");
-                        tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.homeclicked));
-                        mainScreenTabLayout.getTabAt(0).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aboutus));
-                        mainScreenTabLayout.getTabAt(1).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.schedule));
-                        mainScreenTabLayout.getTabAt(3).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.leaderboard));
-                        mainScreenTabLayout.getTabAt(4).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.sponsoricon));
+                        tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.home_black));
+                        mainScreenTabLayout.getTabAt(0).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aaveg_gray));
+                        mainScreenTabLayout.getTabAt(1).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.calendar_gray));
+                        mainScreenTabLayout.getTabAt(3).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.leaderboard_gray));
+                        mainScreenTabLayout.getTabAt(4).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.sponsors_gray));
                         break;
 
                     case 3:
                         f = new ScoreboardFragment();
                         toolbar.setTitle("Scoreboard");
-                        tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.leaderboardclicked));
-                        mainScreenTabLayout.getTabAt(0).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aboutus));
-                        mainScreenTabLayout.getTabAt(2).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.home));
-                        mainScreenTabLayout.getTabAt(1).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.schedule));
-                        mainScreenTabLayout.getTabAt(4).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.sponsoricon));
+                        tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.leaderboard_black));
+                        mainScreenTabLayout.getTabAt(0).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aaveg_gray));
+                        mainScreenTabLayout.getTabAt(2).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.home_gray));
+                        mainScreenTabLayout.getTabAt(1).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.calendar_gray));
+                        mainScreenTabLayout.getTabAt(4).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.sponsors_gray));
                         break;
 
                     case 4:
                         f = new SponsorsFragment();
                         toolbar.setTitle("Sponsors");
-                        tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.sponsorsclicked));
-                        mainScreenTabLayout.getTabAt(0).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aboutus));
-                        mainScreenTabLayout.getTabAt(2).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.home));
-                        mainScreenTabLayout.getTabAt(3).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.leaderboard));
-                        mainScreenTabLayout.getTabAt(1).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.schedule));
+                        tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.sponsors_black));
+                        mainScreenTabLayout.getTabAt(0).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aaveg_gray));
+                        mainScreenTabLayout.getTabAt(2).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.home_gray));
+                        mainScreenTabLayout.getTabAt(3).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.leaderboard_gray));
+                        mainScreenTabLayout.getTabAt(1).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.calendar_gray));
                         break;
 
                     default:
                         f=new CurlFragment();
                         toolbar.setTitle("About Us");
-                        tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aboutusclicked));
-                        mainScreenTabLayout.getTabAt(1).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.schedule));
-                        mainScreenTabLayout.getTabAt(2).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.home));
-                        mainScreenTabLayout.getTabAt(3).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.leaderboard));
-                        mainScreenTabLayout.getTabAt(4).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.sponsoricon));
+                        tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aaveg_black));
+                        mainScreenTabLayout.getTabAt(1).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.calendar_gray));
+                        mainScreenTabLayout.getTabAt(2).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.home_gray));
+                        mainScreenTabLayout.getTabAt(3).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.leaderboard_gray));
+                        mainScreenTabLayout.getTabAt(4).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.sponsors_gray));
                 }
                 FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.main_framelayout,f);

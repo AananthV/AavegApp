@@ -1,6 +1,7 @@
 package com.example.aaveg2020.login;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
@@ -45,10 +47,15 @@ public class ChooseHostel extends Fragment {
     ImageView agateBack,azuriteBack,bloodstoneBack,opalBack,cobaltBack;
 
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        getActivity().onBackPressed();
+    }
+
     public ChooseHostel() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

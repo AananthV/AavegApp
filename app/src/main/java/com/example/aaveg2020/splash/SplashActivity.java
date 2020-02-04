@@ -237,7 +237,7 @@ public class SplashActivity extends AppCompatActivity {
                 0,
                 -1*screenHeight*0.77f);
 
-        explosionAnimation.setDuration(5000);
+        explosionAnimation.setDuration(4000);
         explosionAnimation.setFillAfter(true);
         explosionAnimation.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -282,5 +282,6 @@ public class SplashActivity extends AppCompatActivity {
 
         startActivity(intent);
         overridePendingTransition(0,0);
+        finish();
     }
 }

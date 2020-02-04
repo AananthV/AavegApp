@@ -24,7 +24,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:padding="5dp"
-            app:srcCompat="@drawable/logout"
+            app:srcCompat="@drawable/logoutbutton"
             android:tint="#FFFFFF"
             android:layout_gravity="end"
             android:scaleType="centerCrop"
@@ -53,35 +53,35 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:icon="@drawable/agate"
+            android:icon="@drawable/aaveg_gray"
             >
         </com.google.android.material.tabs.TabItem>
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:icon="@drawable/schedule"
+            android:icon="@drawable/calendar_gray"
             >
         </com.google.android.material.tabs.TabItem>
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:icon="@drawable/agate"
+            android:icon="@drawable/home_black"
             >
         </com.google.android.material.tabs.TabItem>
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:icon="@drawable/leaderboard"
+            android:icon="@drawable/leaderboard_gray"
             >
         </com.google.android.material.tabs.TabItem>
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:icon="@drawable/sponsoricon"
+            android:icon="@drawable/sponsors_gray"
             >
         </com.google.android.material.tabs.TabItem>
 

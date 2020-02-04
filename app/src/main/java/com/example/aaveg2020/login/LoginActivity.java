@@ -1,5 +1,6 @@
 package com.example.aaveg2020.login;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -43,12 +45,16 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
     TextView madeWith;
     View dialog;
     AlertDialog loadingDialog;
+    Handler handler;
+    Runnable runnable;
+    Snackbar snackbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        handler = new Handler();
         item = findViewById(R.id.hostel_chooser);
         child = getLayoutInflater()
                 .inflate(R.layout.loginview, item, false);
@@ -73,6 +79,22 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
         String text = "<p>Made with ♥ by <a href=\"https://delta.nitt.edu\" target=\"_blank\">DeltaForce</a> and Aaveg Design Team </p>";
         madeWith.setText(Html.fromHtml(text));
         loginBanner.startAnimation(moveRight);
+
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                snackbar = Snackbar.make(findViewById(android.R.id.content), "Check your internet and try again.", Snackbar.LENGTH_INDEFINITE);
+                snackbar.setAction("Retry", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                View view = findViewById(R.id.btn_login_login);
+                                LoginActivity.this.onClick(view);
+                            }
+                        })
+                        .show();
+                loadingDialog.dismiss();
+            }
+        };
     }
 
 
@@ -81,27 +103,17 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
 
         switch (v.getId()) {
             case R.id.btn_login_login:
-                final Handler handler = new Handler();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(editPass.getWindowToken(), 0);
 
                 if (editUser.getText().toString().length() == 9) {
                     loginPresenter.setProgressBarVisiblity(View.VISIBLE);
                     btnLogin.setEnabled(false);
                     loginPresenter.doLogin(editUser.getText().toString(), editPass.getText().toString());
                     loadingDialog.show();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            Snackbar.make(findViewById(android.R.id.content), "Check your internet and try again.", Snackbar.LENGTH_INDEFINITE)
-                                    .setAction("Retry", new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            View view = findViewById(R.id.btn_login_login);
-                                            LoginActivity.this.onClick(view);
-                                        }
-                                    })
-                                    .show();
-                        }
-                    }, 8000);
+
+                    getSnackBarAfterFixedTime();
+
                 } else {
                     Toast.makeText(this, "Check your User ID.", Toast.LENGTH_SHORT).show();
                     break;
@@ -120,6 +132,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
     public void onLoginResult(int code, String message) {
         loginPresenter.setProgressBarVisiblity(View.INVISIBLE);
         loadingDialog.dismiss();
+        removeSnackBarTimer();
         btnLogin.setEnabled(true);
         if (code == 200) {
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
@@ -144,10 +157,13 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
 
     @Override
     public void setHostel() {
+        removeSnackBarTimer();
         item.removeView(child);
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.hostel_chooser, new ChooseHostel());
         ft.commit();
+        removeSnackBarTimer();
+        snackbar.dismiss();
     }
 
     @Override
@@ -161,13 +177,19 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
         startActivity(intent);
         finish();
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent a = new Intent(Intent.ACTION_MAIN);
+        a.addCategory(Intent.CATEGORY_HOME);
+        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(a);
+    }
+    private void getSnackBarAfterFixedTime() {
+        handler.postDelayed(runnable,200);
+    }
 
-   
-   
-   
-   
-   
-   
-   
-   
+    private void removeSnackBarTimer() {
+        handler.removeCallbacks(runnable);
+    }
 }

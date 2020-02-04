@@ -68,19 +68,20 @@ public class SponsorsFragment extends Fragment {
             @Override
             public void onResponse(Call<List<SponsorModel>> call, Response<List<SponsorModel>> response) {
                 if (!response.isSuccessful()) {
-                    Toast.makeText(context, "Server Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Check your internet...", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 sponsorModelList = response.body();
                 init(sponsorModelList);
+                loadingDialog.dismiss();
             }
 
             @Override
             public void onFailure(Call<List<SponsorModel>> call, Throwable t) {
                 Toast.makeText(context, "Check your internet.", Toast.LENGTH_SHORT).show();
+                loadingDialog.dismiss();
             }
         });
-        loadingDialog.dismiss();
     }
 
     @Nullable

@@ -26,7 +26,7 @@ public class EventsMainFragment extends Fragment implements OnFragmentChangeList
     public void onFragmentChange(Fragment fragment) {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.events_main_frame_layout, fragment);
-        transaction.addToBackStack(null);
+        transaction.addToBackStack("tag");
         transaction.commit();
     }
 }

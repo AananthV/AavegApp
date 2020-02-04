@@ -57,7 +57,7 @@ public class SportsFragment extends Fragment implements SportsView {
         tv.setText("Loading...");
         scores=new ArrayList<>();
         loadingDialog = new AlertDialog.Builder(context).setView(dialog).setCancelable(false).create();
-        loadingDialog.show();
+    //    loadingDialog.show();
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -100,7 +100,7 @@ public class SportsFragment extends Fragment implements SportsView {
     }
     public void assignDataToGraph()
     {
-        loadingDialog.dismiss();
+    //    loadingDialog.dismiss();
         BarData data = new BarData(getXAxisValues(), getDataSet());
         chart.setData(data);
         chart.getAxisLeft().setDrawGridLines(false);

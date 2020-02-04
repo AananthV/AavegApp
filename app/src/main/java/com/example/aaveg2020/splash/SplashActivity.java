@@ -5,14 +5,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,17 +20,13 @@ import androidx.constraintlayout.widget.ConstraintSet;
 import com.example.aaveg2020.Home.HomeView;
 import com.example.aaveg2020.MainActivity;
 import com.example.aaveg2020.R;
-import com.example.aaveg2020.Scoreboard.EventsModel;
 import com.example.aaveg2020.Scoreboard.ScoreboardModel;
 import com.example.aaveg2020.Scoreboard.ScoreboardPresenter;
 import com.example.aaveg2020.Scoreboard.ScoreboardPresenterImpl;
 import com.example.aaveg2020.UserUtils;
 import com.example.aaveg2020.editableexplosionlibrarycode.ExplosionField;
-import com.example.aaveg2020.login.ChooseHostel;
 import com.example.aaveg2020.login.LoginActivity;
 import com.google.android.material.snackbar.Snackbar;
-
-import java.util.ArrayList;
 
 public class SplashActivity extends AppCompatActivity implements HomeView {
 
@@ -55,7 +49,7 @@ public class SplashActivity extends AppCompatActivity implements HomeView {
     Runnable runnable;
     Snackbar snackbar;
 
-    int flag=0;
+    int flag = 0;
 
 
     @Override
@@ -93,11 +87,11 @@ public class SplashActivity extends AppCompatActivity implements HomeView {
             }
         };
 
-        pref= this.getSharedPreferences("Aaveg2020", MODE_PRIVATE);
+        pref = this.getSharedPreferences("Aaveg2020", MODE_PRIVATE);
         removeFlashView = () -> splashConstraint.removeView(flashingView);
         buildingsView = new ImageView(this);
         trophy = new ImageView(this);
-        flashingView = new FlashingView(this,removeFlashView);
+        flashingView = new FlashingView(this, removeFlashView);
         explosionView = new ImageView(this);
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -121,9 +115,9 @@ public class SplashActivity extends AppCompatActivity implements HomeView {
         explosionView.setId(View.generateViewId());
 
         ConstraintLayout.LayoutParams lp = new ConstraintLayout
-                .LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int)(screenHeight*0.7));
+                .LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) (screenHeight * 0.7));
 
-        splashConstraint.addView(explosionView,lp);
+        splashConstraint.addView(explosionView, lp);
 
         constraintSetExplosion.clone(splashConstraint);
 
@@ -161,9 +155,9 @@ public class SplashActivity extends AppCompatActivity implements HomeView {
         buildingsView.setId(View.generateViewId());
 
         ConstraintLayout.LayoutParams lp = new ConstraintLayout
-                .LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int)(screenHeight*0.4));
+                .LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) (screenHeight * 0.4));
 
-        splashConstraint.addView(buildingsView,lp);
+        splashConstraint.addView(buildingsView, lp);
 
         constraintSetBuildings.clone(splashConstraint);
 
@@ -279,7 +273,7 @@ public class SplashActivity extends AppCompatActivity implements HomeView {
                 0,
                 0,
                 0,
-                -1*screenHeight*0.77f);
+                -1 * screenHeight * 0.77f);
 
         explosionAnimation.setDuration(4000);
         explosionAnimation.setFillAfter(true);
@@ -315,20 +309,18 @@ public class SplashActivity extends AppCompatActivity implements HomeView {
 
     private void startNextActivity() {
         Intent intent;
-        UserUtils.APIToken=pref.getString("APIToken",null);
-        UserUtils.hostel=pref.getString("hostel",null);
-        System.out.println("value of api token is "+UserUtils.APIToken);
-        System.out.println("value of hostel is "+UserUtils.hostel);
-        if(UserUtils.hostel==null || UserUtils.APIToken==null)
-        {
+        UserUtils.APIToken = pref.getString("APIToken", null);
+        UserUtils.hostel = pref.getString("hostel", null);
+        System.out.println("value of api token is " + UserUtils.APIToken);
+        System.out.println("value of hostel is " + UserUtils.hostel);
+        if (UserUtils.hostel == null || UserUtils.APIToken == null) {
             intent = new Intent(SplashActivity.this, LoginActivity.class);
             loadingDialog.dismiss();
             startActivity(intent);
             overridePendingTransition(0, 0);
             finish();
             removeSnackBarTimer();
-        }
-        else {
+        } else {
             if (UserUtils.APIToken != null && UserUtils.hostel != null && scoreboardModel != null) {
                 intent = new Intent(SplashActivity.this, MainActivity.class);
                 loadingDialog.dismiss();
@@ -357,39 +349,38 @@ public class SplashActivity extends AppCompatActivity implements HomeView {
     }
 
     private void startNextActivityAndResetCallback() {
-        if(flag==1)
-        {
-        Intent intent;
-        UserUtils.APIToken = pref.getString("APIToken", null);
-        UserUtils.hostel = pref.getString("hostel", null);
-        System.out.println("value of api token is " + UserUtils.APIToken);
-        System.out.println("value of hostel is " + UserUtils.hostel);
+        if (flag == 1) {
+            Intent intent;
+            UserUtils.APIToken = pref.getString("APIToken", null);
+            UserUtils.hostel = pref.getString("hostel", null);
+            System.out.println("value of api token is " + UserUtils.APIToken);
+            System.out.println("value of hostel is " + UserUtils.hostel);
 
-        if (UserUtils.APIToken != null && UserUtils.hostel != null && scoreboardModel != null) {
-            intent = new Intent(SplashActivity.this, MainActivity.class);
-            loadingDialog.dismiss();
-            startActivity(intent);
-            overridePendingTransition(0, 0);
-            finish();
-            removeSnackBarTimer();
-        } else if (UserUtils.APIToken == null || UserUtils.hostel == null) {
-            intent = new Intent(SplashActivity.this, LoginActivity.class);
-            loadingDialog.dismiss();
-            startActivity(intent);
-            overridePendingTransition(0, 0);
-            finish();
-            removeSnackBarTimer();
-        } else {
-            splashConstraint.setClickable(false);
-            loadingDialog.show();
-            getSnackBarAfterFixedTime();
+            if (UserUtils.APIToken != null && UserUtils.hostel != null && scoreboardModel != null) {
+                intent = new Intent(SplashActivity.this, MainActivity.class);
+                loadingDialog.dismiss();
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+                finish();
+                removeSnackBarTimer();
+            } else if (UserUtils.APIToken == null || UserUtils.hostel == null) {
+                intent = new Intent(SplashActivity.this, LoginActivity.class);
+                loadingDialog.dismiss();
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+                finish();
+                removeSnackBarTimer();
+            } else {
+                splashConstraint.setClickable(false);
+                loadingDialog.show();
+                getSnackBarAfterFixedTime();
+            }
         }
-    }
-        flag=1;
+        flag = 1;
     }
 
     private void getSnackBarAfterFixedTime() {
-        handler.postDelayed(runnable,8000);
+        handler.postDelayed(runnable, 8000);
     }
 
     private void removeSnackBarTimer() {

@@ -150,7 +150,6 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/event_detail_location_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -180,7 +179,6 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/event_detail_date_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -210,7 +208,6 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/event_detail_time_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -241,7 +238,6 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/event_detail_rules_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"

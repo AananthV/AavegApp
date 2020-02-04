@@ -2,12 +2,6 @@
     <string name="app_name">Aaveg 2020</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="login_text">LOGIN</string>
-    <string name="title_activity_scoreboard">ScoreboardActivity</string>
-    <string name="title_home">Overall</string>
-    <string name="title_dashboard">Culturals</string>
-    <string name="title_notifications">Sports</string>
 
     <string name="location_pin_icon">&#xf3c5;</string>
     <string name="calendar_icon">&#xf073;</string>

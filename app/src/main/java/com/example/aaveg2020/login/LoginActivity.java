@@ -153,14 +153,11 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
         btnLogin.setEnabled(true);
         if(scoreboardModel!=null) {
             if (code == 200) {
-                Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
                 loginPresenter.hasHostel(APIToken);
             }
             // TODO: Add more cases of code, like pass and user id worng
             else if (code == 401) {
                 Toast.makeText(this, "Wrong credentials.", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "Login Fail, code = " + code, Toast.LENGTH_SHORT).show();
             }
         }
         else {

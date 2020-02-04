@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -102,14 +103,20 @@ public class OverallFragment extends Fragment implements IOverallView {
     @Override
     public void onGetScoreboardSuccess(ScoreboardModel scoreboard) {
         this.scoreboardModel = scoreboard;
-        assignDataToGraph();
-        assignPointsToHostel();
+        try {
+            assignDataToGraph();
+            assignPointsToHostel();
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(getContext(),"Slow Down",Toast.LENGTH_SHORT).show();
+        }
     }
     public void assignDataToGraph()
     {
         loadingDialog.dismiss();
         BarData data = new BarData(getXAxisValues(), getDataSet());
-        data.setValueTextColor(getResources().getColor(R.color.white));
+         data.setValueTextColor(getResources().getColor(R.color.white));
         chart.setData(data);
         chart.getAxisLeft().setDrawGridLines(false);
         chart.getAxisLeft().setTextColor(getResources().getColor(R.color.white));

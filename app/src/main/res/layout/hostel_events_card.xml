@@ -15,23 +15,35 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_margin="10dp"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_margin="4dp">
             <ImageView
                 android:id="@+id/hostel_events_img"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/bronze"
-                android:foreground="#6f000000"
                 android:scaleType="fitXY"/>
             <TextView
-                android:id="@+id/recent_events_card_text"
+                android:id="@+id/recent_events_card_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_weight="1"
+                android:fontFamily="@font/gobold_regular"
+                android:gravity="center"
+                android:lines="2"
+                android:text="2nd"
+                android:textSize="80dp"
+                android:textColor="#88ffffff"/>
+            <TextView
+                android:id="@+id/recent_events_card_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:lines="4"
                 android:textSize="20sp"
+                android:textFontWeight="700"
                 android:layout_centerVertical="true"
+                android:textColor="@color/black"
                 android:text="NOX\n2"/>
 
         </RelativeLayout>

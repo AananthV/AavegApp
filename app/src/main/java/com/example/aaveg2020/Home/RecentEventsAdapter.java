@@ -36,14 +36,15 @@ public class RecentEventsAdapter extends RecyclerView.Adapter<RecentEventsAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.hostelEvent.setText(events.get(position).getEvent()+"\n"+events.get(position).getPosition());
+        holder.hostelEventName.setText(events.get(position).getEvent());
+        holder.hostelEventPlace.setText(events.get(position).getPosition());
         switch (events.get(position).getPosition())
         {
-            case "1st":
+            case "1":
                 //holder.parent.setBackgroundResource(R.drawable.gold);
                 holder.img.setImageResource(R.drawable.gold);
                 break;
-            case "2nd":
+            case "2":
                 //holder.parent.setBackgroundResource(R.drawable.silver);
                 holder.img.setImageResource(R.drawable.silver);
                 break;
@@ -63,13 +64,14 @@ public class RecentEventsAdapter extends RecyclerView.Adapter<RecentEventsAdapte
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         RelativeLayout parent;
-        TextView hostelEvent;
+        TextView hostelEventName, hostelEventPlace;
         CardView card;
         ImageView img;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            hostelEvent = itemView.findViewById(R.id.recent_events_card_text);
+            hostelEventName = itemView.findViewById(R.id.recent_events_card_name);
+            hostelEventPlace = itemView.findViewById(R.id.recent_events_card_place);
             parent=itemView.findViewById(R.id.hostel_events_parent);
             card=itemView.findViewById(R.id.hostel_events_card);
             img=itemView.findViewById(R.id.hostel_events_img);

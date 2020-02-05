@@ -46,7 +46,7 @@ public class ScoreboardFragment extends Fragment {
         viewPager.setAdapter(pageAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setupWithViewPager(viewPager);
-        tabLayout.setBackground(EventsUtils.getHostelColor(view.getResources()));
+        tabLayout.setBackground(getResources().getDrawable(R.color.event_bloodstone));
         TabLayout.Tab tab = tabLayout.getTabAt(i);
         tab.select();
 

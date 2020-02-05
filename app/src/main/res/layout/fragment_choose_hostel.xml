@@ -283,7 +283,6 @@
                 />
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline2"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:orientation="horizontal"
@@ -337,13 +336,11 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.constraintlayout.widget.Barrier
-                android:id="@+id/barrier"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:barrierDirection="top" />
 
             <androidx.constraintlayout.widget.Barrier
-                android:id="@+id/barrier2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:barrierDirection="left" />

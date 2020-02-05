@@ -13,6 +13,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
+    aaptOptions { cruncherEnabled = false }
     buildTypes {
         release {
             minifyEnabled false

@@ -169,18 +169,14 @@ public class MainActivity extends AppCompatActivity implements LogOutInterface {
         Intent intent=new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
+    
     @Override
     public void onBackPressed(){
         int count = getSupportFragmentManager().getBackStackEntryCount();
 
         if (count == 0) {
-            if(flag==0){
-                flag=1;
-                mainScreenTabLayout.getTabAt(2).select();
-            }
-            else
-                finish();
-            //additional code
+            flag=1;
+            mainScreenTabLayout.getTabAt(2).select();
         } else {
             getSupportFragmentManager().popBackStack();
         }

@@ -35,7 +35,6 @@
                 android:lineSpacingMultiplier="1.2"
                 android:text="NOX"
                 android:textAllCaps="true"
-                android:textColor="@color/white"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 

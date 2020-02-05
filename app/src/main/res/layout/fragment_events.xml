@@ -41,7 +41,6 @@
                 android:paddingEnd="10dp"
                 android:text="Events"
                 android:textAllCaps="true"
-                android:textColor="@color/white"
                 android:textSize="23sp"
                 android:textStyle="bold" />
 

@@ -8,7 +8,7 @@
     </item>
 
     <item android:id="@android:id/background">
-        <bitmap android:src="@drawable/logout">
+        <bitmap android:src="@drawable/logout2">
         </bitmap>
     </item>
 </ripple>

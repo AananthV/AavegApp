@@ -74,7 +74,7 @@ public class SportsFragment extends Fragment implements SportsView {
         ArrayList<String> xAxis = new ArrayList<>();
         xAxis.add("Agate");
         xAxis.add("Azurite");
-        xAxis.add("BloodStone");
+        xAxis.add("Bloodstone");
         xAxis.add("Cobalt");
         xAxis.add("Opal");
         return xAxis;

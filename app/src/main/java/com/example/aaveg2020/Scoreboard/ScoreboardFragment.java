@@ -44,6 +44,7 @@ public class ScoreboardFragment extends Fragment {
 
         PageAdapter pageAdapter = new PageAdapter(getChildFragmentManager());
         viewPager.setAdapter(pageAdapter);
+        viewPager.setOffscreenPageLimit(3);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setBackground(getResources().getDrawable(R.color.event_bloodstone));

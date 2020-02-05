@@ -45,6 +45,13 @@ public class ChooseHostel extends Fragment {
     SharedPreferences.Editor editor;
     CardView hostelBanner;
     ImageView agateBack,azuriteBack,bloodstoneBack,opalBack,cobaltBack;
+    Context context;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
+    }
 
     public ChooseHostel() {
         // Required empty public constructor
@@ -124,7 +131,7 @@ public class ChooseHostel extends Fragment {
                     editor.putString("hostel",chosenHostel);
                     editor.apply();
                 } else {
-                    Toast.makeText(getActivity(), "Please choose a hostel", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "Please choose a hostel", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -157,8 +164,6 @@ public class ChooseHostel extends Fragment {
 
             @Override
             public void onFailure(Call<LoginBody> call, Throwable t) {
-                Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
-
             }
         });
 

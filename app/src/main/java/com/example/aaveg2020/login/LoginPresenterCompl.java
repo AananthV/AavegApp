@@ -101,9 +101,6 @@ public class LoginPresenterCompl implements ILoginPresenter {
 
                     }
                 }
-                else{
-                    Toast.makeText(context,response.toString(),Toast.LENGTH_SHORT).show();
-                }
             }
 
             @Override

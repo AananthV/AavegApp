@@ -202,8 +202,6 @@ public class HomeFragment extends Fragment implements HomeView {
         }
     }
     private void setHostelImg(){
-        // crash here if userutils.hostel primarily because login function not updating val.
-        // TODO Fix this.
         switch (hostel){
             case "Agate":
                 hostelImage.setImageResource(R.drawable.agatelogo);

@@ -1,16 +1,268 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/black"
-    >
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="Aaveg is NIT Trichy’s one and only inter-hostel battle arena for the first-years. Aaveg is by the first-year students, and for the first-year students. There are 5 cups for which the hostels are pitted against each other: The Sports Cup, where teamwork, skills, along with efforts are essential to gain the trophy. The Culturals Cup, where artists, musicians, and dancers showcase their mastery for this trophy. The Spectrum Cup, where a ton of fun and hard events like JAM, Adzap, and Online Gaming events are held. And finally, The Cheering Cup, that tests the bonds of the hostels, that observes the support the hostels provide while their teams enter the stage! And the hostel with the highest amount of points in the end will win the Overall Cup. So this Aaveg, call upon the Abyss, and LET THE BATTLE BEGIN!"
-    >
 
-</TextView>
-</LinearLayout>
+
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="10dp">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:background="@color/darkBackground">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="4dp"
+            android:layout_marginBottom="10dp"
+            android:background="#a9a9a9">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="40dp"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/exo2_regular"
+                    android:text="Aaveg, the ultimate inter-hostel showdown, scheduled to be held on 7th, 8th and 9th of February is a fest to invoke the rawest of talents with the utmost of team spirit. With the hostels competing to secure multiple trophies in the areas of sports, culturals and so on, Aaveg'20, The Abyss, is here to deconstruct reality and rekindle the battlefield."
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    app:autoSizeTextType="uniform" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/aboutusbanner"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@color/darktransparent"
+                android:text="ABOUT US"
+                android:textAlignment="center"
+                android:textSize="24sp" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+
+            app:cardElevation="4dp"
+            app:cardCornerRadius="4dp"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/agatecard"
+                >
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@color/darktransparent"
+                    android:text="AGATE "
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/hostelText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:fontFamily="@font/exo2_regular"
+                    android:text="Bands of heroes embarked on a quest to find the golden fleece. With anger gushing through their veins and blood boiling, watch them unravel the mysteries on the way as they set sail to the end of the black sea. The spirit, the commitment, the passion all coming together to protect, what they call HOME"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView"
+                    tools:layout_editor_absoluteX="6dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>'
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+
+            app:cardElevation="4dp"
+            app:cardCornerRadius="4dp"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/opalcard"
+                >
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@color/darktransparent"
+                    android:text="OPAL"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/hostelText1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:textColor="#000"
+                    android:fontFamily="@font/exo2_regular"
+                    android:text="Besides the rage and the war, what's more important is the journey itself. It's about the choices made along the way, the paths chosen to victory, the bonds that sprout through the expedition and the lessons learnt. With strength and resilience they defeat, and with fair play and team spirit, they overtake. They are equipped and ready to triumph this Aaveg'20."
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView1"
+                    tools:layout_editor_absoluteX="6dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="4dp"
+            android:layout_marginTop="10dp"
+
+            app:cardCornerRadius="4dp"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/cobaltcard"
+                >
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@color/darktransparent"
+                    android:text="COBALT "
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/hostelText2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:fontFamily="@font/exo2_regular"
+                    android:text="They overcome their enemies with their fierce strength and conquer every kingdom they set their foot upon. There is no going back once they set their minds on war and with their unique strategies and mighty warriors they are impossible to be defeated. Beware of these champions, for they will never let go until they acheive a magnificent triumph."
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView2"
+                    tools:layout_editor_absoluteX="6dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="4dp"
+            android:layout_marginTop="10dp"
+
+            app:cardCornerRadius="4dp"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/azuritecard"
+                >
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@color/darktransparent"
+                    android:text="AZURITE "
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/hostelText3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:fontFamily="@font/exo2_regular"
+                    android:text="Fierce competitors, fighting even against the heaven, descend into earth to claim what's theirs. Feel the wrath of the demons engulf the arena.Feel the bonds forged by battles and blood. Witness their brawl with even gods, witness their rise to pinnacle, witness their glory in their journey to the top of Aaveg'20"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView3"
+                    tools:layout_editor_absoluteX="6dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="4dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:cardCornerRadius="4dp"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bloodstonecard"
+                >
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@color/darktransparent"
+                    android:text="Bloodstone "
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/hostelText4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:fontFamily="@font/exo2_regular"
+                    android:text="Besides the rage and the war, what's more important is the journey itself. It's about the choices made along the way, the paths chosen to victory, the bonds that sprout through the expedition and the lessons learnt. With strength and resilience they defeat, and with fair play and team spirit, they overtake. They are equipped and ready to triumph this Aaveg'20."
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView4"
+                    tools:layout_editor_absoluteX="6dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+    </ScrollView>

@@ -71,11 +71,12 @@ public class SportsFragment extends Fragment implements SportsView {
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_sports, container, false);
         presenter = new ScoreboardPresenterImpl(this);
+        handler = new Handler();
         runnable = new Runnable() {
             @Override
             public void run() {
                 removeSnackBarTimer();
-                snackbar = Snackbar.make(container, "Check your internet and try again.", Snackbar.LENGTH_INDEFINITE);
+                snackbar = Snackbar.make(container, "Check your internet and try again.", Snackbar.LENGTH_LONG);
                 snackbar.setAction("Retry", v -> {
                     presenter.getTotal();
                     loadingDialog.show();
@@ -85,6 +86,7 @@ public class SportsFragment extends Fragment implements SportsView {
                 loadingDialog.dismiss();
             }
         };
+        handler.post(runnable);
         chart = root.findViewById(R.id.sports_graph);
         standings=root.findViewById(R.id.sports_standings);
         return root;

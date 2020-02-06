@@ -75,7 +75,7 @@ public class OverallFragment extends Fragment implements IOverallView {
             @Override
             public void run() {
                 removeSnackBarTimer();
-                snackbar = Snackbar.make(container, "Check your internet and try again.", Snackbar.LENGTH_INDEFINITE);
+                snackbar = Snackbar.make(container, "Check your internet and try again.", Snackbar.LENGTH_LONG);
                 snackbar.setAction("Retry", v -> {
                     presenter.getTotal();
                     loadingDialog.show();

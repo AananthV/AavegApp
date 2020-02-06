@@ -3,6 +3,7 @@ package com.example.aaveg2020.events;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.aaveg2020.R;
 import com.example.aaveg2020.UserUtils;
 import com.example.aaveg2020.api.AavegApi;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +39,9 @@ public class ClustersFragment extends Fragment implements OnClusterClickListener
     View dialog;
     AlertDialog loadingDialog;
     Context context;
+    Handler handler;
+    Runnable runnable;
+    Snackbar snackbar;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -74,7 +79,22 @@ public class ClustersFragment extends Fragment implements OnClusterClickListener
         Log.d(TAG, "Hostel: " + UserUtils.hostel);
         final LinearLayout headerLayout = mView.findViewById(R.id.event_header_layout);
         headerLayout.setBackground(getResources().getDrawable(R.color.event_bloodstone));
-        getClusters();
+        handler = new Handler();
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                removeSnackBarTimer();
+                snackbar = Snackbar.make(container, "Check your internet and try again.", Snackbar.LENGTH_LONG);
+                snackbar.setAction("Retry", v -> {
+                    getClusters();
+                    loadingDialog.show();
+                    getSnackBarAfterFixedTime();
+                })
+                        .show();
+                loadingDialog.dismiss();
+            }
+        };
+        handler.post(runnable);
         return mView;
     }
 
@@ -118,5 +138,13 @@ public class ClustersFragment extends Fragment implements OnClusterClickListener
     public void onClickCluster(Cluster cluster) {
         EventsFragment fragment = new EventsFragment(cluster, fragmentChangeListener);
         fragmentChangeListener.onFragmentChange(fragment,"EventFragment");
+    }
+
+    private void getSnackBarAfterFixedTime() {
+        handler.postDelayed(runnable, 8000);
+    }
+
+    private void removeSnackBarTimer() {
+        handler.removeCallbacks(runnable);
     }
 }

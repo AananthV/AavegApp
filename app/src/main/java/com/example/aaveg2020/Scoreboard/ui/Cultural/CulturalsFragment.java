@@ -73,11 +73,12 @@ public class CulturalsFragment extends Fragment implements CulturalsView {
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_culturals, container, false);
         presenter = new ScoreboardPresenterImpl(this);
+        handler = new Handler();
         runnable = new Runnable() {
             @Override
             public void run() {
                 removeSnackBarTimer();
-                snackbar = Snackbar.make(container, "Check your internet and try again.", Snackbar.LENGTH_INDEFINITE);
+                snackbar = Snackbar.make(container, "Check your internet and try again.", Snackbar.LENGTH_LONG);
                 snackbar.setAction("Retry", v -> {
                     presenter.getTotal();
                     loadingDialog.show();
@@ -87,6 +88,7 @@ public class CulturalsFragment extends Fragment implements CulturalsView {
                 loadingDialog.dismiss();
             }
         };
+        handler.post(runnable);
         chart = root.findViewById(R.id.cultural_graph);
         standings=root.findViewById(R.id.culturals_standings);
         return root;

@@ -71,6 +71,7 @@ public class OverallFragment extends Fragment implements IOverallView {
         View root = inflater.inflate(R.layout.fragment_overall, container, false);
         presenter = new ScoreboardPresenterImpl(this);
         handler = new Handler();
+        presenter.getTotal();
         runnable = new Runnable() {
             @Override
             public void run() {
@@ -85,10 +86,10 @@ public class OverallFragment extends Fragment implements IOverallView {
                 loadingDialog.dismiss();
             }
         };
+        getSnackBarAfterFixedTime();
 //        presenter.getTotal();
         chart = root.findViewById(R.id.overall_chart);
         points=root.findViewById(R.id.overall_standings);
-        handler.post(runnable);
         return root;
     }
 

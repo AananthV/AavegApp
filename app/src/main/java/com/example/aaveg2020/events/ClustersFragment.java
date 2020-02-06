@@ -79,6 +79,7 @@ public class ClustersFragment extends Fragment implements OnClusterClickListener
         Log.d(TAG, "Hostel: " + UserUtils.hostel);
         final LinearLayout headerLayout = mView.findViewById(R.id.event_header_layout);
         headerLayout.setBackground(getResources().getDrawable(R.color.event_bloodstone));
+        getClusters();
         handler = new Handler();
         runnable = new Runnable() {
             @Override
@@ -94,7 +95,7 @@ public class ClustersFragment extends Fragment implements OnClusterClickListener
                 loadingDialog.dismiss();
             }
         };
-        handler.post(runnable);
+        getSnackBarAfterFixedTime();
         return mView;
     }
 

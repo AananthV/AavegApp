@@ -78,15 +78,20 @@ public class SpectrumFragment extends Fragment implements SportsView {
         runnable = new Runnable() {
             @Override
             public void run() {
-                removeSnackBarTimer();
-                snackbar = Snackbar.make(container, "Check your internet and try again.", Snackbar.LENGTH_LONG);
-                snackbar.setAction("Retry", v -> {
-                    presenter.getTotal();
-                    loadingDialog.show();
-                    getSnackBarAfterFixedTime();
-                })
-                        .show();
-                loadingDialog.dismiss();
+                try {
+                    removeSnackBarTimer();
+                    snackbar = Snackbar.make(container, "Check your internet and try again.", Snackbar.LENGTH_LONG);
+                    snackbar.setAction("Retry", v -> {
+                        presenter.getTotal();
+                        loadingDialog.show();
+                        getSnackBarAfterFixedTime();
+                    })
+                            .show();
+                    loadingDialog.dismiss();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
             }
         };
         getSnackBarAfterFixedTime();

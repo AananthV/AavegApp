@@ -73,6 +73,7 @@ public class SpectrumFragment extends Fragment implements SportsView {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_spectrum, container, false);
         presenter = new ScoreboardPresenterImpl(this);
+        presenter.getTotal();
         handler = new Handler();
         runnable = new Runnable() {
             @Override
@@ -88,7 +89,7 @@ public class SpectrumFragment extends Fragment implements SportsView {
                 loadingDialog.dismiss();
             }
         };
-        handler.post(runnable);
+        getSnackBarAfterFixedTime();
         chart = root.findViewById(R.id.spectrum_graph);
         standings=root.findViewById(R.id.spectrum_standings);
         return root;

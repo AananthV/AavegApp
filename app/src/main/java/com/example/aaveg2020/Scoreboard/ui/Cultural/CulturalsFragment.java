@@ -73,6 +73,7 @@ public class CulturalsFragment extends Fragment implements CulturalsView {
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_culturals, container, false);
         presenter = new ScoreboardPresenterImpl(this);
+        presenter.getTotal();
         handler = new Handler();
         runnable = new Runnable() {
             @Override
@@ -88,7 +89,7 @@ public class CulturalsFragment extends Fragment implements CulturalsView {
                 loadingDialog.dismiss();
             }
         };
-        handler.post(runnable);
+        getSnackBarAfterFixedTime();
         chart = root.findViewById(R.id.cultural_graph);
         standings=root.findViewById(R.id.culturals_standings);
         return root;

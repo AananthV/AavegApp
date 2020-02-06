@@ -71,6 +71,7 @@ public class SportsFragment extends Fragment implements SportsView {
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_sports, container, false);
         presenter = new ScoreboardPresenterImpl(this);
+        presenter.getTotal();
         handler = new Handler();
         runnable = new Runnable() {
             @Override
@@ -86,7 +87,7 @@ public class SportsFragment extends Fragment implements SportsView {
                 loadingDialog.dismiss();
             }
         };
-        handler.post(runnable);
+        getSnackBarAfterFixedTime();
         chart = root.findViewById(R.id.sports_graph);
         standings=root.findViewById(R.id.sports_standings);
         return root;

@@ -84,15 +84,19 @@ public class ClustersFragment extends Fragment implements OnClusterClickListener
         runnable = new Runnable() {
             @Override
             public void run() {
-                removeSnackBarTimer();
-                snackbar = Snackbar.make(container, "Check your internet and try again.", Snackbar.LENGTH_LONG);
-                snackbar.setAction("Retry", v -> {
-                    getClusters();
-                    loadingDialog.show();
-                    getSnackBarAfterFixedTime();
-                })
-                        .show();
-                loadingDialog.dismiss();
+                try {
+                    removeSnackBarTimer();
+                    snackbar = Snackbar.make(container, "Check your internet and try again.", Snackbar.LENGTH_LONG);
+                    snackbar.setAction("Retry", v -> {
+                        getClusters();
+                        loadingDialog.show();
+                        getSnackBarAfterFixedTime();
+                    })
+                            .show();
+                    loadingDialog.dismiss();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         };
         getSnackBarAfterFixedTime();

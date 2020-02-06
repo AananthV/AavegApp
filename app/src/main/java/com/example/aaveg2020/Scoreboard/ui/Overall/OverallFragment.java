@@ -75,19 +75,22 @@ public class OverallFragment extends Fragment implements IOverallView {
         runnable = new Runnable() {
             @Override
             public void run() {
-                removeSnackBarTimer();
-                snackbar = Snackbar.make(container, "Check your internet and try again.", Snackbar.LENGTH_LONG);
-                snackbar.setAction("Retry", v -> {
-                    presenter.getTotal();
-                    loadingDialog.show();
-                    getSnackBarAfterFixedTime();
-                })
-                        .show();
-                loadingDialog.dismiss();
+                try {
+                    removeSnackBarTimer();
+                    snackbar = Snackbar.make(container, "Check your internet and try again.", Snackbar.LENGTH_LONG);
+                    snackbar.setAction("Retry", v -> {
+                        presenter.getTotal();
+                        loadingDialog.show();
+                        getSnackBarAfterFixedTime();
+                    })
+                            .show();
+                    loadingDialog.dismiss();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         };
         getSnackBarAfterFixedTime();
-//        presenter.getTotal();
         chart = root.findViewById(R.id.overall_chart);
         points=root.findViewById(R.id.overall_standings);
         return root;
@@ -106,15 +109,15 @@ public class OverallFragment extends Fragment implements IOverallView {
     private ArrayList<BarDataSet> getDataSet() {
         ArrayList<BarDataSet> dataSets = null;
         ArrayList<BarEntry> valueSet1 = new ArrayList<>();
-        BarEntry v1e1 = new BarEntry(new float[]{scoreboardModel.getStandings().getCulturals().getAgate(),scoreboardModel.getStandings().getSpectrum().getAgate(),scoreboardModel.getStandings().getSports().getAgate()}, 0); // agate
+        BarEntry v1e1 = new BarEntry(new float[]{scoreboardModel.getStandings().getCulturals().getAgate(),scoreboardModel.getStandings().getSpectrum().getAgate()}, 0); // agate
         valueSet1.add(v1e1);
-        BarEntry v1e2 = new BarEntry(new float[]{scoreboardModel.getStandings().getCulturals().getAzurite(),scoreboardModel.getStandings().getSpectrum().getAzurite(),scoreboardModel.getStandings().getSports().getAzurite()}, 1); // Feb
+        BarEntry v1e2 = new BarEntry(new float[]{scoreboardModel.getStandings().getCulturals().getAzurite(),scoreboardModel.getStandings().getSpectrum().getAzurite()}, 1); // Feb
         valueSet1.add(v1e2);
-        BarEntry v1e3 = new BarEntry(new float[]{scoreboardModel.getStandings().getCulturals().getBloodstone(),scoreboardModel.getStandings().getSpectrum().getBloodstone(),scoreboardModel.getStandings().getSports().getBloodstone()}, 2); // Mar
+        BarEntry v1e3 = new BarEntry(new float[]{scoreboardModel.getStandings().getCulturals().getBloodstone(),scoreboardModel.getStandings().getSpectrum().getBloodstone()}, 2); // Mar
         valueSet1.add(v1e3);
-        BarEntry v1e4 = new BarEntry(new float[]{scoreboardModel.getStandings().getCulturals().getCobalt(),scoreboardModel.getStandings().getSpectrum().getCobalt(),scoreboardModel.getStandings().getSports().getCobalt()}, 3); // Apr
+        BarEntry v1e4 = new BarEntry(new float[]{scoreboardModel.getStandings().getCulturals().getCobalt(),scoreboardModel.getStandings().getSpectrum().getCobalt()}, 3); // Apr
         valueSet1.add(v1e4);
-        BarEntry v1e5 = new BarEntry(new float[]{scoreboardModel.getStandings().getCulturals().getOpal(),scoreboardModel.getStandings().getSpectrum().getOpal(),scoreboardModel.getStandings().getSports().getOpal()}, 4); // May
+        BarEntry v1e5 = new BarEntry(new float[]{scoreboardModel.getStandings().getCulturals().getOpal(),scoreboardModel.getStandings().getSpectrum().getOpal()}, 4); // May
         valueSet1.add(v1e5);
         BarDataSet barDataSet1 = new BarDataSet(valueSet1,"");
         barDataSet1.setColors(new int[]{Color.parseColor("#09bc9a"),Color.parseColor("#f49d6e"),Color.parseColor("#75dddd")});
@@ -161,7 +164,7 @@ public class OverallFragment extends Fragment implements IOverallView {
         chart.getAxisLeft().setValueFormatter(new LargeValueFormatter());
         chart.invalidate();
         Legend legend=chart.getLegend();
-        legend.setLabels(new String[]{"Culturals","Spectrum","Sports"});
+        legend.setLabels(new String[]{"Culturals","Spectrum"});
         legend.setTextColor(getResources().getColor(R.color.white));
     }
     public void assignPointsToHostel(){

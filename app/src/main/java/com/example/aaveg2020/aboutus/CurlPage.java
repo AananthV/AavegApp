@@ -76,8 +76,8 @@ public class CurlPage {
 		float texX = (float) w / newW;
 		float texY = (float) h / newH;
 		textureRect.set(0f, 0f, texX, texY);
-
 		return bitmapTex;
+
 	}
 
 	/**
@@ -151,6 +151,7 @@ public class CurlPage {
 			mColorFront = mColorBack = color;
 			break;
 		}
+		//throw new RuntimeException("test");
 	}
 
 	/**
@@ -185,6 +186,7 @@ public class CurlPage {
 			break;
 		}
 		mTexturesChanged = true;
+		//throw new RuntimeException("test");
 	}
 
 }

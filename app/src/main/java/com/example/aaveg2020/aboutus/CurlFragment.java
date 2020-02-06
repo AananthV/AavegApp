@@ -35,23 +35,29 @@ public class CurlFragment extends Fragment {
         // Inflate the layout for this fragment
         View v;
         int index = 0;
+        v = inflater.inflate(R.layout.main_curl, container, false);
         try {
-            v = inflater.inflate(R.layout.main_curl, container, false);
             mCurlView = (CurlView) v.findViewById(R.id.curl);
             mCurlView.setPageProvider(new CurlFragment.PageProvider());
             mCurlView.setSizeChangedObserver(new CurlFragment.SizeChangedObserver());
             mCurlView.setCurrentIndex(index);
             mCurlView.setBackgroundColor(getResources().getColor(R.color.transparent));
         }catch (Exception e) {
-            AboutUsFrag2 frag = new AboutUsFrag2();
-            FragmentManager fragmentManager = getFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.main_framelayout, frag);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
-
-            v = inflater.inflate(R.layout.layout_aboutusfrag, container, false);
-            //mCurlView.setLayerType(View.LAYER_TYPE_SOFTWARE,null);
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    MainActivity.openAbout();
+                }
+            });
+//            AboutUsFrag2 frag = new AboutUsFrag2();
+//            FragmentManager fragmentManager = getFragmentManager();
+//            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//            fragmentTransaction.replace(R.id.main_framelayout, frag);
+//            fragmentTransaction.addToBackStack(null);
+//            fragmentTransaction.commit();
+//
+//            v = inflater.inflate(R.layout.layout_aboutusfrag, container, false);
+            //mCurlView.setLayerType(View.LAYER_TYPE_SOFTWARE,nul
 
         }
         return v;
@@ -80,22 +86,43 @@ public class CurlFragment extends Fragment {
         }
 
         private Bitmap loadBitmap(int width, int height, int index) {
-            LayoutInflater inflater = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View v = inflater.inflate(mBitmapIds[index],null);
-            v.measure(MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY));
-            v.layout(0, 0, v.getMeasuredWidth(), v.getMeasuredHeight());
-            Bitmap b = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.ARGB_8888);
-            Canvas c = new Canvas(b);
-            v.draw(c);
-            return b;
+            try {
+                LayoutInflater inflater = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View v = inflater.inflate(mBitmapIds[index],null);
+                v.measure(MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY));
+                v.layout(0, 0, v.getMeasuredWidth(), v.getMeasuredHeight());
+                Bitmap b = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.ARGB_8888);
+                Canvas c = new Canvas(b);
+                v.draw(c);
+                return b;
+            } catch (Exception e) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        MainActivity.openAbout();
+                    }
+                });
+                return null;
+            }
+
         }
         @Override
         public void updatePage(CurlPage page, int width, int height, int index) {
-            Log.d("Current Page ",index+"");
-            Bitmap front = loadBitmap(width, height, index);
-            page.setTexture(front, CurlPage.SIDE_FRONT);
+            try {
+                Log.d("Current Page ",index+"");
+                Bitmap front = loadBitmap(width, height, index);
+                page.setTexture(front, CurlPage.SIDE_FRONT);
 
-            page.setColor(Color.rgb(180, 180, 180), CurlPage.SIDE_BACK);
+                page.setColor(Color.rgb(180, 180, 180), CurlPage.SIDE_BACK);
+            } catch (Exception e) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        MainActivity.openAbout();
+                    }
+                });
+            }
+
         }
     }
     /**
@@ -104,12 +131,24 @@ public class CurlFragment extends Fragment {
     private class SizeChangedObserver implements CurlView.SizeChangedObserver {
         @Override
         public void onSizeChanged(int w, int h) {
-            if (w > h) {
-                mCurlView.setViewMode(CurlView.SHOW_TWO_PAGES);
-                mCurlView.setMargins(.1f, .05f, .1f, .05f);
-            } else {
-                mCurlView.setViewMode(CurlView.SHOW_ONE_PAGE);
-                //mCurlView.setMargins(.1f, .1f, .1f, .1f);
+            try {
+
+
+                if (w > h) {
+                    mCurlView.setViewMode(CurlView.SHOW_TWO_PAGES);
+                    mCurlView.setMargins(.1f, .05f, .1f, .05f);
+                } else {
+                    mCurlView.setViewMode(CurlView.SHOW_ONE_PAGE);
+                    //mCurlView.setMargins(.1f, .1f, .1f, .1f);
+                }
+            } catch (Exception e) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        MainActivity.openAbout();
+                    }
+                });
+
             }
         }
     }

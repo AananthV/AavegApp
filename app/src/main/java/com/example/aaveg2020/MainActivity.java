@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.example.aaveg2020.Home.OpenScoreboard;
 import com.example.aaveg2020.Scoreboard.ScoreboardFragment;
 import com.example.aaveg2020.aboutus.AboutUsFrag2;
+import com.example.aaveg2020.aboutus.CurlFragment;
 import com.example.aaveg2020.events.Cluster;
 import com.example.aaveg2020.events.EventsFragment;
 import com.example.aaveg2020.events.EventsMainFragment;
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements LogOutInterface {
     ConstraintLayout mainActivityCL;
     SharedPreferences pref;
     SharedPreferences.Editor editor;
-    static int cup=0;
+    static int cup=0,about=0;
     int currentPosition;
     int flag=0;
 //    CurlFragment fragment=new CurlFragment();
@@ -64,7 +65,6 @@ public class MainActivity extends AppCompatActivity implements LogOutInterface {
 
         //Set custom hostel notifications
         FirebaseMessaging.getInstance().subscribeToTopic(UserUtils.hostel);
-
         pref= this.getSharedPreferences("Aaveg2020", MODE_PRIVATE);
         editor = pref.edit();
         FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
@@ -120,7 +120,13 @@ public class MainActivity extends AppCompatActivity implements LogOutInterface {
 
                     default:
                         {
-                            f = new AboutUsFrag2();
+                            if(about==0){
+                                f = new CurlFragment();
+                            }
+                            else{
+                                f=new AboutUsFrag2();
+                                about=0;
+                            }
                             tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.sponsors_white));
                             mainScreenTabLayout.getTabAt(0).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aaveg_gray));
                             mainScreenTabLayout.getTabAt(2).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.home_gray));
@@ -172,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements LogOutInterface {
         Intent intent=new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
-    
+
     @Override
     public void onBackPressed(){
         int count = getSupportFragmentManager().getBackStackEntryCount();
@@ -196,8 +202,26 @@ public class MainActivity extends AppCompatActivity implements LogOutInterface {
        // ScoreboardFragment.openCupScoreboard(i);
         //mainScreenTabLayout.addOnTabSelectedListener(this);
     }
+    public static void openAbout(){
+        TabLayout.Tab tab = mainScreenTabLayout.getTabAt(0);
+        about=1;
 
-
+        //  mainScreenTabLayout.removeOnTabSelectedListener(this);
+        tab.select();
+        // ScoreboardFragment.openCupScoreboard(i);
+        //mainScreenTabLayout.addOnTabSelectedListener(this);
     }
+    void openAboutHelper(TabLayout.Tab tab)
+    {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                tab.select();
+            }
+        });
+    }
+
+
+}
 
 

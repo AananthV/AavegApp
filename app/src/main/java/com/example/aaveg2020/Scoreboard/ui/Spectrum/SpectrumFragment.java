@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,7 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.utils.LargeValueFormatter;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -42,6 +44,10 @@ public class SpectrumFragment extends Fragment implements SportsView {
     AlertDialog loadingDialog;
     Context context;
     ArrayList<HomeFragment.HostelScore> scores;
+    private Handler handler;
+    private Runnable runnable;
+    private Snackbar snackbar;
+    private static final String TAG = "SpectrumFragment";
 
 
     @Override
@@ -67,7 +73,20 @@ public class SpectrumFragment extends Fragment implements SportsView {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_spectrum, container, false);
         presenter = new ScoreboardPresenterImpl(this);
-        presenter.getTotal();
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                removeSnackBarTimer();
+                snackbar = Snackbar.make(container, "Check your internet and try again.", Snackbar.LENGTH_INDEFINITE);
+                snackbar.setAction("Retry", v -> {
+                    presenter.getTotal();
+                    loadingDialog.show();
+                    getSnackBarAfterFixedTime();
+                })
+                        .show();
+                loadingDialog.dismiss();
+            }
+        };
         chart = root.findViewById(R.id.spectrum_graph);
         standings=root.findViewById(R.id.spectrum_standings);
         return root;
@@ -148,5 +167,13 @@ public class SpectrumFragment extends Fragment implements SportsView {
         this.scoreboardModel=scoreboardModel;
         assignDataToGraph();
         assignDataToTable();
+    }
+
+    private void getSnackBarAfterFixedTime() {
+        handler.postDelayed(runnable, 8000);
+    }
+
+    private void removeSnackBarTimer() {
+        handler.removeCallbacks(runnable);
     }
 }

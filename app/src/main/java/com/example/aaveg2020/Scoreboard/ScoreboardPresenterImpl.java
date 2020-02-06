@@ -21,6 +21,8 @@ public class ScoreboardPresenterImpl implements ScoreboardPresenter {
     CulturalsView culturalsView;
     SportsView sportsView;
     HomeView homeView;
+    volatile boolean fetched = false;
+    volatile boolean complete = false;
     private static final String TAG = "ScoreboardPresenterImpl";
 
     @Override
@@ -46,14 +48,28 @@ public class ScoreboardPresenterImpl implements ScoreboardPresenter {
                     sportsView.onGetScoreboardSuccess(response.body());
                 if (homeView!=null)
                     homeView.onGetScoreboardSuccess(response.body());
+                fetched = true;
+                complete = true;
             }
 
             @Override
             public void onFailure(Call<ScoreboardModel> call, Throwable t) {
                 Log.d(TAG, "Error: ");
+                fetched = false;
+                complete = true;
                 t.printStackTrace();
             }
         });
+    }
+
+    @Override
+    public boolean getIsFetched() {
+        return fetched;
+    }
+
+    @Override
+    public boolean getIsComplete() {
+        return complete;
     }
 
     public ScoreboardPresenterImpl(IOverallView overallView) {

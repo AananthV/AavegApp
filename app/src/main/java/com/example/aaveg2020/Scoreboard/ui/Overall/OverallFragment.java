@@ -70,12 +70,15 @@ public class OverallFragment extends Fragment implements IOverallView {
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_overall, container, false);
         presenter = new ScoreboardPresenterImpl(this);
+        Log.d(TAG, "onCreateView");
         handler = new Handler();
         presenter.getTotal();
         runnable = new Runnable() {
             @Override
             public void run() {
                 try {
+                    if (!presenter.getIsFetched()) {
+                    Log.d(TAG, "In runnable");
                     removeSnackBarTimer();
                     snackbar = Snackbar.make(container, "Check your internet and try again.", Snackbar.LENGTH_LONG);
                     snackbar.setAction("Retry", v -> {
@@ -85,12 +88,21 @@ public class OverallFragment extends Fragment implements IOverallView {
                     })
                             .show();
                     loadingDialog.dismiss();
+                    } else {
+                    loadingDialog.dismiss();
+                    removeSnackBarTimer();
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         };
-        getSnackBarAfterFixedTime();
+
+        if (!presenter.getIsFetched()) {
+            getSnackBarAfterFixedTime();
+        } else {
+            removeSnackBarTimer();
+        }
         chart = root.findViewById(R.id.overall_chart);
         points=root.findViewById(R.id.overall_standings);
         return root;

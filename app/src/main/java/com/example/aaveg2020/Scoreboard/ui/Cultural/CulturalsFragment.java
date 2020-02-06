@@ -71,29 +71,42 @@ public class CulturalsFragment extends Fragment implements CulturalsView {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        Log.d(TAG, "onCreateView");
         View root = inflater.inflate(R.layout.fragment_culturals, container, false);
         presenter = new ScoreboardPresenterImpl(this);
         presenter.getTotal();
+        Log.d(TAG, "onCreateView");
         handler = new Handler();
         runnable = new Runnable() {
             @Override
             public void run() {
                 try {
-                    removeSnackBarTimer();
-                    snackbar = Snackbar.make(container, "Check your internet and try again.", Snackbar.LENGTH_LONG);
-                    snackbar.setAction("Retry", v -> {
-                        presenter.getTotal();
-                        loadingDialog.show();
-                        getSnackBarAfterFixedTime();
-                    })
-                            .show();
-                    loadingDialog.dismiss();
+                    if (!presenter.getIsFetched()) {
+                        Log.d(TAG, "In runnable");
+                        removeSnackBarTimer();
+                        snackbar = Snackbar.make(container, "Check your internet and try again.", Snackbar.LENGTH_LONG);
+                        snackbar.setAction("Retry", v -> {
+                            presenter.getTotal();
+                            loadingDialog.show();
+                            getSnackBarAfterFixedTime();
+                        })
+                                .show();
+                        loadingDialog.dismiss();
+                    } else {
+                        loadingDialog.dismiss();
+                        removeSnackBarTimer();
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         };
-        getSnackBarAfterFixedTime();
+        if (!presenter.getIsFetched()) {
+            getSnackBarAfterFixedTime();
+        } else {
+            loadingDialog.dismiss();
+            removeSnackBarTimer();
+        }
         chart = root.findViewById(R.id.cultural_graph);
         standings=root.findViewById(R.id.culturals_standings);
         return root;

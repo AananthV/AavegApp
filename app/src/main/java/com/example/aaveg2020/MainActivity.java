@@ -27,7 +27,6 @@ import android.widget.Toast;
 import com.example.aaveg2020.Home.OpenScoreboard;
 import com.example.aaveg2020.Scoreboard.ScoreboardFragment;
 import com.example.aaveg2020.aboutus.AboutUsFrag2;
-import com.example.aaveg2020.aboutus.CurlFragment;
 import com.example.aaveg2020.events.Cluster;
 import com.example.aaveg2020.events.EventsFragment;
 import com.example.aaveg2020.events.EventsMainFragment;
@@ -35,6 +34,7 @@ import com.example.aaveg2020.events.EventsUtils;
 import com.example.aaveg2020.login.LoginActivity;
 import com.example.aaveg2020.splash.SplashActivity;
 import com.example.aaveg2020.sponsors.SponsorsFragment;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.Objects;
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements LogOutInterface {
     static int cup=0;
     int currentPosition;
     int flag=0;
-    CurlFragment fragment=new CurlFragment();
+//    CurlFragment fragment=new CurlFragment();
 
 
     @Override
@@ -135,7 +135,6 @@ public class MainActivity extends AppCompatActivity implements LogOutInterface {
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
             }
 
             @Override

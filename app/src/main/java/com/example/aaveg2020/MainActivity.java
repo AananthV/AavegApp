@@ -179,6 +179,8 @@ public class MainActivity extends AppCompatActivity implements LogOutInterface {
         int count = getSupportFragmentManager().getBackStackEntryCount();
 
         if (count == 0) {
+            if(flag==1)
+                finish();
             flag=1;
             mainScreenTabLayout.getTabAt(2).select();
         } else {

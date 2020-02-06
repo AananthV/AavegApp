@@ -15,7 +15,7 @@ public class AboutUsFrag2 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.main_curl, container, false);
+        View v = inflater.inflate(R.layout.layout_aboutusfrag, container, false);
         return v;
     }
 }

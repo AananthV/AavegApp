@@ -36,6 +36,7 @@ import com.example.aaveg2020.Scoreboard.ScoreboardPresenter;
 import com.example.aaveg2020.Scoreboard.ScoreboardPresenterImpl;
 import com.example.aaveg2020.Scoreboard.ui.Overall.OverallModel;
 import com.example.aaveg2020.UserUtils;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -65,7 +66,9 @@ public class HomeFragment extends Fragment implements HomeView {
     Toolbar toolbar;
     ImageView logOut;
     LogOutInterface logOutInterface;
+    Runnable runnable;
     OpenScoreboard openScoreboard;
+    Snackbar snackbar;
 
     public HomeFragment(LogOutInterface logOutInterface) {
         this.logOutInterface = logOutInterface;

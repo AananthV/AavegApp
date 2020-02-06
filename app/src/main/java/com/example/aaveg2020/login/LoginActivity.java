@@ -61,6 +61,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        System.out.println("!!!!!!!!!!login");
         snackbar = Snackbar.make(findViewById(android.R.id.content), "Check your internet and try again.", Snackbar.LENGTH_INDEFINITE);
         /*snackbar.setAction("Retry", new View.OnClickListener() {
             @Override

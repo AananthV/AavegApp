@@ -14,7 +14,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.example.aaveg2020.MainActivity;
 import com.example.aaveg2020.R;
 
 
@@ -30,14 +33,27 @@ public class CurlFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.main_curl, container, false);
+        View v;
         int index = 0;
+        try {
+            v = inflater.inflate(R.layout.main_curl, container, false);
+            mCurlView = (CurlView) v.findViewById(R.id.curl);
+            mCurlView.setPageProvider(new CurlFragment.PageProvider());
+            mCurlView.setSizeChangedObserver(new CurlFragment.SizeChangedObserver());
+            mCurlView.setCurrentIndex(index);
+            mCurlView.setBackgroundColor(getResources().getColor(R.color.transparent));
+        }catch (Exception e) {
+            AboutUsFrag2 frag = new AboutUsFrag2();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.main_framelayout, frag);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
 
-        mCurlView = (CurlView) v.findViewById(R.id.curl);
-        mCurlView.setPageProvider(new CurlFragment.PageProvider());
-        mCurlView.setSizeChangedObserver(new CurlFragment.SizeChangedObserver());
-        mCurlView.setCurrentIndex(index);
-        mCurlView.setBackgroundColor(getResources().getColor(R.color.transparent));
+            v = inflater.inflate(R.layout.layout_aboutusfrag, container, false);
+            //mCurlView.setLayerType(View.LAYER_TYPE_SOFTWARE,null);
+
+        }
         return v;
     }
     @Override

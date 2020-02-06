@@ -59,6 +59,7 @@ public class OverallFragment extends Fragment implements IOverallView {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        presenter = new ScoreboardPresenterImpl(this);
         dialog = LayoutInflater.from(context).inflate(R.layout.progress_dialog, null);
         TextView tv = dialog.findViewById(R.id.progressDialog_textView);
         tv.setText("Loading...");
@@ -69,7 +70,6 @@ public class OverallFragment extends Fragment implements IOverallView {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_overall, container, false);
-        presenter = new ScoreboardPresenterImpl(this);
         Log.d(TAG, "onCreateView");
         handler = new Handler();
         presenter.getTotal();
@@ -132,7 +132,7 @@ public class OverallFragment extends Fragment implements IOverallView {
         BarEntry v1e5 = new BarEntry(new float[]{scoreboardModel.getStandings().getCulturals().getOpal(),scoreboardModel.getStandings().getSpectrum().getOpal()}, 4); // May
         valueSet1.add(v1e5);
         BarDataSet barDataSet1 = new BarDataSet(valueSet1,"");
-        barDataSet1.setColors(new int[]{Color.parseColor("#09bc9a"),Color.parseColor("#f49d6e"),Color.parseColor("#75dddd")});
+        barDataSet1.setColors(new int[]{Color.parseColor("#09bc9a"),Color.parseColor("#f49d6e")});
         barDataSet1.setValueFormatter(new LargeValueFormatter());
         dataSets = new ArrayList<>();
         dataSets.add(barDataSet1);

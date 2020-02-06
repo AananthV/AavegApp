@@ -280,11 +280,11 @@ public class HomeFragment extends Fragment implements HomeView {
         culturals=scoreboardModel.getStandings().getCulturals();
         sports=scoreboardModel.getStandings().getSports();
         spectrum=scoreboardModel.getStandings().getSpectrum();
-        total.setAgate(culturals.getAgate()+sports.getAgate()+spectrum.getAgate());
-        total.setAzurite(culturals.getAzurite()+sports.getAzurite()+spectrum.getAzurite());
-        total.setBloodstone(culturals.getBloodstone()+sports.getBloodstone()+spectrum.getBloodstone());
-        total.setCobalt(culturals.getCobalt()+sports.getCobalt()+spectrum.getCobalt());
-        total.setOpal(culturals.getOpal()+sports.getOpal()+spectrum.getOpal());
+        total.setAgate(culturals.getAgate()+spectrum.getAgate());
+        total.setAzurite(culturals.getAzurite()+spectrum.getAzurite());
+        total.setBloodstone(culturals.getBloodstone()+spectrum.getBloodstone());
+        total.setCobalt(culturals.getCobalt()+spectrum.getCobalt());
+        total.setOpal(culturals.getOpal()+spectrum.getOpal());
     }
     private int getPosition(OverallModel overallModel)
     {

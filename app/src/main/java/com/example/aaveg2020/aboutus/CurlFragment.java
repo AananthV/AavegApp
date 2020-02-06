@@ -1,6 +1,7 @@
 package com.example.aaveg2020.aboutus;
 
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -15,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -26,36 +29,53 @@ import com.example.aaveg2020.R;
 
 public class CurlFragment extends Fragment {
     private CurlView mCurlView;
+    View dialog;
+    AlertDialog loadingDialog;
+    Context context;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        dialog = LayoutInflater.from(context).inflate(R.layout.progress_dialog, null);
+        loadingDialog = new AlertDialog.Builder(context).setView(dialog).setCancelable(false).create();
+        loadingDialog.show();
+    }
+
     public CurlFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = null;
-//        int index = 0;
-//        try {
-////            v = inflater.inflate(R.layout.main_curl, container, false);
-////            mCurlView = (CurlView) v.findViewById(R.id.curl);
-////            mCurlView.setPageProvider(new CurlFragment.PageProvider());
-////            mCurlView.setSizeChangedObserver(new CurlFragment.SizeChangedObserver());
-////            mCurlView.setCurrentIndex(index);
-////            mCurlView.setBackgroundColor(getResources().getColor(R.color.transparent));
-//        }catch (Exception e) {
-//            AboutUsFrag2 frag = new AboutUsFrag2();
-//            FragmentManager fragmentManager = getFragmentManager();
-//            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//            fragmentTransaction.replace(R.id.main_framelayout, frag);
-//            fragmentTransaction.addToBackStack(null);
-//            fragmentTransaction.commit();
-//
-//            v = inflater.inflate(R.layout.layout_aboutusfrag, container, false);
-//            //mCurlView.setLayerType(View.LAYER_TYPE_SOFTWARE,null);
-//
-//        }
+        int index = 0;
+        try {
+            v = inflater.inflate(R.layout.main_curl, container, false);
+            mCurlView = (CurlView) v.findViewById(R.id.curl);
+            mCurlView.setPageProvider(new CurlFragment.PageProvider());
+            mCurlView.setSizeChangedObserver(new CurlFragment.SizeChangedObserver());
+            mCurlView.setCurrentIndex(index);
+            mCurlView.setBackgroundColor(getResources().getColor(R.color.transparent));
+        }catch (Exception e) {
+            AboutUsFrag2 frag = new AboutUsFrag2();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.main_framelayout, frag);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+
+            v = inflater.inflate(R.layout.layout_aboutusfrag, container, false);
+
+        }
         return v;
     }
     @Override
@@ -82,7 +102,6 @@ public class CurlFragment extends Fragment {
 
         private Bitmap loadBitmap(int width, int height, int index) {
             LayoutInflater inflater = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
             View v;
             TextView text;
             LinearLayout layout;
@@ -145,6 +164,7 @@ public class CurlFragment extends Fragment {
             Bitmap b = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.ARGB_8888);
             Canvas c = new Canvas(b);
             v.draw(c);
+            loadingDialog.dismiss();
             return b;
         }
         @Override

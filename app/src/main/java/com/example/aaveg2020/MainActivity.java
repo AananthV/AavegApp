@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.example.aaveg2020.Home.OpenScoreboard;
 import com.example.aaveg2020.Scoreboard.ScoreboardFragment;
 import com.example.aaveg2020.aboutus.AboutUsFrag2;
+import com.example.aaveg2020.aboutus.CurlFragment;
 import com.example.aaveg2020.events.Cluster;
 import com.example.aaveg2020.events.EventsFragment;
 import com.example.aaveg2020.events.EventsMainFragment;
@@ -120,12 +121,12 @@ public class MainActivity extends AppCompatActivity implements LogOutInterface {
 
                     default:
                         {
-                            f = new AboutUsFrag2();
-                            tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.sponsors_white));
-                            mainScreenTabLayout.getTabAt(0).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aaveg_gray));
+                            f = new CurlFragment();
+                            tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aaveg_white));
+                            mainScreenTabLayout.getTabAt(1).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.calendar_gray));
                             mainScreenTabLayout.getTabAt(2).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.home_gray));
                             mainScreenTabLayout.getTabAt(3).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.leaderboard_gray));
-                            mainScreenTabLayout.getTabAt(1).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.calendar_gray));
+                            mainScreenTabLayout.getTabAt(4).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.sponsors_gray));
                         }
                 }
                 FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();

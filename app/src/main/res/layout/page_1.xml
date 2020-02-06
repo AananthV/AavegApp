@@ -4,21 +4,25 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:id="@+id/hostelBack"
     android:background="@color/darkBackground">
 
     <ImageView
+        android:id="@+id/hostelLogo"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.5"
         android:padding="15dp"
         android:src="@drawable/aaveglogowhite" />
     <TextView
+        android:id="@+id/hostelText"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:padding="10dp"
         android:textAlignment="center"
         android:layout_weight="4.5"
-        android:text="Aaveg, the ultimate inter-hostel showdown, scheduled to be held on 7th, 8th and 9th of February is a fest to invoke the rawest of talents with the utmost of team spirit. With the hostels competing to secure multiple trophies in the areas of sports, culturals and so on, Aaveg'20, The Abyss, is here to deconstruct reality and rekindle the battlefield."
+        android:text=
+            "Aaveg, the ultimate inter-hostel showdown, scheduled to be held on 7th, 8th and 9th of February is a fest to invoke the rawest of talents with the utmost of team spirit. With the hostels competing to secure multiple trophies in the areas of sports, culturals and so on, Aaveg'20, The Abyss, is here to deconstruct reality and rekindle the battlefield."
         app:autoSizeTextType="uniform"
         app:autoSizeMinTextSize="14sp"
         app:autoSizeMaxTextSize="100sp"

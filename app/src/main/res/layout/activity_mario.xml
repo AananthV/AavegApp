@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Home.MarioActivity">
+    tools:context="in.aaveg.aaveg2020.Home.MarioActivity">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

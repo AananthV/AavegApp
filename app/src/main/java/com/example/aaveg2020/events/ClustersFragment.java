@@ -99,7 +99,6 @@ public class ClustersFragment extends Fragment implements OnClusterClickListener
                 }
             }
         };
-        getSnackBarAfterFixedTime();
         return mView;
     }
 
@@ -119,12 +118,14 @@ public class ClustersFragment extends Fragment implements OnClusterClickListener
                 Log.d(TAG, "Response: " + response + ", status: " + response.code());
                 updateRecyclerView(response.body());
                 loadingDialog.dismiss();
+                removeSnackBarTimer();
             }
 
             @Override
             public void onFailure(Call<ClusterResponse> call, Throwable t) {
                 Log.d(TAG, "Error: ", t);
                 loadingDialog.dismiss();
+                getSnackBarAfterFixedTime();
             }
         });
     }

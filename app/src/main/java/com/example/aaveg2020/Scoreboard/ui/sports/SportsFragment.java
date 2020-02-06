@@ -72,26 +72,39 @@ public class SportsFragment extends Fragment implements SportsView {
         View root = inflater.inflate(R.layout.fragment_sports, container, false);
         presenter = new ScoreboardPresenterImpl(this);
         presenter.getTotal();
+        Log.d(TAG, "onCreateView");
         handler = new Handler();
+        presenter.getTotal();
         runnable = new Runnable() {
             @Override
             public void run() {
                 try {
-                    removeSnackBarTimer();
-                    snackbar = Snackbar.make(container, "Check your internet and try again.", Snackbar.LENGTH_LONG);
-                    snackbar.setAction("Retry", v -> {
-                        presenter.getTotal();
-                        loadingDialog.show();
-                        getSnackBarAfterFixedTime();
-                    })
-                            .show();
-                    loadingDialog.dismiss();
+                    if (!presenter.getIsFetched()) {
+                        Log.d(TAG, "In runnable");
+                        removeSnackBarTimer();
+                        snackbar = Snackbar.make(container, "Check your internet and try again.", Snackbar.LENGTH_LONG);
+                        snackbar.setAction("Retry", v -> {
+                            presenter.getTotal();
+                            loadingDialog.show();
+                            getSnackBarAfterFixedTime();
+                        })
+                                .show();
+                        loadingDialog.dismiss();
+                    } else {
+                        loadingDialog.dismiss();
+                        removeSnackBarTimer();
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         };
-        getSnackBarAfterFixedTime();
+        if (!presenter.getIsFetched()) {
+            getSnackBarAfterFixedTime();
+        } else {
+            loadingDialog.dismiss();
+            removeSnackBarTimer();
+        }
         chart = root.findViewById(R.id.sports_graph);
         standings=root.findViewById(R.id.sports_standings);
         return root;

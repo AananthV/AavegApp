@@ -1,5 +1,7 @@
 package com.example.aaveg2020.Scoreboard;
 
+import android.util.Log;
+
 import com.example.aaveg2020.Home.HomeView;
 import com.example.aaveg2020.Scoreboard.ui.Cultural.CulturalsView;
 import com.example.aaveg2020.Scoreboard.ui.Overall.IOverallView;
@@ -19,6 +21,7 @@ public class ScoreboardPresenterImpl implements ScoreboardPresenter {
     CulturalsView culturalsView;
     SportsView sportsView;
     HomeView homeView;
+    private static final String TAG = "ScoreboardPresenterImpl";
 
     @Override
     public void getTotal() {
@@ -47,7 +50,8 @@ public class ScoreboardPresenterImpl implements ScoreboardPresenter {
 
             @Override
             public void onFailure(Call<ScoreboardModel> call, Throwable t) {
-
+                Log.d(TAG, "Error: ");
+                t.printStackTrace();
             }
         });
     }

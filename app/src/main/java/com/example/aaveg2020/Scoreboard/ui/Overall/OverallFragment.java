@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +30,7 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.utils.LargeValueFormatter;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -41,6 +44,10 @@ public class OverallFragment extends Fragment implements IOverallView {
     AlertDialog loadingDialog;
     Context context;
     ArrayList<HomeFragment.HostelScore> scores;
+    Handler handler;
+    Runnable runnable;
+    Snackbar snackbar;
+    private static final String TAG = "OverallFragment";
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -63,9 +70,25 @@ public class OverallFragment extends Fragment implements IOverallView {
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_overall, container, false);
         presenter = new ScoreboardPresenterImpl(this);
-        presenter.getTotal();
+        handler = new Handler();
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                removeSnackBarTimer();
+                snackbar = Snackbar.make(container, "Check your internet and try again.", Snackbar.LENGTH_INDEFINITE);
+                snackbar.setAction("Retry", v -> {
+                    presenter.getTotal();
+                    loadingDialog.show();
+                    getSnackBarAfterFixedTime();
+                })
+                        .show();
+                loadingDialog.dismiss();
+            }
+        };
+//        presenter.getTotal();
         chart = root.findViewById(R.id.overall_chart);
         points=root.findViewById(R.id.overall_standings);
+        handler.post(runnable);
         return root;
     }
 
@@ -152,5 +175,12 @@ public class OverallFragment extends Fragment implements IOverallView {
         points.setLayoutManager(layoutManager);
         TotalPointsAdapter adapter=new TotalPointsAdapter(getContext(),scores);
         points.setAdapter(adapter);
+    }
+    private void getSnackBarAfterFixedTime() {
+        handler.postDelayed(runnable, 8000);
+    }
+
+    private void removeSnackBarTimer() {
+        handler.removeCallbacks(runnable);
     }
 }

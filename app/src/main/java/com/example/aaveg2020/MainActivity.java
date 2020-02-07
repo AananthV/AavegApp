@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.example.aaveg2020.Home.OpenScoreboard;
 import com.example.aaveg2020.Scoreboard.ScoreboardFragment;
 import com.example.aaveg2020.aboutus.AboutUsFrag2;
+import com.example.aaveg2020.aboutus.CurlFragment;
 import com.example.aaveg2020.events.Cluster;
 import com.example.aaveg2020.events.EventsFragment;
 import com.example.aaveg2020.events.EventsMainFragment;
@@ -120,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements LogOutInterface {
 
                     default:
                         {
-                            f = new AboutUsFrag2();
+                            f = new CurlFragment();
                             tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.sponsors_white));
                             mainScreenTabLayout.getTabAt(0).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aaveg_gray));
                             mainScreenTabLayout.getTabAt(2).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.home_gray));

@@ -13,20 +13,20 @@
         android:supportsRtl="true"
         android:hardwareAccelerated="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Home.HameedActivity"></activity>
-        <activity android:name=".sponsors.SibiActivity" />
-        <activity android:name=".Home.MarioActivity" />
-        <activity android:name=".Home.HopeThisWorks" />
+        <activity android:name="in.aaveg.aaveg2020.Home.HameedActivity"></activity>
+        <activity android:name="in.aaveg.aaveg2020.sponsors.SibiActivity" />
+        <activity android:name="in.aaveg.aaveg2020.Home.MarioActivity" />
+        <activity android:name="in.aaveg.aaveg2020.Home.HopeThisWorks" />
         <activity
             android:noHistory="true"
             android:hardwareAccelerated="false"
-            android:name=".login.LoginActivity"
+            android:name="in.aaveg.aaveg2020.login.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MainActivity"
+            android:name="in.aaveg.aaveg2020.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".splash.SplashActivity"
+            android:name="in.aaveg.aaveg2020.splash.SplashActivity"
             android:noHistory="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -36,7 +36,7 @@
             </intent-filter>
         </activity>
         <service
-            android:name=".notifications.FirebaseMessagingService">
+            android:name="in.aaveg.aaveg2020.notifications.FirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>

@@ -86,7 +86,12 @@ public class EventsFragment extends Fragment implements OnEventClickListener {
                 .apply(RequestOptions.fitCenterTransform())
                 .into(backgroundImg);
 
-        loadingDialog.dismiss();
+        try {
+            if(events.size()!=0)
+                loadingDialog.dismiss();
+        }catch (Exception e) {
+            loadingDialog.dismiss();
+        }
 
         return mView;
     }

@@ -122,11 +122,11 @@ public class MainActivity extends AppCompatActivity implements LogOutInterface {
                     default:
                         {
                             f = new CurlFragment();
-                            tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.sponsors_white));
-                            mainScreenTabLayout.getTabAt(0).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aaveg_gray));
+                            tab.setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.aaveg_white));
+                            mainScreenTabLayout.getTabAt(1).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.calendar_gray));
                             mainScreenTabLayout.getTabAt(2).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.home_gray));
                             mainScreenTabLayout.getTabAt(3).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.leaderboard_gray));
-                            mainScreenTabLayout.getTabAt(1).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.calendar_gray));
+                            mainScreenTabLayout.getTabAt(4).setIcon(ContextCompat.getDrawable(MainActivity.this,R.drawable.sponsors_gray));
                         }
                 }
                 FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();

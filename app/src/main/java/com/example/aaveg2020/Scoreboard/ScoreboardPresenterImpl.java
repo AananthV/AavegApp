@@ -50,6 +50,7 @@ public class ScoreboardPresenterImpl implements ScoreboardPresenter {
                     homeView.onGetScoreboardSuccess(response.body());
                 fetched = true;
                 complete = true;
+                System.out.println("called onResponse Scoreboard presenter");
             }
 
             @Override
@@ -58,6 +59,7 @@ public class ScoreboardPresenterImpl implements ScoreboardPresenter {
                 fetched = false;
                 complete = true;
                 t.printStackTrace();
+                System.out.println("called onFailure Scoreboard presenter");
             }
         });
     }
